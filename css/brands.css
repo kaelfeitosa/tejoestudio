@@ -249,9 +249,9 @@
 
 /* Google Play Store */
 .button-playstore {
-	--button-text:#FFFFFF;
-	--button-background:#000000;
-	--button-border:1px solid #FFFFFF;
+	--button-text:#000000;
+	--button-background:#FFFFFF;
+	--button-border:1px solid #000000;
 }
 
 /* Google Scholar */
