@@ -23,16 +23,44 @@
     <style>
       .button-stack a { display: none; }
       .button-stack a.custom-link { display: inline-flex; }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="column">
         <img class="avatar avatar--rounded" src="images/tejo_logo_resized.png" alt="Tejo Estúdio">
-        <h1>
-          Tejo Estúdio | Vem, Exu
+        <h1 class="visually-hidden">
+          Tejo Estúdio
         </h1>
-        <p>Estúdio brasileiro de jogos 2D – desenvolvendo o jogo narrativo autoral "Vem, Exu".</p>
+        <p>Estúdio cearense de pequenos jogos entre arte e cultura brasileira.</p>
+
+        <hr>
+
+        <h2>🎮 Vem, Exu</h2>
+        <p>Após uma briga com o irmão que termina na perda da sua arraia, Exu tenta dormir, mas sua raiva desperta uma tempestade fantástica onde realidade e sonho se misturam. Para recuperar a arraia, ele precisa enfrentar a tempestade e aprender a vencer o próprio orgulho.</p>
+        <p>✨ <b>Baseado no conto <i>“Exu ficou com medo”</i>, do livro <i>Contos de Exu</i>, de Rafael Semino.</b></p>
+
+        <h3>👥 Equipe:</h3>
+        <ul>
+            <li>Michael Feitosa — Game Design</li>
+            <li>Rafael Semino — Roteiro</li>
+            <li>Douglas Levi — Programação</li>
+            <li>Valdir Marte — Ilustração</li>
+            <li>Zéis — Música e Sons</li>
+            <li>Laura Lucca -- Pesquisa de Acessibilidade</li>
+            <li>Carlos Marques -- Social Media</li>
+        </ul>
         <div class="button-stack" role="navigation">
       <a class="button button-instagram custom-link" href="https://www.instagram.com/tejoestudio" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/instagram.svg" alt="Instagram Logo">Instagram</a>
   <a class="button button-amazon custom-link" href="https://www.amazon.com.br/Contos-Exu-Rafael-Semino-ebook/dp/B0D192M6VJ" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/amazon.svg" alt="Amazon Logo">Livro Contos de Exu</a>
