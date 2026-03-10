@@ -30,6 +30,128 @@
         .shadow-hard-lg {
             box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
         }
+
+        /* Otimizações para Impressão / PDF Digital */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                text-rendering: optimizeLegibility;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 15mm;
+            }
+
+            body {
+                font-size: 11pt;
+            }
+
+            /* Resolver problema de páginas em branco extras: resetar alturas atadas ao viewport */
+            .min-h-screen,
+            header#home {
+                min-height: 0 !important;
+                height: auto !important;
+            }
+
+            /* Esconder navegação e interações que não fazem sentido no PDF */
+            nav,
+            .fixed,
+            .md\:hidden,
+            button,
+            a[href^="#"] {
+                display: none !important;
+            }
+
+            /* Ajustes no Hero Section para funcionar como capa perfeita */
+            header#home {
+                padding-top: 20vh !important;
+                padding-bottom: 5vh !important;
+                justify-content: center !important;
+                page-break-after: always;
+                break-after: page;
+            }
+
+            /* Reduzir o tamanho da fonte do h1 no Hero para caber num A4 sem quebrar palavras */
+            header#home h1 {
+                font-size: 5rem !important;
+                line-height: 0.9 !important;
+            }
+
+            /* Separar seções principais em páginas diferentes para aspecto de revista/documento */
+            section {
+                page-break-before: always;
+                break-before: page;
+                page-break-inside: auto;
+                break-inside: auto;
+            }
+
+            /* Bloco "Outros Experimentos" começar em nova página devido à grade horizontal */
+            .pt-20.mt-20 {
+                page-break-before: always;
+                break-before: page;
+                border-top: none !important;
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+            }
+
+            /* Evitar imagens e textos importantes sendo fatiados ao meio horizontalmente */
+            article,
+            .grid>a,
+            img {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            /* Em containers muito longos (como "Sobre"), remover o avoid para impedir cortes brutais e remover a borda pra fluir */
+            .shadow-hard-lg {
+                page-break-inside: auto;
+                break-inside: auto;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+
+            /* Manter títulos sempre colados aos seus textos */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5 {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            /* Espaçamentos mais amigáveis para A4, reduzindo brancos excessivos de tela */
+            .py-24 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+
+            .pt-32,
+            .pb-20,
+            .mb-20,
+            .mb-12,
+            .mt-20,
+            .pt-20 {
+                margin: 0 !important;
+                padding: 0 !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .gap-20 {
+                gap: 2rem !important;
+            }
+
+            .space-y-24> :not([hidden])~ :not([hidden]) {
+                margin-top: 3rem !important;
+            }
+
+            /* Remover filtros grayscale para garantir que as imagens fiquem visíveis nativamente no PDF */
+            .grayscale {
+                filter: none !important;
+            }
+        }
     </style>
 </head>
 
