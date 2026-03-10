@@ -96,15 +96,37 @@
                 padding-top: 0 !important;
             }
 
-            /* Evitar imagens e textos importantes sendo fatiados ao meio horizontalmente */
+            /* Forçar colunas de lado-a-lado apenas para os Projetos Principais na impressão, evitando encolher o resto do portfólio */
+            .md\:grid-cols-12 {
+                display: grid !important;
+                grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+                align-items: start !important;
+            }
+            .md\:col-span-5 { grid-column: span 5 / span 5 !important; }
+            .md\:col-span-7 { grid-column: span 7 / span 7 !important; }
+            .md\:order-1 { order: 1 !important; }
+            .md\:order-2 { order: 2 !important; }
+
+            /* Evitar textos importantes sendo fatiados ao meio horizontalmente */
             article,
-            .grid>a,
+            .grid > a,
+            .grid > div,
             img {
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
 
-            /* Em containers muito longos (como "Sobre"), remover o avoid para impedir cortes brutais e remover a borda pra fluir */
+            /* Garantir que containers proporcionais não estiquem absurdo empurrando texto */
+            .aspect-\[3\/4\], 
+            .aspect-video, 
+            .aspect-square {
+                max-height: 35vh !important; 
+                width: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            /* Em containers muito longos (como "Sobre") */
             .shadow-hard-lg {
                 page-break-inside: auto;
                 break-inside: auto;
@@ -339,18 +361,29 @@
                                         <h3 className="text-4xl font-bold mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">Vem, Exu</h3>
                                         <div className="flex flex-wrap gap-2 mb-6 font-mono text-xs">
                                             <span className="bg-neutral-200 px-2 py-1">2024–2026</span>
-                                            <span className="bg-neutral-200 px-2 py-1">JOGO NARRATIVO</span>
+                                            <span className="bg-neutral-200 px-2 py-1">CONTO INTERATIVO DIGITAL</span>
                                         </div>
 
                                         <p className="mb-6 text-lg leading-relaxed text-neutral-800">
-                                            Uma narrativa interativa inspirada no conto “Exu Ficou com Medo”, do livro Contos de Exu, de Rafael Semino. A experiência acompanha um menino que atravessa uma tempestade fantástica após perder sua arraia. A narrativa explora temas de infância, orgulho e reconciliação por meio de uma estética gráfica baseada em silhuetas e contraste.
+                                            Um conto interativo inspirado na história “Exu Ficou com Medo”, do livro Contos de Exu, de Rafael Semino. A narrativa acompanha um menino que atravessa uma tempestade fantástica após perder sua arraia. A narrativa explora temas de infância, orgulho e reconciliação por meio de uma estética gráfica baseada em silhuetas e contraste.
                                         </p>
 
                                         <div className="space-y-3 mb-8 text-sm border-l-2 border-neutral-300 pl-4">
                                             <div><span className="font-bold">Poética:</span> <span className="text-neutral-600">Gestos pequenos, silhuetas</span></div>
                                             <div><span className="font-bold">Tech:</span> <span className="text-neutral-600">Godot 4 (GDScript 2)</span></div>
-                                            <div><span className="font-bold">Destaque:</span> <span className="text-neutral-600">Projeto desenvolvido com apoio da Lei Paulo Gustavo (CE)</span></div>
+                                            <div><span className="font-bold">Destaque:</span> <span className="text-neutral-600">Projeto desenvolvido com apoio da Lei Paulo Gustavo (CE) em 2024</span></div>
                                             <div><span className="font-bold">Circulação:</span> <span className="text-neutral-600">SANA (Sala Black Heroes), Feira do Conhecimento e apresentações educativas em escolas públicas e espaços comunitários de Fortaleza</span></div>
+                                            
+                                            <div className="pt-2 mt-2">
+                                                <span className="font-bold block mb-1">Equipe</span>
+                                                <div className="text-neutral-600 leading-relaxed">
+                                                    Direção criativa, game design e programação — Michael Feitosa<br/>
+                                                    Narrativa — Rafael Semino<br/>
+                                                    Programação — Douglas Levi<br/>
+                                                    Ilustração — Valdir Marte<br/>
+                                                    Trilha sonora — Zéis
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -377,7 +410,7 @@
                                         <div className="space-y-3 mb-8 text-sm border-l-2 border-neutral-300 pl-4">
                                             <div><span className="font-bold">Poética:</span> <span className="text-neutral-600">Vento, céu, participação</span></div>
                                             <div><span className="font-bold">Tech:</span> <span className="text-neutral-600">WebSockets, Projeção Generativa</span></div>
-                                            <div><span className="font-bold">Destaque:</span> <span className="text-neutral-600">Projeto selecionado no Edital das Artes Fortaleza</span></div>
+                                            <div><span className="font-bold">Destaque:</span> <span className="text-neutral-600">Projeto selecionado no Edital das Artes Fortaleza em 2024</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -460,11 +493,11 @@
                             </h3>
                             <div className="grid md:grid-cols-2 gap-8">
                                 <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
-                                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">Lei Paulo Gustavo — Ceará</h4>
+                                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">Lei Paulo Gustavo — Ceará, 2024</h4>
                                     <p className="text-neutral-700 text-lg">Desenvolvimento do jogo Vem, Exu</p>
                                 </div>
                                 <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
-                                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">Edital das Artes — Fortaleza</h4>
+                                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">Edital das Artes — Fortaleza, 2024</h4>
                                     <p className="text-neutral-700 text-lg">Desenvolvimento da instalação Raiar</p>
                                 </div>
                             </div>
