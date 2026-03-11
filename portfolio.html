@@ -1,754 +1,1179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Michael Feitosa | Portfólio</title>
-    <link rel="icon" type="image/png" href="./images/tejo_icon.png">
+    <link rel="icon" type="image/png" href="./images/tejo_icon.png" />
 
     <!-- 1. Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- 2. React & ReactDOM (UMD for local file support) -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
 
     <!-- 3. Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
-        html {
-            scroll-behavior: smooth;
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Utilitários para sombras duras (Brutalismo/Xilogravura) */
+      .shadow-hard {
+        box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+      }
+
+      .shadow-hard-lg {
+        box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+      }
+
+      /* Otimizações para Impressão / PDF Digital */
+      @media print {
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          text-rendering: optimizeLegibility;
         }
 
-        /* Utilitários para sombras duras (Brutalismo/Xilogravura) */
-        .shadow-hard {
-            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        @page {
+          size: A4 portrait;
+          margin: 15mm;
         }
 
+        body {
+          font-size: 11pt;
+        }
+
+        /* Resolver problema de páginas em branco extras: resetar alturas atadas ao viewport */
+        .min-h-screen,
+        header#home {
+          min-height: 0 !important;
+          height: auto !important;
+        }
+
+        /* Esconder navegação e interações que não fazem sentido no PDF */
+        nav,
+        .fixed,
+        .md\:hidden,
+        button,
+        a[href^="#"] {
+          display: none !important;
+        }
+
+        /* Ajustes no Hero Section para funcionar como capa perfeita */
+        header#home {
+          padding-top: 20vh !important;
+          padding-bottom: 5vh !important;
+          justify-content: center !important;
+          page-break-after: always;
+          break-after: page;
+        }
+
+        /* Reduzir o tamanho da fonte do h1 no Hero para caber num A4 sem quebrar palavras */
+        header#home h1 {
+          font-size: 5rem !important;
+          line-height: 0.9 !important;
+        }
+
+        /* Separar seções principais em páginas diferentes para aspecto de revista/documento */
+        section {
+          page-break-before: always;
+          break-before: page;
+          page-break-inside: auto;
+          break-inside: auto;
+        }
+
+        /* Impedir que o Footer pule sozinho para uma página em branco (famosa página viúva) */
+        footer {
+          page-break-before: avoid !important;
+          break-before: avoid !important;
+          margin-top: 1rem !important;
+          border-top: none !important;
+        }
+
+        /* Bloco "Outros Experimentos" começar em nova página devido à grade horizontal */
+        .pt-20.mt-20 {
+          page-break-before: always;
+          break-before: page;
+          border-top: none !important;
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+        }
+
+        /* Forçar colunas de lado-a-lado apenas para os Projetos Principais na impressão, evitando encolher o resto do portfólio */
+        .md\:grid-cols-12 {
+          display: grid !important;
+          grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+          align-items: start !important;
+        }
+        .md\:col-span-4 {
+          grid-column: span 4 / span 4 !important;
+        }
+        .md\:col-span-5 {
+          grid-column: span 5 / span 5 !important;
+        }
+        .md\:col-span-7 {
+          grid-column: span 7 / span 7 !important;
+        }
+        .md\:col-span-8 {
+          grid-column: span 8 / span 8 !important;
+        }
+        .md\:order-1 {
+          order: 1 !important;
+        }
+        .md\:order-2 {
+          order: 2 !important;
+        }
+
+        /* Fix para o bloco de Contatos do Sobre não quebrar a coluna e isolar "Documentos" */
+        #sobre-contatos {
+          display: grid !important;
+          grid-template-columns: auto auto auto !important;
+          justify-content: space-between !important;
+          gap: 1rem !important;
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+
+        /* Evitar textos importantes sendo fatiados ao meio horizontalmente */
+        article,
+        .grid > a,
+        .grid > div,
+        img {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+
+        /* Garantir que containers proporcionais não estiquem absurdo empurrando texto */
+        .aspect-\[3\/4\],
+        .aspect-\[4\/5\],
+        .aspect-video,
+        .aspect-square {
+          max-height: 35vh !important;
+          width: auto !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        /* Em containers muito longos (como "Sobre") */
         .shadow-hard-lg {
-            box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+          page-break-inside: auto;
+          break-inside: auto;
+          box-shadow: none !important;
+          border: 1px solid #ccc !important;
         }
 
-        /* Otimizações para Impressão / PDF Digital */
-        @media print {
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                text-rendering: optimizeLegibility;
-            }
-
-            @page {
-                size: A4 portrait;
-                margin: 15mm;
-            }
-
-            body {
-                font-size: 11pt;
-            }
-
-            /* Resolver problema de páginas em branco extras: resetar alturas atadas ao viewport */
-            .min-h-screen,
-            header#home {
-                min-height: 0 !important;
-                height: auto !important;
-            }
-
-            /* Esconder navegação e interações que não fazem sentido no PDF */
-            nav,
-            .fixed,
-            .md\:hidden,
-            button,
-            a[href^="#"] {
-                display: none !important;
-            }
-
-            /* Ajustes no Hero Section para funcionar como capa perfeita */
-            header#home {
-                padding-top: 20vh !important;
-                padding-bottom: 5vh !important;
-                justify-content: center !important;
-                page-break-after: always;
-                break-after: page;
-            }
-
-            /* Reduzir o tamanho da fonte do h1 no Hero para caber num A4 sem quebrar palavras */
-            header#home h1 {
-                font-size: 5rem !important;
-                line-height: 0.9 !important;
-            }
-
-            /* Separar seções principais em páginas diferentes para aspecto de revista/documento */
-            section {
-                page-break-before: always;
-                break-before: page;
-                page-break-inside: auto;
-                break-inside: auto;
-            }
-
-            /* Impedir que o Footer pule sozinho para uma página em branco (famosa página viúva) */
-            footer {
-                page-break-before: avoid !important;
-                break-before: avoid !important;
-                margin-top: 1rem !important;
-                border-top: none !important;
-            }
-
-            /* Bloco "Outros Experimentos" começar em nova página devido à grade horizontal */
-            .pt-20.mt-20 {
-                page-break-before: always;
-                break-before: page;
-                border-top: none !important;
-                margin-top: 0 !important;
-                padding-top: 0 !important;
-            }
-
-            /* Forçar colunas de lado-a-lado apenas para os Projetos Principais na impressão, evitando encolher o resto do portfólio */
-            .md\:grid-cols-12 {
-                display: grid !important;
-                grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
-                align-items: start !important;
-            }
-            .md\:col-span-4 { grid-column: span 4 / span 4 !important; }
-            .md\:col-span-5 { grid-column: span 5 / span 5 !important; }
-            .md\:col-span-7 { grid-column: span 7 / span 7 !important; }
-            .md\:col-span-8 { grid-column: span 8 / span 8 !important; }
-            .md\:order-1 { order: 1 !important; }
-            .md\:order-2 { order: 2 !important; }
-
-            /* Fix para o bloco de Contatos do Sobre não quebrar a coluna e isolar "Documentos" */
-            #sobre-contatos {
-                display: grid !important;
-                grid-template-columns: auto auto auto !important;
-                justify-content: space-between !important;
-                gap: 1rem !important;
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-
-            /* Evitar textos importantes sendo fatiados ao meio horizontalmente */
-            article,
-            .grid > a,
-            .grid > div,
-            img {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-
-            /* Garantir que containers proporcionais não estiquem absurdo empurrando texto */
-            .aspect-\[3\/4\], 
-            .aspect-\[4\/5\],
-            .aspect-video, 
-            .aspect-square {
-                max-height: 35vh !important; 
-                width: auto !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-            }
-
-            /* Em containers muito longos (como "Sobre") */
-            .shadow-hard-lg {
-                page-break-inside: auto;
-                break-inside: auto;
-                box-shadow: none !important;
-                border: 1px solid #ccc !important;
-            }
-
-            /* Manter títulos sempre colados aos seus textos */
-            h1,
-            h2,
-            h3,
-            h4,
-            h5 {
-                page-break-after: avoid;
-                break-after: avoid;
-            }
-
-            /* Espaçamentos mais amigáveis para A4, reduzindo brancos excessivos de tela */
-            .py-24 {
-                padding-top: 2rem !important;
-                padding-bottom: 2rem !important;
-            }
-
-            .pt-32,
-            .pb-20,
-            .mb-20,
-            .mb-12,
-            .mt-20,
-            .pt-20 {
-                margin: 0 !important;
-                padding: 0 !important;
-                margin-bottom: 1.5rem !important;
-            }
-
-            .gap-20 {
-                gap: 2rem !important;
-            }
-
-            .space-y-24> :not([hidden])~ :not([hidden]) {
-                margin-top: 3rem !important;
-            }
-
-            /* Remover filtros grayscale para garantir que as imagens fiquem visíveis nativamente no PDF */
-            .grayscale {
-                filter: none !important;
-            }
+        /* Manter títulos sempre colados aos seus textos */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+          page-break-after: avoid;
+          break-after: avoid;
         }
+
+        /* Espaçamentos mais amigáveis para A4, reduzindo brancos excessivos de tela */
+        .py-24 {
+          padding-top: 2rem !important;
+          padding-bottom: 2rem !important;
+        }
+
+        .pt-32,
+        .pb-20,
+        .mb-20,
+        .mb-12,
+        .mt-20,
+        .pt-20 {
+          margin: 0 !important;
+          padding: 0 !important;
+          margin-bottom: 1.5rem !important;
+        }
+
+        .gap-20 {
+          gap: 2rem !important;
+        }
+
+        .space-y-24 > :not([hidden]) ~ :not([hidden]) {
+          margin-top: 3rem !important;
+        }
+
+        /* Remover filtros grayscale para garantir que as imagens fiquem visíveis nativamente no PDF */
+        .grayscale {
+          filter: none !important;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-neutral-50 text-neutral-900 font-sans selection:bg-black selection:text-white">
-
+  <body
+    class="bg-neutral-50 text-neutral-900 font-sans selection:bg-black selection:text-white"
+  >
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
-        const { createRoot } = ReactDOM;
+      const { useState, useEffect } = React;
+      const { createRoot } = ReactDOM;
 
-        // --- Icons (Inline SVGs to avoid external module dependencies) ---
-        const Icon = ({ children, size = 24, className = "" }) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                {children}
-            </svg>
+      // --- Icons (Inline SVGs to avoid external module dependencies) ---
+      const Icon = ({ children, size = 24, className = "" }) => (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={className}
+        >
+          {children}
+        </svg>
+      );
+
+      const Mail = (props) => (
+        <Icon {...props}>
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </Icon>
+      );
+      const Instagram = (props) => (
+        <Icon {...props}>
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+        </Icon>
+      );
+      const Gamepad2 = (props) => (
+        <Icon {...props}>
+          <line x1="6" x2="10" y1="12" y2="12" />
+          <line x1="8" x2="8" y1="10" y2="14" />
+          <line x1="15" x2="15.01" y1="13" y2="13" />
+          <line x1="18" x2="18.01" y1="11" y2="11" />
+          <rect width="20" height="12" x="2" y="6" rx="2" />
+        </Icon>
+      );
+      const Code = (props) => (
+        <Icon {...props}>
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </Icon>
+      );
+      const MoveRight = (props) => (
+        <Icon {...props}>
+          <path d="M18 8L22 12L18 16" />
+          <path d="M2 12H22" />
+        </Icon>
+      );
+      const Download = (props) => (
+        <Icon {...props}>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" x2="12" y1="15" y2="3" />
+        </Icon>
+      );
+      const Menu = (props) => (
+        <Icon {...props}>
+          <line x1="4" x2="20" y1="12" y2="12" />
+          <line x1="4" x2="20" y1="6" y2="6" />
+          <line x1="4" x2="20" y1="18" y2="18" />
+        </Icon>
+      );
+      const X = (props) => (
+        <Icon {...props}>
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </Icon>
+      );
+      const ExternalLink = (props) => (
+        <Icon {...props}>
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" x2="21" y1="14" y2="3" />
+        </Icon>
+      );
+      const Moon = (props) => (
+        <Icon {...props}>
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </Icon>
+      );
+
+      const FallbackImage = ({ src, alt, fallbackHtml, className, onClick }) => {
+        const [hasError, setHasError] = useState(false);
+        if (hasError) {
+          return (
+            <div
+              className={`w-full h-full bg-neutral-100 flex flex-col items-center justify-center text-neutral-400 p-4 text-center font-mono ${className && className.includes('aspect-') ? '' : 'text-xs my-auto'}`}
+              onClick={onClick}
+              dangerouslySetInnerHTML={{ __html: fallbackHtml }}
+            />
+          );
+        }
+        return (
+          <img
+            src={src}
+            alt={alt}
+            className={className}
+            onError={() => setHasError(true)}
+            onClick={onClick}
+          />
         );
+      };
 
-        const Mail = (props) => <Icon {...props}><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></Icon>;
-        const Instagram = (props) => <Icon {...props}><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></Icon>;
-        const Gamepad2 = (props) => <Icon {...props}><line x1="6" x2="10" y1="12" y2="12" /><line x1="8" x2="8" y1="10" y2="14" /><line x1="15" x2="15.01" y1="13" y2="13" /><line x1="18" x2="18.01" y1="11" y2="11" /><rect width="20" height="12" x="2" y="6" rx="2" /></Icon>;
-        const Code = (props) => <Icon {...props}><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></Icon>;
-        const MoveRight = (props) => <Icon {...props}><path d="M18 8L22 12L18 16" /><path d="M2 12H22" /></Icon>;
-        const Download = (props) => <Icon {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></Icon>;
-        const Menu = (props) => <Icon {...props}><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></Icon>;
-        const X = (props) => <Icon {...props}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></Icon>;
-        const ExternalLink = (props) => <Icon {...props}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" x2="21" y1="14" y2="3" /></Icon>;
-        const Moon = (props) => <Icon {...props}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></Icon>;
+      const Portfolio = () => {
+        const [isMenuOpen, setIsMenuOpen] = useState(false);
+        const [selectedImage, setSelectedImage] = useState(null);
+        const [isScrolled, setIsScrolled] = useState(false);
 
-        const Portfolio = () => {
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
-            const [selectedImage, setSelectedImage] = useState(null);
-            const [isScrolled, setIsScrolled] = useState(false);
+        useEffect(() => {
+          const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+          };
+          window.addEventListener("scroll", handleScroll);
+          return () => window.removeEventListener("scroll", handleScroll);
+        }, []);
 
-            useEffect(() => {
-                const handleScroll = () => {
-                    setIsScrolled(window.scrollY > 50);
-                };
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
-
-            const scrollToSection = (id) => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                    setIsMenuOpen(false);
-                }
-            };
-
-            const navLinks = [
-                { name: 'Poética', id: 'poetica' },
-                { name: 'Projetos', id: 'projetos' },
-                { name: 'Circulação', id: 'circulacao' },
-                { name: 'Sobre', id: 'sobre' },
-                { name: 'Contato', id: 'contato' },
-            ];
-
-            return (
-                <div className="min-h-screen flex flex-col">
-
-                    {/* Navigation */}
-                    <nav className={`fixed top-0 left-0 w-full bg-neutral-50/95 backdrop-blur-sm z-50 border-b-2 border-neutral-900 transition-all duration-300 ${isScrolled ? 'shadow-sm' : ''}`}>
-                        <div className={`max-w-6xl mx-auto px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
-                            <button 
-                                onClick={() => scrollToSection('home')} 
-                                className="flex items-center gap-3 group px-2 py-1 -ml-2 transition-all"
-                            >
-                                <img 
-                                    src="./images/tejo_logo_black.png" 
-                                    alt="Tejo Estúdio" 
-                                    onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
-                                    className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-8 md:h-10' : 'h-16 md:h-20'}`}
-                                />
-                                <span className="hidden font-black text-xl tracking-tighter group-hover:bg-black group-hover:text-white px-1">TEJO ESTÚDIO</span>
-                            </button>
-
-                            {/* Desktop Nav */}
-                            <div className="hidden md:flex gap-8">
-                                {navLinks.map((link) => (
-                                    <button
-                                        key={link.name}
-                                        onClick={() => scrollToSection(link.id)}
-                                        className="text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white px-2 py-1 transition-all"
-                                    >
-                                        {link.name}
-                                    </button>
-                                ))}
-                            </div>
-
-                            {/* Mobile Menu Button */}
-                            <button
-                                className="md:hidden p-2 text-black border-2 border-transparent hover:border-black transition-all"
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            >
-                                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                            </button>
-                        </div>
-
-                        {/* Mobile Nav Overlay */}
-                        {isMenuOpen && (
-                            <div className="md:hidden absolute top-full left-0 w-full bg-neutral-50 border-b-2 border-black py-6 px-6 flex flex-col gap-4 shadow-hard-lg">
-                                {navLinks.map((link) => (
-                                    <button
-                                        key={link.name}
-                                        onClick={() => scrollToSection(link.id)}
-                                        className="text-left text-lg font-black uppercase tracking-widest border-l-4 border-transparent hover:border-black pl-2 transition-all"
-                                    >
-                                        {link.name}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </nav>
-
-                    {/* Hero Section */}
-                    <header id="home" className="pt-32 pb-20 px-6 max-w-6xl mx-auto min-h-[85vh] flex flex-col justify-center">
-                        <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-6 leading-[0.85]">
-                            MICHAEL<br />FEITOSA
-                        </h1>
-                        <div className="h-2 w-32 bg-black mb-8"></div>
-                        <p className="text-xl md:text-2xl font-medium max-w-2xl leading-relaxed mb-4 border-l-4 border-neutral-300 pl-6">
-                            Game Designer • Artista Digital • Arquiteto de Software
-                        </p>
-                        <p className="text-neutral-500 font-mono tracking-widest uppercase mb-10 pl-6">
-                            Fortaleza, Ceará — Brasil
-                        </p>
-
-                        <div className="flex flex-wrap gap-4">
-                            <a href="#projetos" onClick={(e) => { e.preventDefault(); scrollToSection('projetos') }} className="group flex items-center gap-2 bg-black text-white border-2 border-black px-8 py-4 font-bold hover:bg-white hover:text-black hover:shadow-hard transition-all">
-                                Ver Projetos <MoveRight className="group-hover:translate-x-1 transition-transform" />
-                            </a>
-                            <a href="https://kaelfeitosa.itch.io" target="_blank" rel="noreferrer" className="flex items-center gap-2 border-2 border-black px-8 py-4 font-bold hover:bg-neutral-100 hover:shadow-hard transition-all">
-                                <Gamepad2 size={20} /> Itch.io
-                            </a>
-                        </div>
-                    </header>
-
-                    {/* Poética Section */}
-                    <section id="poetica" className="bg-neutral-900 text-neutral-200 py-24 border-y-2 border-black">
-                        <div className="max-w-6xl mx-auto px-6">
-                            <div className="max-w-4xl mx-auto">
-                                <div className="flex items-center gap-4 mb-12">
-                                    <div className="h-px flex-1 bg-neutral-700"></div>
-                                <h2 className="text-sm font-mono uppercase tracking-[0.3em] text-neutral-400">Poética e Pesquisa</h2>
-                                <div className="h-px flex-1 bg-neutral-700"></div>
-                            </div>
-
-                            <p className="text-2xl md:text-4xl font-serif leading-tight text-center">
-                                “Minha prática investiga memória, infância e cultura popular por meio da criação de jogos narrativos e experiências interativas.”
-                            </p>
-
-                            <div className="mt-16 grid md:grid-cols-2 gap-12 text-neutral-400 leading-relaxed font-light text-lg">
-                                <div className="flex flex-col gap-4">
-                                    <p>
-                                        Minha estética utiliza monocromia, silhuetas e alto contraste como linguagem visual, explorando a força gráfica de formas simples.
-                                    </p>
-                                    <p>
-                                        Desenvolvo jogos autorais, narrativas interativas e instalações digitais que transformam gestos cotidianos em experiências sensíveis e contemplativas.
-                                    </p>
-                                </div>
-                                <p>
-                                    No <strong>Tejo Estúdio</strong> desenvolvo projetos que exploram a relação entre arte digital, narrativa interativa e tecnologia, investigando como sistemas interativos podem ampliar experiências visuais e relações com o território.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                    {/* Projects Section */}
-                    <section id="projetos" className="py-24 max-w-6xl mx-auto px-6">
-                        <div className="mb-20 border-b-2 border-black pb-8">
-                            <div className="flex flex-col md:flex-row items-baseline gap-6 mb-4">
-                                <h2 className="text-5xl md:text-7xl font-black tracking-tighter">PROJETOS</h2>
-                                <p className="text-neutral-500 font-mono text-lg">SELEÇÃO 2024 — 2026</p>
-                            </div>
-                            <p className="text-xl md:text-2xl text-neutral-700 max-w-3xl leading-relaxed">
-                                Jogos, instalações e experimentos interativos produzidos entre 2024 e 2026.
-                            </p>
-                        </div>
-
-                        <div className="space-y-24">
-
-                            {/* Project 1: Vem, Exu (VERTICAL 3:4) */}
-                            <article className="grid md:grid-cols-12 gap-8 items-start group">
-                                {/* Imagem agora ocupa 5 colunas (antes era 7) para equilibrar a altura vertical */}
-                                <div className="md:col-span-5 relative border-2 border-black shadow-hard group-hover:shadow-hard-lg transition-all duration-300 bg-white">
-                                    {/* Mudança de aspect-video para aspect-[3/4] */}
-                                    <div className="aspect-[3/4] overflow-hidden">
-                                        <img
-                                            src="./images/portfolio/vem_exu.png"
-                                            alt="Cena do jogo Vem Exu com estética de silhuetas"
-                                            onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<div class=\'w-full h-full bg-neutral-100 flex flex-col items-center justify-center text-neutral-400 p-4 text-center font-mono\'><span class=\'text-4xl mb-2\'>🖼️</span>Imagem não encontrada:<br/>assets/vemexu1.png</div>' }}
-                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                                        />
-                                    </div>
-                                </div>
-                                {/* Texto agora ocupa 7 colunas (antes era 5) */}
-                                <div className="md:col-span-7 flex flex-col h-full justify-between py-2">
-                                    <div>
-                                        <h3 className="text-4xl font-bold mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">Vem, Exu</h3>
-                                        <div className="flex flex-wrap gap-2 mb-6 font-mono text-xs">
-                                            <span className="bg-neutral-200 px-2 py-1">2024–2026</span>
-                                            <span className="bg-neutral-200 px-2 py-1">CONTO INTERATIVO DIGITAL</span>
-                                        </div>
-
-                                        <p className="mb-6 text-lg leading-relaxed text-neutral-800">
-                                            Um conto interativo inspirado na história “Exu Ficou com Medo”, do livro Contos de Exu, de Rafael Semino. A narrativa acompanha um menino que atravessa uma tempestade fantástica após perder sua arraia. A narrativa explora temas de infância, orgulho e reconciliação por meio de uma estética gráfica baseada em silhuetas e contraste.
-                                        </p>
-
-                                        <div className="space-y-3 mb-8 text-sm border-l-2 border-neutral-300 pl-4">
-                                            <div><span className="font-bold">Poética:</span> <span className="text-neutral-600">Gestos pequenos, silhuetas</span></div>
-                                            <div><span className="font-bold">Tech:</span> <span className="text-neutral-600">Godot 4 (GDScript 2)</span></div>
-                                            <div><span className="font-bold">Destaque:</span> <span className="text-neutral-600">Projeto desenvolvido com apoio da Lei Paulo Gustavo (CE) em 2024</span></div>
-                                            <div><span className="font-bold">Circulação:</span> <span className="text-neutral-600">SANA (Sala Black Heroes), Feira do Conhecimento e apresentações educativas em escolas públicas e espaços comunitários de Fortaleza</span></div>
-                                            
-                                            <div className="pt-2 mt-2">
-                                                <span className="font-bold block mb-1">Equipe</span>
-                                                <div className="text-neutral-600 leading-relaxed">
-                                                    Direção criativa, game design e programação — Michael Feitosa<br/>
-                                                    Narrativa — Rafael Semino<br/>
-                                                    Programação — Douglas Levi<br/>
-                                                    Ilustração — Valdir Marte<br/>
-                                                    Trilha sonora — Zéis
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <a href="https://bit.ly/vemexu" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-bold border-2 border-black bg-white px-4 py-2 hover:bg-black hover:text-white transition-all w-max shadow-hard hover:translate-x-1 hover:-translate-y-1">
-                                        Jogar Demo <ExternalLink size={16} />
-                                    </a>
-                                </div>
-                            </article>
-
-                            {/* Project 2: RAIAR (HORIZONTAL 16:9) */}
-                            <article className="grid md:grid-cols-12 gap-8 items-start group">
-                                <div className="md:col-span-5 md:order-1 order-2 flex flex-col h-full justify-between py-2">
-                                    <div>
-                                        <h3 className="text-4xl font-bold mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">RAIAR</h3>
-                                        <div className="flex flex-wrap gap-2 mb-6 font-mono text-xs">
-                                            <span className="bg-neutral-200 px-2 py-1">2025–2026</span>
-                                            <span className="bg-neutral-200 px-2 py-1">INSTALAÇÃO</span>
-                                        </div>
-
-                                        <p className="mb-6 text-lg leading-relaxed text-neutral-800">
-                                            Transforma a tradição cearense de soltar arraias em uma experiência digital coletiva. O público utiliza o celular para criar e movimentar pipas digitais em uma projeção generativa.
-                                        </p>
-
-                                        <div className="space-y-3 mb-8 text-sm border-l-2 border-neutral-300 pl-4">
-                                            <div><span className="font-bold">Poética:</span> <span className="text-neutral-600">Vento, céu, participação</span></div>
-                                            <div><span className="font-bold">Tech:</span> <span className="text-neutral-600">WebSockets, Projeção Generativa</span></div>
-                                            <div><span className="font-bold">Destaque:</span> <span className="text-neutral-600">Projeto selecionado no Edital das Artes Fortaleza em 2024</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="md:col-span-7 md:order-2 order-1 relative border-2 border-black shadow-hard group-hover:shadow-hard-lg transition-all duration-300 bg-neutral-900">
-                                    <div className="aspect-video overflow-hidden flex flex-col items-center justify-center text-neutral-500 font-mono">
-                                        {/* Placeholder Sem Foto */}
-                                        <div className="border-2 border-dashed border-neutral-600 px-6 py-3 uppercase tracking-widest text-sm md:text-base">
-                                            Imagem em Breve
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            {/* Other Projects Grid */}
-                            <div className="pt-20 mt-20 border-t-2 border-black">
-                                <h4 className="text-2xl font-black mb-12 uppercase tracking-tight flex items-center gap-3">
-                                    <span className="w-4 h-4 bg-black"></span> Outras Obras
-                                </h4>
-
-                                <div className="grid md:grid-cols-3 gap-8">
-
-                                    {/* Maria da Lua */}
-                                    <a href="https://youtu.be/F-0FELizya8" target="_blank" rel="noreferrer" className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all">
-                                        <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
-                                            <img
-                                                src="./images/portfolio/maria_da_lua.png"
-                                                alt="Maria da Lua"
-                                                onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<div class=\'w-full h-full flex items-center justify-center text-xs p-4 text-center text-neutral-400 font-mono\'>marialua1.png</div>' }}
-                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                            />
-                                        </div>
-                                        <h5 className="font-bold text-lg mb-2 uppercase">Maria da Lua</h5>
-                                        <p className="text-sm text-neutral-600 leading-relaxed">
-                                            <span className="font-bold">Videopoema</span> inspirado no imaginário fantástico nordestino e nas narrativas de lobisomens e lobismulheres.
-                                        </p>
-                                    </a>
-
-                                    {/* Hamilton */}
-                                    <a href="https://play.google.com/store/apps/details?id=dev.tiugames.hamilton" target="_blank" rel="noreferrer" className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all">
-                                        <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
-                                            <img
-                                                src="./images/portfolio/hamilton.png"
-                                                alt="Jogo Hamilton"
-                                                onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<div class=\'w-full h-full flex items-center justify-center text-xs p-4 text-center text-neutral-400 font-mono\'>hamilton.png</div>' }}
-                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                            />
-                                        </div>
-                                        <h5 className="font-bold text-lg mb-2 uppercase">Hamilton</h5>
-                                        <p className="text-sm text-neutral-600 leading-relaxed">
-                                            Puzzle casual publicado na <span className="font-bold">Play Store</span> que explora design minimalista e mecânicas compactas.
-                                        </p>
-                                    </a>
-
-                                    {/* Sina de Siá */}
-                                    <a href="https://youtu.be/oYoBz9493n8" target="_blank" rel="noreferrer" className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all">
-                                        <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
-                                            <img
-                                                src="./images/portfolio/sina_de_sia.png"
-                                                alt="Jogo Sina de Siá"
-                                                onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<div class=\'w-full h-full flex items-center justify-center text-xs p-4 text-center text-neutral-400 font-mono\'>sinadesia.png</div>' }}
-                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                                            />
-                                        </div>
-                                        <h5 className="font-bold text-lg mb-2 uppercase">Sina de Siá</h5>
-                                        <p className="text-sm text-neutral-600 leading-relaxed">
-                                            <span className="font-bold">Metroidvania</span> inspirado na estética do cordel, com narrativa sobre luta, memória e imaginário popular.
-                                        </p>
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Editais e Apoios */}
-                    <section className="bg-white py-24 border-t-2 border-black">
-                        <div className="max-w-6xl mx-auto px-6">
-                            <h3 className="text-3xl md:text-5xl font-black mb-12 uppercase tracking-tighter flex items-center gap-4">
-                                <span className="w-6 h-6 md:w-8 md:h-8 bg-black block shrink-0"></span> Editais e Apoios
-                            </h3>
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
-                                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">Lei Paulo Gustavo — Ceará, 2024</h4>
-                                    <p className="text-neutral-700 text-lg">Desenvolvimento do jogo Vem, Exu</p>
-                                </div>
-                                <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
-                                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">Edital das Artes — Fortaleza, 2024</h4>
-                                    <p className="text-neutral-700 text-lg">Desenvolvimento da instalação Raiar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Exposições e Circulação */}
-                    <section id="circulacao" className="bg-neutral-900 text-neutral-200 py-24 border-y-2 border-black">
-                        <div className="max-w-6xl mx-auto px-6">
-                            <h3 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16 flex items-center gap-4">
-                                <Moon size={32} /> Exposições e Circulação
-                            </h3>
-                            <p className="text-neutral-400 max-w-3xl mb-12 leading-relaxed">
-                                As obras do estúdio foram apresentadas em eventos culturais, feiras de tecnologia e atividades educativas em escolas públicas e espaços comunitários de Fortaleza.
-                            </p>
-                            <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-                                {/* SANA */}
-                                <div className="bg-neutral-800 border-2 border-neutral-700 p-6 group hover:border-white transition-all flex flex-col justify-between">
-                                    <div>
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <span className="bg-white text-black px-1.5 py-0.5 text-xs font-bold font-mono shadow-sm">2026</span>
-                                            <strong className="text-white font-sans text-xl leading-none tracking-tight">SANA — Fortaleza</strong>
-                                        </div>
-                                        <p className="text-neutral-400 text-sm leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">Apresentação pública da demo do jogo Vem, Exu na Sala Black Heroes, com mediação e conversa com o público sobre o processo de criação.</p>
-                                    </div>
-                                    <div className="grid grid-cols-3 gap-2 mt-4">
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/sana_2026_1_01.jpeg" alt="Registro SANA 1" onClick={() => setSelectedImage('./images/records/sana_2026_1_01.jpeg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/sana_2026_1_02.jpeg" alt="Registro SANA 2" onClick={() => setSelectedImage('./images/records/sana_2026_1_02.jpeg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/sana_2026_1_03.jpeg" alt="Registro SANA 3" onClick={() => setSelectedImage('./images/records/sana_2026_1_03.jpeg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                {/* Feira do Conhecimento */}
-                                <div className="bg-neutral-800 border-2 border-neutral-700 p-6 group hover:border-white transition-all flex flex-col justify-between">
-                                    <div>
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <span className="bg-white text-black px-1.5 py-0.5 text-xs font-bold font-mono shadow-sm">2025</span>
-                                            <strong className="text-white font-sans text-xl leading-none tracking-tight">Feira do Conhecimento — Fortaleza</strong>
-                                        </div>
-                                        <p className="text-neutral-400 text-sm leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">Apresentação pública do protótipo de Vem, Exu para visitantes do evento.</p>
-                                    </div>
-                                    <div className="grid grid-cols-3 gap-2 mt-4">
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/feira_do_conhecimento_01.jpeg" alt="Registro Feira 1" onClick={() => setSelectedImage('./images/records/feira_do_conhecimento_01.jpeg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/feira_do_conhecimento_02.jpeg" alt="Registro Feira 2" onClick={() => setSelectedImage('./images/records/feira_do_conhecimento_02.jpeg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/feira_do_conhecimento_03.jpeg" alt="Registro Feira 3" onClick={() => setSelectedImage('./images/records/feira_do_conhecimento_03.jpeg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                {/* Escolas */}
-                                <div className="bg-neutral-800 border-2 border-neutral-700 p-6 group hover:border-white transition-all flex flex-col justify-between">
-                                    <div>
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <span className="bg-white text-black px-1.5 py-0.5 text-xs font-bold font-mono shadow-sm">2025–2026</span>
-                                            <strong className="text-white font-sans text-xl leading-none tracking-tight">Escolas Municipais de Fortaleza</strong>
-                                        </div>
-                                        <p className="text-neutral-400 text-sm leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">Atividades educativas e demonstração do jogo Vem, Exu em escolas públicas.</p>
-                                    </div>
-                                    <div className="grid grid-cols-3 gap-2 mt-4">
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/escola_torres_de_melo_01.jpg" alt="Registro Escolas 1" onClick={() => setSelectedImage('./images/records/escola_torres_de_melo_01.jpg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/nac_passare_01.jpg" alt="Registro Escolas 2" onClick={() => setSelectedImage('./images/records/nac_passare_01.jpg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                        <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
-                                            <img src="./images/records/nac_passare_02.jpg" alt="Registro Escolas 3" onClick={() => setSelectedImage('./images/records/nac_passare_02.jpg')} className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Pesquisa e Temas & Processos e Tecnologias */}
-                    <section className="bg-neutral-100 text-neutral-900 py-24 border-b-2 border-black">
-                        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20">
-                            {/* Pesquisa e Temas */}
-                            <div>
-                                <h3 className="text-2xl font-black uppercase tracking-widest mb-10 flex items-center gap-3">
-                                    <span className="w-4 h-4 bg-black block shrink-0"></span> Pesquisa e Temas
-                               </h3>
-                                <ul className="space-y-4 font-mono text-sm text-neutral-800">
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Memória afetiva da infância</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Cultura popular</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Território e narrativa</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Acessibilidade visual em jogos digitais</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Minimalismo visual e silhuetas</li>
-                                </ul>
-                            </div>
-                            {/* Processos e Tecnologias */}
-                            <div>
-                                <h3 className="text-2xl font-black uppercase tracking-widest mb-10 flex items-center gap-3">
-                                    <Code size={24} /> Processos e Tecnologias
-                                </h3>
-                                <ul className="space-y-4 font-mono text-sm text-neutral-800">
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Design de narrativa interativa</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Design minimalista de interface</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Arte generativa</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Godot 4 (GDScript) • Unity (C#)</li>
-                                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-black shrink-0"></div> Java • JavaScript / React</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* About & Contact */}
-                    <section id="sobre" className="py-24 border-t-2 border-black">
-                        <div className="max-w-6xl mx-auto px-6">
-                            <div className="max-w-4xl mx-auto bg-white border-2 border-black p-8 md:p-12 shadow-hard-lg">
-                                <h2 className="text-4xl font-black mb-8 uppercase tracking-tighter">Sobre Mim</h2>
-                             <div className="grid md:grid-cols-12 gap-12 items-start">
-                                {/* Coluna da Foto */}
-                                <div className="md:col-span-4 order-2 md:order-1">
-                                    <div className="relative border-2 border-black bg-white shadow-hard">
-                                        <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-                                            <img
-                                                src="./images/michael_feitosa.png"
-                                                alt="Michael Feitosa"
-                                                onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<div class=\'w-full h-full flex items-center justify-center text-xs p-4 text-center text-neutral-400 font-mono\'>michael_feitosa.png</div>' }}
-                                                className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Coluna de Texto */}
-                                <div className="md:col-span-8 order-1 md:order-2">
-                                    <p className="mb-6 leading-relaxed text-neutral-800 text-lg">
-                                        Sou Michael Feitosa. Fundador do <strong>Tejo Estúdio</strong>, coletivo dedicado à criação de jogos autorais e arte digital interativa em Fortaleza, com projetos voltados à narrativa interativa e cultura digital.
-                                    </p>
-                                    <p className="mb-8 leading-relaxed text-neutral-700">
-                                        Atuo como game designer, artista digital e desenvolvedor. Desde 2023 direciono minha experiência em desenvolvimento de software para a criação de projetos autorais em jogos digitais.
-                                    </p>
-                                    <p className="leading-relaxed text-neutral-700">
-                                        Meu trabalho combina rigor técnico, sensibilidade visual e investigação sobre memória, território e imaginários culturais.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div id="sobre-contatos" className="mt-12 flex flex-col md:flex-row gap-8 pt-8 border-t-2 border-neutral-100">
-                                <div className="flex-1" id="contato">
-                                    <h3 className="font-bold mb-4 uppercase text-xs tracking-widest">Contato</h3>
-                                    <a href="mailto:michaelrfeitosa@gmail.com" className="flex items-center gap-2 text-lg font-bold hover:underline mb-2">
-                                        <Mail size={20} /> michaelrfeitosa@gmail.com
-                                    </a>
-                                </div>
-
-                                <div className="flex-1">
-                                    <h3 className="font-bold mb-4 uppercase text-xs tracking-widest">Conectar</h3>
-                                    <div className="flex gap-4">
-                                        <a href="https://instagram.com/tejoestudio" target="_blank" className="flex items-center justify-center w-12 h-12 bg-black text-white hover:bg-neutral-800 transition-colors border-2 border-black" title="Instagram">
-                                            <Instagram size={20} />
-                                        </a>
-                                        <a href="https://kaelfeitosa.itch.io" target="_blank" className="flex items-center justify-center w-12 h-12 bg-black text-white hover:bg-neutral-800 transition-colors border-2 border-black" title="Itch.io">
-                                            <Gamepad2 size={20} />
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div className="flex-1">
-                                    <h3 className="font-bold mb-4 uppercase text-xs tracking-widest">Documentos</h3>
-                                    <a href="./docs/curriculo_michael_feitosa.pdf" download className="flex items-center justify-center gap-2 h-12 px-6 font-bold uppercase tracking-wide hover:bg-black hover:text-white border-2 border-black whitespace-nowrap w-max transition-all">
-                                        <Download size={16} /> Currículo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                    {/* Modal/Lightbox */}
-                    {selectedImage && (
-                        <div 
-                            className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 cursor-zoom-out backdrop-blur-sm transition-all"
-                            onClick={() => setSelectedImage(null)}
-                        >
-                            <button 
-                                className="absolute top-6 right-6 text-white hover:text-neutral-400 p-2 transition-colors z-[101]"
-                                onClick={() => setSelectedImage(null)}
-                            >
-                                <X size={32} />
-                            </button>
-                            <img 
-                                src={selectedImage} 
-                                alt="Imagem Ampliada" 
-                                className="max-w-full max-h-[90vh] object-contain shadow-2xl bg-black border border-white/10 relative z-50 cursor-auto"
-                                onClick={(e) => e.stopPropagation()}
-                            />
-                        </div>
-                    )}
-
-                    {/* Footer */}
-                    <footer className="bg-neutral-100 text-neutral-900 py-12 text-center text-xs font-mono border-t-2 border-neutral-200">
-                        <p className="font-bold">&copy; {new Date().getFullYear()} TEJO ESTÚDIO — Fortaleza, Ceará.</p>
-                    </footer>
-                </div>
-            );
+        const scrollToSection = (id) => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            setIsMenuOpen(false);
+          }
         };
 
-        const root = createRoot(document.getElementById('root'));
-        root.render(<Portfolio />);
-    </script>
-</body>
+        const navLinks = [
+          { name: "Poética", id: "poetica" },
+          { name: "Projetos", id: "projetos" },
+          { name: "Circulação", id: "circulacao" },
+          { name: "Sobre", id: "sobre" },
+          { name: "Contato", id: "contato" },
+        ];
 
+        return (
+          <div className="min-h-screen flex flex-col">
+            {/* Navigation */}
+            <nav
+              className={`fixed top-0 left-0 w-full bg-neutral-50/95 backdrop-blur-sm z-50 border-b-2 border-neutral-900 transition-all duration-300 ${isScrolled ? "shadow-sm" : ""}`}
+            >
+              <div
+                className={`max-w-6xl mx-auto px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? "py-2" : "py-4"}`}
+              >
+                <button
+                  onClick={() => scrollToSection("home")}
+                  className="flex items-center gap-3 group px-2 py-1 -ml-2 transition-all"
+                >
+                  <img
+                    src="./images/tejo_logo_black.png"
+                    alt="Tejo Estúdio"
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.nextSibling.style.display = "block";
+                    }}
+                    className={`w-auto object-contain transition-all duration-300 ${isScrolled ? "h-8 md:h-10" : "h-16 md:h-20"}`}
+                  />
+                  <span className="hidden font-black text-xl tracking-tighter group-hover:bg-black group-hover:text-white px-1">
+                    TEJO ESTÚDIO
+                  </span>
+                </button>
+
+                {/* Desktop Nav */}
+                <div className="hidden md:flex gap-8">
+                  {navLinks.map((link) => (
+                    <button
+                      key={link.name}
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white px-2 py-1 transition-all"
+                    >
+                      {link.name}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                  className="md:hidden p-2 text-black border-2 border-transparent hover:border-black transition-all"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
+
+              {/* Mobile Nav Overlay */}
+              {isMenuOpen && (
+                <div className="md:hidden absolute top-full left-0 w-full bg-neutral-50 border-b-2 border-black py-6 px-6 flex flex-col gap-4 shadow-hard-lg">
+                  {navLinks.map((link) => (
+                    <button
+                      key={link.name}
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-left text-lg font-black uppercase tracking-widest border-l-4 border-transparent hover:border-black pl-2 transition-all"
+                    >
+                      {link.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </nav>
+
+            {/* Hero Section */}
+            <header
+              id="home"
+              className="pt-32 pb-20 px-6 max-w-6xl mx-auto min-h-[85vh] flex flex-col justify-center"
+            >
+              <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-6 leading-[0.85]">
+                MICHAEL
+                <br />
+                FEITOSA
+              </h1>
+              <div className="h-2 w-32 bg-black mb-8"></div>
+              <p className="text-xl md:text-2xl font-medium max-w-2xl leading-relaxed mb-4 border-l-4 border-neutral-300 pl-6">
+                Game Designer • Artista Digital • Arquiteto de Software
+              </p>
+              <p className="text-neutral-500 font-mono tracking-widest uppercase mb-10 pl-6">
+                Fortaleza, Ceará — Brasil
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#projetos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("projetos");
+                  }}
+                  className="group flex items-center gap-2 bg-black text-white border-2 border-black px-8 py-4 font-bold hover:bg-white hover:text-black hover:shadow-hard transition-all"
+                >
+                  Ver Projetos{" "}
+                  <MoveRight className="group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href="https://kaelfeitosa.itch.io"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 border-2 border-black px-8 py-4 font-bold hover:bg-neutral-100 hover:shadow-hard transition-all"
+                >
+                  <Gamepad2 size={20} /> Itch.io
+                </a>
+              </div>
+            </header>
+
+            {/* Poética Section */}
+            <section
+              id="poetica"
+              className="bg-neutral-900 text-neutral-200 py-24 border-y-2 border-black"
+            >
+              <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-4xl mx-auto">
+                  <div className="flex items-center gap-4 mb-12">
+                    <div className="h-px flex-1 bg-neutral-700"></div>
+                    <h2 className="text-sm font-mono uppercase tracking-[0.3em] text-neutral-400">
+                      Poética e Pesquisa
+                    </h2>
+                    <div className="h-px flex-1 bg-neutral-700"></div>
+                  </div>
+
+                  <p className="text-2xl md:text-4xl font-serif leading-tight text-center">
+                    “Minha prática investiga memória, infância e cultura popular
+                    por meio da criação de jogos narrativos e experiências
+                    interativas.”
+                  </p>
+
+                  <div className="mt-16 grid md:grid-cols-2 gap-12 text-neutral-400 leading-relaxed font-light text-lg">
+                    <div className="flex flex-col gap-4">
+                      <p>
+                        Minha estética utiliza monocromia, silhuetas e alto
+                        contraste como linguagem visual, explorando a força
+                        gráfica de formas simples.
+                      </p>
+                      <p>
+                        Desenvolvo jogos autorais, narrativas interativas e
+                        instalações digitais que transformam gestos cotidianos
+                        em experiências sensíveis e contemplativas.
+                      </p>
+                    </div>
+                    <p>
+                      No <strong>Tejo Estúdio</strong> desenvolvo projetos que
+                      exploram a relação entre arte digital, narrativa
+                      interativa e tecnologia, investigando como sistemas
+                      interativos podem ampliar experiências visuais e relações
+                      com o território.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Projects Section */}
+            <section id="projetos" className="py-24 max-w-6xl mx-auto px-6">
+              <div className="mb-20 border-b-2 border-black pb-8">
+                <div className="flex flex-col md:flex-row items-baseline gap-6 mb-4">
+                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
+                    PROJETOS
+                  </h2>
+                  <p className="text-neutral-500 font-mono text-lg">
+                    SELEÇÃO 2024 — 2026
+                  </p>
+                </div>
+                <p className="text-xl md:text-2xl text-neutral-700 max-w-3xl leading-relaxed">
+                  Jogos, instalações e experimentos interativos produzidos entre
+                  2024 e 2026.
+                </p>
+              </div>
+
+              <div className="space-y-24">
+                {/* Project 1: Vem, Exu (VERTICAL 3:4) */}
+                <article className="grid md:grid-cols-12 gap-8 items-start group">
+                  {/* Imagem agora ocupa 5 colunas (antes era 7) para equilibrar a altura vertical */}
+                  <div className="md:col-span-5 relative border-2 border-black shadow-hard group-hover:shadow-hard-lg transition-all duration-300 bg-white">
+                    {/* Mudança de aspect-video para aspect-[3/4] */}
+                    <div className="aspect-[3/4] overflow-hidden">
+                      <FallbackImage
+                        src="./images/portfolio/vem_exu.png"
+                        alt="Cena do jogo Vem Exu com estética de silhuetas"
+                        fallbackHtml="<div class='w-full h-full bg-neutral-100 flex flex-col items-center justify-center text-neutral-400 p-4 text-center font-mono'><span class='text-4xl mb-2'>🖼️</span>Imagem não encontrada:<br/>assets/vemexu1.png</div>"
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                      />
+                    </div>
+                  </div>
+                  {/* Texto agora ocupa 7 colunas (antes era 5) */}
+                  <div className="md:col-span-7 flex flex-col h-full justify-between py-2">
+                    <div>
+                      <h3 className="text-4xl font-bold mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">
+                        Vem, Exu
+                      </h3>
+                      <div className="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+                        <span className="bg-neutral-200 px-2 py-1">
+                          2024–2026
+                        </span>
+                        <span className="bg-neutral-200 px-2 py-1">
+                          CONTO INTERATIVO DIGITAL
+                        </span>
+                      </div>
+
+                      <p className="mb-6 text-lg leading-relaxed text-neutral-800">
+                        Um conto interativo inspirado na história “Exu Ficou com
+                        Medo”, do livro Contos de Exu, de Rafael Semino. A
+                        narrativa acompanha um menino que atravessa uma
+                        tempestade fantástica após perder sua arraia. A
+                        narrativa explora temas de infância, orgulho e
+                        reconciliação por meio de uma estética gráfica baseada
+                        em silhuetas e contraste.
+                      </p>
+
+                      <div className="space-y-3 mb-8 text-sm border-l-2 border-neutral-300 pl-4">
+                        <div>
+                          <span className="font-bold">Poética:</span>{" "}
+                          <span className="text-neutral-600">
+                            Gestos pequenos, silhuetas
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-bold">Tech:</span>{" "}
+                          <span className="text-neutral-600">
+                            Godot 4 (GDScript 2)
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-bold">Destaque:</span>{" "}
+                          <span className="text-neutral-600">
+                            Projeto desenvolvido com apoio da Lei Paulo Gustavo
+                            (CE) em 2024
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-bold">Circulação:</span>{" "}
+                          <span className="text-neutral-600">
+                            SANA (Sala Black Heroes), Feira do Conhecimento e
+                            apresentações educativas em escolas públicas e
+                            espaços comunitários de Fortaleza
+                          </span>
+                        </div>
+
+                        <div className="pt-2 mt-2">
+                          <span className="font-bold block mb-1">Equipe</span>
+                          <div className="text-neutral-600 leading-relaxed">
+                            Direção criativa, game design e programação —
+                            Michael Feitosa
+                            <br />
+                            Narrativa — Rafael Semino
+                            <br />
+                            Programação — Douglas Levi
+                            <br />
+                            Ilustração — Valdir Marte
+                            <br />
+                            Trilha sonora — Zéis
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <a
+                      href="https://bit.ly/vemexu"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 font-bold border-2 border-black bg-white px-4 py-2 hover:bg-black hover:text-white transition-all w-max shadow-hard hover:translate-x-1 hover:-translate-y-1"
+                    >
+                      Jogar Demo <ExternalLink size={16} />
+                    </a>
+                  </div>
+                </article>
+
+                {/* Project 2: RAIAR (HORIZONTAL 16:9) */}
+                <article className="grid md:grid-cols-12 gap-8 items-start group">
+                  <div className="md:col-span-5 md:order-1 order-2 flex flex-col h-full justify-between py-2">
+                    <div>
+                      <h3 className="text-4xl font-bold mb-3 uppercase group-hover:bg-black group-hover:text-white w-max px-2 -ml-2 transition-colors">
+                        RAIAR
+                      </h3>
+                      <div className="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+                        <span className="bg-neutral-200 px-2 py-1">
+                          2025–2026
+                        </span>
+                        <span className="bg-neutral-200 px-2 py-1">
+                          INSTALAÇÃO
+                        </span>
+                      </div>
+
+                      <p className="mb-6 text-lg leading-relaxed text-neutral-800">
+                        Transforma a tradição cearense de soltar arraias em uma
+                        experiência digital coletiva. O público utiliza o
+                        celular para criar e movimentar pipas digitais em uma
+                        projeção generativa.
+                      </p>
+
+                      <div className="space-y-3 mb-8 text-sm border-l-2 border-neutral-300 pl-4">
+                        <div>
+                          <span className="font-bold">Poética:</span>{" "}
+                          <span className="text-neutral-600">
+                            Vento, céu, participação
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-bold">Tech:</span>{" "}
+                          <span className="text-neutral-600">
+                            WebSockets, Projeção Generativa
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-bold">Destaque:</span>{" "}
+                          <span className="text-neutral-600">
+                            Projeto selecionado no Edital das Artes Fortaleza em
+                            2024
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-7 md:order-2 order-1 relative border-2 border-black shadow-hard group-hover:shadow-hard-lg transition-all duration-300 bg-neutral-900">
+                    <div className="aspect-video overflow-hidden flex flex-col items-center justify-center text-neutral-500 font-mono">
+                      {/* Placeholder Sem Foto */}
+                      <div className="border-2 border-dashed border-neutral-600 px-6 py-3 uppercase tracking-widest text-sm md:text-base">
+                        Imagem em Breve
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                {/* Other Projects Grid */}
+                <div className="pt-20 mt-20 border-t-2 border-black">
+                  <h4 className="text-2xl font-black mb-12 uppercase tracking-tight flex items-center gap-3">
+                    <span className="w-4 h-4 bg-black"></span> Outras Obras
+                  </h4>
+
+                  <div className="grid md:grid-cols-3 gap-8">
+                    {/* Maria da Lua */}
+                    <a
+                      href="https://youtu.be/F-0FELizya8"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all"
+                    >
+                      <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
+                        <FallbackImage
+                          src="./images/portfolio/maria_da_lua.png"
+                          alt="Maria da Lua"
+                          fallbackHtml="marialua1.png"
+                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                        />
+                      </div>
+                      <h5 className="font-bold text-lg mb-2 uppercase">
+                        Maria da Lua
+                      </h5>
+                      <p className="text-sm text-neutral-600 leading-relaxed">
+                        <span className="font-bold">Videopoema</span> inspirado
+                        no imaginário fantástico nordestino e nas narrativas de
+                        lobisomens e lobismulheres.
+                      </p>
+                    </a>
+
+                    {/* Hamilton */}
+                    <a
+                      href="https://play.google.com/store/apps/details?id=dev.tiugames.hamilton"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all"
+                    >
+                      <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
+                        <FallbackImage
+                          src="./images/portfolio/hamilton.png"
+                          alt="Jogo Hamilton"
+                          fallbackHtml="hamilton.png"
+                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                        />
+                      </div>
+                      <h5 className="font-bold text-lg mb-2 uppercase">
+                        Hamilton
+                      </h5>
+                      <p className="text-sm text-neutral-600 leading-relaxed">
+                        Puzzle casual publicado na{" "}
+                        <span className="font-bold">Play Store</span> que
+                        explora design minimalista e mecânicas compactas.
+                      </p>
+                    </a>
+
+                    {/* Sina de Siá */}
+                    <a
+                      href="https://youtu.be/oYoBz9493n8"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all"
+                    >
+                      <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
+                        <FallbackImage
+                          src="./images/portfolio/sina_de_sia.png"
+                          alt="Jogo Sina de Siá"
+                          fallbackHtml="sinadesia.png"
+                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                        />
+                      </div>
+                      <h5 className="font-bold text-lg mb-2 uppercase">
+                        Sina de Siá
+                      </h5>
+                      <p className="text-sm text-neutral-600 leading-relaxed">
+                        <span className="font-bold">Metroidvania</span>{" "}
+                        inspirado na estética do cordel, com narrativa sobre
+                        luta, memória e imaginário popular.
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Editais e Apoios */}
+            <section className="bg-white py-24 border-t-2 border-black">
+              <div className="max-w-6xl mx-auto px-6">
+                <h3 className="text-3xl md:text-5xl font-black mb-12 uppercase tracking-tighter flex items-center gap-4">
+                  <span className="w-6 h-6 md:w-8 md:h-8 bg-black block shrink-0"></span>{" "}
+                  Editais e Apoios
+                </h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
+                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">
+                      Lei Paulo Gustavo — Ceará, 2024
+                    </h4>
+                    <p className="text-neutral-700 text-lg">
+                      Desenvolvimento do jogo Vem, Exu
+                    </p>
+                  </div>
+                  <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
+                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">
+                      Edital das Artes — Fortaleza, 2024
+                    </h4>
+                    <p className="text-neutral-700 text-lg">
+                      Desenvolvimento da instalação Raiar
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Exposições e Circulação */}
+            <section
+              id="circulacao"
+              className="bg-neutral-900 text-neutral-200 py-24 border-y-2 border-black"
+            >
+              <div className="max-w-6xl mx-auto px-6">
+                <h3 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16 flex items-center gap-4">
+                  <Moon size={32} /> Exposições e Circulação
+                </h3>
+                <p className="text-neutral-400 max-w-3xl mb-12 leading-relaxed">
+                  As obras do estúdio foram apresentadas em eventos culturais,
+                  feiras de tecnologia e atividades educativas em escolas
+                  públicas e espaços comunitários de Fortaleza.
+                </p>
+                <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+                  {/* SANA */}
+                  <div className="bg-neutral-800 border-2 border-neutral-700 p-6 group hover:border-white transition-all flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="bg-white text-black px-1.5 py-0.5 text-xs font-bold font-mono shadow-sm">
+                          2026
+                        </span>
+                        <strong className="text-white font-sans text-xl leading-none tracking-tight">
+                          SANA — Fortaleza
+                        </strong>
+                      </div>
+                      <p className="text-neutral-400 text-sm leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">
+                        Apresentação pública da demo do jogo Vem, Exu na Sala
+                        Black Heroes, com mediação e conversa com o público
+                        sobre o processo de criação.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 mt-4">
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/sana_2026_1_01.jpeg"
+                          alt="Registro SANA 1"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/sana_2026_1_01.jpeg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/sana_2026_1_02.jpeg"
+                          alt="Registro SANA 2"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/sana_2026_1_02.jpeg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/sana_2026_1_03.jpeg"
+                          alt="Registro SANA 3"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/sana_2026_1_03.jpeg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Feira do Conhecimento */}
+                  <div className="bg-neutral-800 border-2 border-neutral-700 p-6 group hover:border-white transition-all flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="bg-white text-black px-1.5 py-0.5 text-xs font-bold font-mono shadow-sm">
+                          2025
+                        </span>
+                        <strong className="text-white font-sans text-xl leading-none tracking-tight">
+                          Feira do Conhecimento — Fortaleza
+                        </strong>
+                      </div>
+                      <p className="text-neutral-400 text-sm leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">
+                        Apresentação pública do protótipo de Vem, Exu para
+                        visitantes do evento.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 mt-4">
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/feira_do_conhecimento_01.jpeg"
+                          alt="Registro Feira 1"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/feira_do_conhecimento_01.jpeg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/feira_do_conhecimento_02.jpeg"
+                          alt="Registro Feira 2"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/feira_do_conhecimento_02.jpeg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/feira_do_conhecimento_03.jpeg"
+                          alt="Registro Feira 3"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/feira_do_conhecimento_03.jpeg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Escolas */}
+                  <div className="bg-neutral-800 border-2 border-neutral-700 p-6 group hover:border-white transition-all flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="bg-white text-black px-1.5 py-0.5 text-xs font-bold font-mono shadow-sm">
+                          2025–2026
+                        </span>
+                        <strong className="text-white font-sans text-xl leading-none tracking-tight">
+                          Escolas Municipais de Fortaleza
+                        </strong>
+                      </div>
+                      <p className="text-neutral-400 text-sm leading-relaxed mb-6 group-hover:text-neutral-300 transition-colors">
+                        Atividades educativas e demonstração do jogo Vem, Exu em
+                        escolas públicas.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 mt-4">
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/escola_torres_de_melo_01.jpg"
+                          alt="Registro Escolas 1"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/escola_torres_de_melo_01.jpg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/nac_passare_01.jpg"
+                          alt="Registro Escolas 2"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/nac_passare_01.jpg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                      <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
+                        <img
+                          src="./images/records/nac_passare_02.jpg"
+                          alt="Registro Escolas 3"
+                          onClick={() =>
+                            setSelectedImage(
+                              "./images/records/nac_passare_02.jpg",
+                            )
+                          }
+                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Pesquisa e Temas & Processos e Tecnologias */}
+            <section className="bg-neutral-100 text-neutral-900 py-24 border-b-2 border-black">
+              <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20">
+                {/* Pesquisa e Temas */}
+                <div>
+                  <h3 className="text-2xl font-black uppercase tracking-widest mb-10 flex items-center gap-3">
+                    <span className="w-4 h-4 bg-black block shrink-0"></span>{" "}
+                    Pesquisa e Temas
+                  </h3>
+                  <ul className="space-y-4 font-mono text-sm text-neutral-800">
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div> Memória
+                      afetiva da infância
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div> Cultura
+                      popular
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div>{" "}
+                      Território e narrativa
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div>{" "}
+                      Acessibilidade visual em jogos digitais
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div>{" "}
+                      Minimalismo visual e silhuetas
+                    </li>
+                  </ul>
+                </div>
+                {/* Processos e Tecnologias */}
+                <div>
+                  <h3 className="text-2xl font-black uppercase tracking-widest mb-10 flex items-center gap-3">
+                    <Code size={24} /> Processos e Tecnologias
+                  </h3>
+                  <ul className="space-y-4 font-mono text-sm text-neutral-800">
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div> Design
+                      de narrativa interativa
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div> Design
+                      minimalista de interface
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div> Arte
+                      generativa
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div> Godot 4
+                      (GDScript) • Unity (C#)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <div className="w-1 h-1 bg-black shrink-0"></div> Java •
+                      JavaScript / React
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* About & Contact */}
+            <section id="sobre" className="py-24 border-t-2 border-black">
+              <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-4xl mx-auto bg-white border-2 border-black p-8 md:p-12 shadow-hard-lg">
+                  <h2 className="text-4xl font-black mb-8 uppercase tracking-tighter">
+                    Sobre Mim
+                  </h2>
+                  <div className="grid md:grid-cols-12 gap-12 items-start">
+                    {/* Coluna da Foto */}
+                    <div className="md:col-span-4 order-2 md:order-1">
+                      <div className="relative border-2 border-black bg-white shadow-hard">
+                        <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
+                          <FallbackImage
+                            src="./images/michael_feitosa.png"
+                            alt="Michael Feitosa"
+                            fallbackHtml="michael_feitosa.png"
+                            className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Coluna de Texto */}
+                    <div className="md:col-span-8 order-1 md:order-2">
+                       <p className="mb-6 leading-relaxed text-neutral-800 text-lg">
+                        Sou Michael Feitosa, game designer, artista digital e desenvolvedor de software sediado em Fortaleza (CE). Sou fundador do <strong>Tejo Estúdio</strong>, coletivo dedicado à criação de jogos autorais e arte digital interativa, com projetos voltados à narrativa interativa e à cultura digital.
+                      </p>
+                      <p className="mb-6 leading-relaxed text-neutral-700">
+                        Atuo na área de tecnologia há mais de 15 anos, com experiência em desenvolvimento e arquitetura de software. Nos últimos anos passei a direcionar essa trajetória para a criação de jogos digitais autorais, explorando o potencial dos jogos como linguagem artística e narrativa.
+                      </p>
+                      <p className="leading-relaxed text-neutral-700">
+                        Meu trabalho combina rigor técnico, sensibilidade visual e investigação sobre memória, território e imaginários culturais, desenvolvendo experiências interativas inspiradas na literatura e na cultura brasileira.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    id="sobre-contatos"
+                    className="mt-12 flex flex-col md:flex-row gap-8 pt-8 border-t-2 border-neutral-100"
+                  >
+                    <div className="flex-1" id="contato">
+                      <h3 className="font-bold mb-4 uppercase text-xs tracking-widest">
+                        Contato
+                      </h3>
+                      <a
+                        href="mailto:michaelrfeitosa@gmail.com"
+                        className="flex items-center gap-2 text-lg font-bold hover:underline mb-2"
+                      >
+                        <Mail size={20} /> michaelrfeitosa@gmail.com
+                      </a>
+                    </div>
+
+                    <div className="flex-1">
+                      <h3 className="font-bold mb-4 uppercase text-xs tracking-widest">
+                        Conectar
+                      </h3>
+                      <div className="flex gap-4">
+                        <a
+                          href="https://instagram.com/tejoestudio"
+                          target="_blank"
+                          className="flex items-center justify-center w-12 h-12 bg-black text-white hover:bg-neutral-800 transition-colors border-2 border-black"
+                          title="Instagram"
+                        >
+                          <Instagram size={20} />
+                        </a>
+                        <a
+                          href="https://kaelfeitosa.itch.io"
+                          target="_blank"
+                          className="flex items-center justify-center w-12 h-12 bg-black text-white hover:bg-neutral-800 transition-colors border-2 border-black"
+                          title="Itch.io"
+                        >
+                          <Gamepad2 size={20} />
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex-1">
+                      <h3 className="font-bold mb-4 uppercase text-xs tracking-widest">
+                        Documentos
+                      </h3>
+                      <a
+                        href="./docs/curriculo_michael_feitosa.pdf"
+                        download
+                        className="flex items-center justify-center gap-2 h-12 px-6 font-bold uppercase tracking-wide hover:bg-black hover:text-white border-2 border-black whitespace-nowrap w-max transition-all"
+                      >
+                        <Download size={16} /> Currículo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Modal/Lightbox */}
+            {selectedImage && (
+              <div
+                className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 cursor-zoom-out backdrop-blur-sm transition-all"
+                onClick={() => setSelectedImage(null)}
+              >
+                <button
+                  className="absolute top-6 right-6 text-white hover:text-neutral-400 p-2 transition-colors z-[101]"
+                  onClick={() => setSelectedImage(null)}
+                >
+                  <X size={32} />
+                </button>
+                <img
+                  src={selectedImage}
+                  alt="Imagem Ampliada"
+                  className="max-w-full max-h-[90vh] object-contain shadow-2xl bg-black border border-white/10 relative z-50 cursor-auto"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+            )}
+
+            {/* Footer */}
+            <footer className="bg-neutral-100 text-neutral-900 py-12 text-center text-xs font-mono border-t-2 border-neutral-200">
+              <p className="font-bold">
+                &copy; {new Date().getFullYear()} TEJO ESTÚDIO — Fortaleza,
+                Ceará.
+              </p>
+            </footer>
+          </div>
+        );
+      };
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(<Portfolio />);
+    </script>
+  </body>
 </html>
