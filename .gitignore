@@ -3,3 +3,7 @@
 .devcontainer
 *.png-autosave.kra
 *.log
+
+# Generated PDFs and scripts dependencies
+pdf_gen/node_modules/
+pdf_gen/package-lock.json
