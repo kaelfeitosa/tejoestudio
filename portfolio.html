@@ -22,18 +22,12 @@
     <!-- 3. Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <!-- 4. Tejo Base Theme -->
+    <link rel="stylesheet" href="./css/tejo-base.css">
+
     <style>
       html {
         scroll-behavior: smooth;
-      }
-
-      /* Utilitários para sombras duras (Brutalismo/Xilogravura) */
-      .shadow-hard {
-        box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-      }
-
-      .shadow-hard-lg {
-        box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
       }
 
       /* Otimizações para Impressão / PDF Digital */
@@ -165,6 +159,8 @@
         }
 
         /* Em containers muito longos (como "Sobre") */
+        /* Evitar sombras na impressão */
+        .tejo-card,
         .shadow-hard-lg {
           page-break-inside: auto;
           break-inside: auto;
@@ -207,17 +203,11 @@
           margin-top: 3rem !important;
         }
 
-        /* Remover filtros grayscale para garantir que as imagens fiquem visíveis nativamente no PDF */
-        .grayscale {
-          filter: none !important;
-        }
       }
     </style>
   </head>
 
-  <body
-    class="bg-neutral-50 text-neutral-900 font-sans selection:bg-black selection:text-white"
-  >
+  <body>
     <div id="root"></div>
 
     <script type="text/babel">
@@ -393,7 +383,7 @@
                     <button
                       key={link.name}
                       onClick={() => scrollToSection(link.id)}
-                      className="text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white px-2 py-1 transition-all"
+                      className="text-sm uppercase tracking-widest px-2 py-1 hover:bg-black hover:text-white !border-0"
                     >
                       {link.name}
                     </button>
@@ -411,7 +401,7 @@
 
               {/* Mobile Nav Overlay */}
               {isMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-neutral-50 border-b-2 border-black py-6 px-6 flex flex-col gap-4 shadow-hard-lg">
+                <div className="md:hidden absolute top-full left-0 w-full bg-neutral-50 border-b-2 border-black py-6 px-6 flex flex-col gap-4" style={{boxShadow: 'var(--shadow-hard-lg)'}}>
                   {navLinks.map((link) => (
                     <button
                       key={link.name}
@@ -430,13 +420,13 @@
               id="home"
               className="pt-32 pb-20 px-6 max-w-6xl mx-auto min-h-[85vh] flex flex-col justify-center"
             >
-              <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-6 leading-[0.85]">
+              <h1 className="md:text-9xl mb-6 leading-[0.85]">
                 MICHAEL
                 <br />
                 FEITOSA
               </h1>
               <div className="h-2 w-32 bg-black mb-8"></div>
-              <p className="text-xl md:text-2xl font-medium max-w-2xl leading-relaxed mb-4 border-l-4 border-neutral-300 pl-6">
+              <p className="text-xl md:text-2xl font-medium max-w-2xl mb-4 border-l-4 border-neutral-300 pl-6">
                 Game Designer • Artista Digital • Arquiteto de Software
               </p>
               <p className="text-neutral-500 font-mono tracking-widest uppercase mb-10 pl-6">
@@ -444,22 +434,21 @@
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <a
-                  href="#projetos"
+                <button
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection("projetos");
                   }}
-                  className="group flex items-center gap-2 bg-black text-white border-2 border-black px-8 py-4 font-bold hover:bg-white hover:text-black hover:shadow-hard transition-all"
+                  className="primary group"
                 >
                   Ver Projetos{" "}
                   <MoveRight className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
                 <a
                   href="https://kaelfeitosa.itch.io"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 border-2 border-black px-8 py-4 font-bold hover:bg-neutral-100 hover:shadow-hard transition-all"
+                  className="tejo-btn"
                 >
                   <Gamepad2 size={20} /> Itch.io
                 </a>
@@ -533,16 +522,17 @@
                 {/* Project 1: Vem, Exu (VERTICAL 3:4) */}
                 <article className="grid md:grid-cols-12 gap-8 items-start group">
                   {/* Imagem agora ocupa 5 colunas (antes era 7) para equilibrar a altura vertical */}
-                  <div className="md:col-span-5 relative border-2 border-black shadow-hard group-hover:shadow-hard-lg transition-all duration-300 bg-white">
-                    {/* Mudança de aspect-video para aspect-[3/4] */}
-                    <div className="aspect-[3/4] overflow-hidden">
-                      <FallbackImage
-                        src="./images/portfolio/vem_exu.png"
-                        alt="Cena do jogo Vem Exu com estética de silhuetas"
-                        fallbackHtml="<div class='w-full h-full bg-neutral-100 flex flex-col items-center justify-center text-neutral-400 p-4 text-center font-mono'><span class='text-4xl mb-2'>🖼️</span>Imagem não encontrada:<br/>assets/vemexu1.png</div>"
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                      />
-                    </div>
+                  <div className="md:col-span-5">
+                    <figure className="!mb-0 relative bg-white w-full h-full">
+                      <div className="aspect-[3/4] overflow-hidden h-full">
+                        <FallbackImage
+                          src="./images/portfolio/vem_exu.png"
+                          alt="Cena do jogo Vem Exu com estética de silhuetas"
+                          fallbackHtml="<div class='w-full h-full bg-neutral-100 flex flex-col items-center justify-center text-neutral-400 p-4 text-center font-mono'><span class='text-4xl mb-2'>🖼️</span>Imagem não encontrada:<br/>assets/vemexu1.png</div>"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </figure>
                   </div>
                   {/* Texto agora ocupa 7 colunas (antes era 5) */}
                   <div className="md:col-span-7 flex flex-col h-full justify-between py-2">
@@ -620,7 +610,7 @@
                       href="https://bit.ly/vemexu"
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 font-bold border-2 border-black bg-white px-4 py-2 hover:bg-black hover:text-white transition-all w-max shadow-hard hover:translate-x-1 hover:-translate-y-1"
+                      className="tejo-btn"
                     >
                       Jogar Demo <ExternalLink size={16} />
                     </a>
@@ -673,13 +663,14 @@
                       </div>
                     </div>
                   </div>
-                  <div className="md:col-span-7 md:order-2 order-1 relative border-2 border-black shadow-hard group-hover:shadow-hard-lg transition-all duration-300 bg-neutral-900">
-                    <div className="aspect-video overflow-hidden flex flex-col items-center justify-center text-neutral-500 font-mono">
-                      {/* Placeholder Sem Foto */}
-                      <div className="border-2 border-dashed border-neutral-600 px-6 py-3 uppercase tracking-widest text-sm md:text-base">
-                        Imagem em Breve
+                  <div className="md:col-span-7 md:order-2 order-1">
+                    <figure className="!mb-0 relative bg-neutral-900 h-full w-full">
+                      <div className="aspect-video overflow-hidden flex flex-col items-center justify-center text-neutral-500 font-mono h-full">
+                        <div className="border-2 border-dashed border-neutral-600 px-6 py-3 uppercase tracking-widest text-sm md:text-base">
+                          Imagem em Breve
+                        </div>
                       </div>
-                    </div>
+                    </figure>
                   </div>
                 </article>
 
@@ -695,21 +686,21 @@
                       href="https://youtu.be/F-0FELizya8"
                       target="_blank"
                       rel="noreferrer"
-                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all"
+                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all !font-normal hover:!no-underline"
                     >
-                      <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
+                      <figure className="!mb-4 h-48 !shadow-none !border-2 !border-neutral-200 group-hover:!border-black transition-all">
                         <FallbackImage
                           src="./images/portfolio/maria_da_lua.png"
                           alt="Maria da Lua"
                           fallbackHtml="marialua1.png"
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                          className="w-full h-full object-cover"
                         />
-                      </div>
-                      <h5 className="font-bold text-lg mb-2 uppercase">
+                      </figure>
+                      <h5 className="mb-2">
                         Maria da Lua
                       </h5>
-                      <p className="text-sm text-neutral-600 leading-relaxed">
-                        <span className="font-bold">Videopoema</span> inspirado
+                      <p className="text-sm text-neutral-600 !mb-0">
+                        <strong>Videopoema</strong> inspirado
                         no imaginário fantástico nordestino e nas narrativas de
                         lobisomens e lobismulheres.
                       </p>
@@ -720,22 +711,22 @@
                       href="https://play.google.com/store/apps/details?id=dev.tiugames.hamilton"
                       target="_blank"
                       rel="noreferrer"
-                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all"
+                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all !font-normal hover:!no-underline"
                     >
-                      <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
+                      <figure className="!mb-4 h-48 !shadow-none !border-2 !border-neutral-200 group-hover:!border-black transition-all">
                         <FallbackImage
                           src="./images/portfolio/hamilton.png"
                           alt="Jogo Hamilton"
                           fallbackHtml="hamilton.png"
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                          className="w-full h-full object-cover"
                         />
-                      </div>
-                      <h5 className="font-bold text-lg mb-2 uppercase">
+                      </figure>
+                      <h5 className="mb-2">
                         Hamilton
                       </h5>
-                      <p className="text-sm text-neutral-600 leading-relaxed">
+                      <p className="text-sm text-neutral-600 !mb-0">
                         Puzzle casual publicado na{" "}
-                        <span className="font-bold">Play Store</span> que
+                        <strong>Play Store</strong> que
                         explora design minimalista e mecânicas compactas.
                       </p>
                     </a>
@@ -745,21 +736,21 @@
                       href="https://youtu.be/oYoBz9493n8"
                       target="_blank"
                       rel="noreferrer"
-                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all"
+                      className="block group cursor-pointer bg-white border-2 border-transparent hover:border-black p-4 transition-all !font-normal hover:!no-underline"
                     >
-                      <div className="overflow-hidden border-2 border-neutral-200 group-hover:border-black mb-4 h-48 bg-neutral-100 relative shadow-sm group-hover:shadow-hard transition-all">
+                      <figure className="!mb-4 h-48 !shadow-none !border-2 !border-neutral-200 group-hover:!border-black transition-all">
                         <FallbackImage
                           src="./images/portfolio/sina_de_sia.png"
                           alt="Jogo Sina de Siá"
                           fallbackHtml="sinadesia.png"
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                          className="w-full h-full object-cover"
                         />
-                      </div>
-                      <h5 className="font-bold text-lg mb-2 uppercase">
+                      </figure>
+                      <h5 className="mb-2">
                         Sina de Siá
                       </h5>
-                      <p className="text-sm text-neutral-600 leading-relaxed">
-                        <span className="font-bold">Metroidvania</span>{" "}
+                      <p className="text-sm text-neutral-600 !mb-0">
+                        <strong>Metroidvania</strong>{" "}
                         inspirado na estética do cordel, com narrativa sobre
                         luta, memória e imaginário popular.
                       </p>
@@ -777,16 +768,16 @@
                   Editais e Apoios
                 </h3>
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
-                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">
+                  <div className="border-2 border-black p-8 bg-neutral-50 hover:-translate-y-1 transition-all group cursor-default" style={{boxShadow: 'var(--shadow-hard)'}} onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--shadow-hard-lg)'} onMouseLeave={e => e.currentTarget.style.boxShadow = 'var(--shadow-hard)'}>
+                    <h4 className="mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">
                       Lei Paulo Gustavo — Ceará, 2024
                     </h4>
                     <p className="text-neutral-700 text-lg">
                       Desenvolvimento do jogo Vem, Exu
                     </p>
                   </div>
-                  <div className="border-2 border-black p-8 bg-neutral-50 shadow-hard hover:shadow-hard-lg hover:-translate-y-1 transition-all group cursor-default">
-                    <h4 className="font-bold text-xl mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">
+                  <div className="border-2 border-black p-8 bg-neutral-50 hover:-translate-y-1 transition-all group cursor-default" style={{boxShadow: 'var(--shadow-hard)'}} onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--shadow-hard-lg)'} onMouseLeave={e => e.currentTarget.style.boxShadow = 'var(--shadow-hard)'}>
+                    <h4 className="mb-3 uppercase group-hover:bg-black group-hover:text-white w-fit px-2 -ml-2 transition-colors">
                       Edital das Artes — Fortaleza, 2024
                     </h4>
                     <p className="text-neutral-700 text-lg">
@@ -839,7 +830,7 @@
                               "./images/records/sana_2026_1_01.jpeg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                       <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
@@ -851,7 +842,7 @@
                               "./images/records/sana_2026_1_02.jpeg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                       <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
@@ -863,7 +854,7 @@
                               "./images/records/sana_2026_1_03.jpeg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                     </div>
@@ -895,7 +886,7 @@
                               "./images/records/feira_do_conhecimento_01.jpeg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                       <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
@@ -907,7 +898,7 @@
                               "./images/records/feira_do_conhecimento_02.jpeg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                       <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
@@ -919,7 +910,7 @@
                               "./images/records/feira_do_conhecimento_03.jpeg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                     </div>
@@ -951,7 +942,7 @@
                               "./images/records/escola_torres_de_melo_01.jpg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                       <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
@@ -963,7 +954,7 @@
                               "./images/records/nac_passare_01.jpg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                       <div className="aspect-square bg-black overflow-hidden border border-neutral-600 group-hover:border-neutral-500 transition-all">
@@ -975,7 +966,7 @@
                               "./images/records/nac_passare_02.jpg",
                             )
                           }
-                          className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 hover:scale-110 transition-all duration-500 cursor-zoom-in"
+                          className="tejo-grayscale w-full h-full object-cover opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-500 cursor-zoom-in"
                         />
                       </div>
                     </div>
@@ -1050,23 +1041,23 @@
             {/* About & Contact */}
             <section id="sobre" className="py-24 border-t-2 border-black">
               <div className="max-w-6xl mx-auto px-6">
-                <div className="max-w-4xl mx-auto bg-white border-2 border-black p-8 md:p-12 shadow-hard-lg">
+                <div className="max-w-4xl mx-auto bg-white border-2 border-black p-8 md:p-12" style={{boxShadow: 'var(--shadow-hard-lg)'}}>
                   <h2 className="text-4xl font-black mb-8 uppercase tracking-tighter">
                     Sobre Mim
                   </h2>
                   <div className="grid md:grid-cols-12 gap-12 items-start">
                     {/* Coluna da Foto */}
                     <div className="md:col-span-4 order-2 md:order-1">
-                      <div className="relative border-2 border-black bg-white shadow-hard">
+                      <figure className="!mb-0 relative bg-white">
                         <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
                           <FallbackImage
                             src="./images/michael_feitosa.png"
                             alt="Michael Feitosa"
                             fallbackHtml="michael_feitosa.png"
-                            className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                            className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-all duration-500"
                           />
                         </div>
-                      </div>
+                      </figure>
                     </div>
 
                     {/* Coluna de Texto */}
@@ -1130,7 +1121,7 @@
                       <a
                         href="./docs/curriculo_michael_feitosa.pdf"
                         download
-                        className="flex items-center justify-center gap-2 h-12 px-6 font-bold uppercase tracking-wide hover:bg-black hover:text-white border-2 border-black whitespace-nowrap w-max transition-all"
+                        className="tejo-btn"
                       >
                         <Download size={16} /> Currículo
                       </a>

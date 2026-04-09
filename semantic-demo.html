@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tejo Estúdio - Semantic Classless Demo</title>
+
+  <!-- Importando o novo CSS Base -->
+  <link rel="stylesheet" href="./css/tejo-base.css">
+
+  <!-- Estilos estruturais MUITO BÁSICOS apenas para organizar a página de demonstração,
+       já que não estamos usando o Tailwind para os containers e grids aqui. -->
+  <style>
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    header {
+      margin-bottom: 4rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    /* Container de projetos e imagens lado a lado */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .project-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <header>
+      <h1>Tejo Estúdio</h1>
+      <p>Este é um documento de teste em HTML puro. Nenhum framework CSS ou classes complexas foram utilizadas. A estilização visual (fontes, cores, sombras e transições) é herdada nativamente do <code>tejo-base.css</code>.</p>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+        <button class="primary">Ver Projetos &rarr;</button>
+        <button>Fale Conosco</button>
+      </div>
+    </header>
+
+    <hr>
+
+    <section>
+      <h2>Tipografia & Texto</h2>
+      <h3>A força das palavras simples</h3>
+      <p>No Tejo Estúdio desenvolvemos projetos que exploram a relação entre <strong>arte digital</strong>, narrativa interativa e tecnologia. Nossa investigação foca em como sistemas interativos podem ampliar experiências visuais e relações com o território.</p>
+
+      <blockquote>
+        “Minha prática investiga memória, infância e cultura popular por meio da criação de jogos narrativos e experiências interativas.”
+      </blockquote>
+
+      <h4>Lista de Interesses</h4>
+      <ul>
+        <li>Memória afetiva da infância</li>
+        <li>Cultura popular nordestina</li>
+        <li>Minimalismo visual e silhuetas</li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Comportamento de Imagens e Cards</h2>
+      <p>As imagens envoltas na tag semântica <code>&lt;figure&gt;</code> ganham automaticamente nossa identidade visual: tons de cinza com retorno da cor no hover, bordas escuras e sombras brutais.</p>
+
+      <div class="project-grid">
+        <article>
+          <figure>
+            <img src="./images/records/sana_2026_1_01.jpeg" alt="SANA 2026 Registro 1">
+          </figure>
+          <h3>Vem, Exu</h3>
+          <p>Apresentação pública da demo do jogo na Sala Black Heroes do SANA.</p>
+          <a href="#">Leia mais</a>
+        </article>
+
+        <article>
+          <figure>
+            <img src="./images/records/feira_do_conhecimento_01.jpeg" alt="Feira do Conhecimento">
+          </figure>
+          <h3>Raiar</h3>
+          <p>Apresentação pública do protótipo generativo na Feira do Conhecimento.</p>
+          <a href="#">Leia mais</a>
+        </article>
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Formulário Básico</h2>
+      <form>
+        <label for="name"><strong>Nome Completo</strong></label>
+        <input type="text" id="name" placeholder="Digite seu nome...">
+
+        <label for="msg"><strong>Sua Mensagem</strong></label>
+        <textarea id="msg" rows="4" placeholder="Escreva algo inspirador..."></textarea>
+
+        <button type="submit" class="primary">Enviar Mensagem</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Um rodapé simples sem formatação especial, usando a tag HTML semântica padrão -->
+  <footer style="text-align: center; padding: 2rem; border-top: 2px solid var(--border-color); margin-top: 4rem;">
+    <p>&copy; 2024 Tejo Estúdio — Fortaleza, Ceará.</p>
+  </footer>
+
+</body>
+</html>

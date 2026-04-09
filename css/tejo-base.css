@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Modern CSS Reset
+   ========================================================================== */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Tejo Estúdio - Base Theme (Classless / Semantic CSS)
+   ========================================================================== */
+
+:root {
+  --bg-color: #fafafa; /* neutral-50 */
+  --text-color: #171717; /* neutral-900 */
+  --text-muted: #737373; /* neutral-500 */
+  --border-color: #171717;
+  --accent-color: #000000;
+  --accent-text: #ffffff;
+
+  --shadow-color: rgba(0, 0, 0, 1);
+  --shadow-hard: 4px 4px 0px 0px var(--shadow-color);
+  --shadow-hard-lg: 8px 8px 0px 0px var(--shadow-color);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--accent-color);
+  color: var(--accent-text);
+}
+
+/* Tipografia Base */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900; /* font-black */
+  letter-spacing: -0.05em; /* tracking-tighter */
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 3.75rem; /* 60px - text-6xl base */
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 3rem; /* text-5xl */
+}
+
+h3 {
+  font-size: 2.25rem; /* text-4xl */
+}
+
+h4 {
+  font-size: 1.5rem; /* text-2xl */
+}
+
+p {
+  margin-bottom: 1.5rem;
+  line-height: 1.625; /* leading-relaxed */
+}
+
+blockquote {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.25; /* leading-tight */
+  text-align: center;
+  color: var(--text-color);
+  margin: 2rem 0;
+  padding: 0 1rem;
+}
+
+/* Elementos Interativos (Links e Botões) */
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 700; /* font-bold */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+a.tejo-btn /* Classe opcional caso um link precise parecer botão e não pudermos mudar a tag */ {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  background-color: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+button.primary {
+  background-color: var(--accent-color);
+  color: var(--accent-text);
+}
+
+button.primary:hover {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-shadow: var(--shadow-hard);
+}
+
+button:not(.primary):hover,
+a.tejo-btn:not(.primary):hover {
+  background-color: #f5f5f5; /* neutral-100 */
+  box-shadow: var(--shadow-hard);
+}
+
+/* Imagens (Estilo Brutalista / P&B) */
+img {
+  border: 2px solid transparent; /* Placeholder para transição caso precise de borda */
+}
+
+figure {
+  margin-bottom: 2rem;
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-hard);
+  background-color: var(--bg-color);
+  transition: all 0.3s ease;
+}
+
+figure:hover {
+  box-shadow: var(--shadow-hard-lg);
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+figure:hover img,
+img.tejo-grayscale:hover {
+  filter: grayscale(0%);
+}
+
+img.tejo-grayscale {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+/* Separações e Linhas */
+hr {
+  border: 0;
+  height: 2px;
+  background-color: var(--border-color);
+  margin: 3rem 0;
+}
+
+/* Listas */
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+ul li, ol li {
+  margin-bottom: 0.5rem;
+  line-height: 1.625;
+}
+
+/* Ênfases e Tags */
+strong {
+  font-weight: 700;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: #e5e5e5; /* neutral-200 */
+  padding: 0.2em 0.4em;
+}
+
+/* Artigos / Seções (Comportamento de Card Base) */
+article {
+  margin-bottom: 3rem;
+}
+
+/* Estrutura Base de Formulários */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-color);
+  font-family: var(--font-sans);
+  margin-bottom: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: var(--shadow-hard);
+}
+
+/* Otimizações para Impressão */
+@media print {
+  body {
+    background-color: transparent;
+    color: #000;
+  }
+
+  figure img,
+  img.tejo-grayscale {
+    filter: none !important;
+  }
+
+  button,
+  a.tejo-btn {
+    display: none;
+  }
+}
