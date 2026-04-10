@@ -63,9 +63,10 @@
   --brand-text: #fff;
 }
 
-/* Threads & Portfólio (Cor padrão Tejo) */
+/* Threads, Portfólio e Press Kit (Cor padrão Tejo) */
 .tejo-brand-threads,
-.tejo-brand-portfolio {
+.tejo-brand-portfolio,
+.tejo-brand-press {
   --brand-bg: #1a1a1a;
   --brand-text: #fff;
   --brand-hover-filter: brightness(1.5);
