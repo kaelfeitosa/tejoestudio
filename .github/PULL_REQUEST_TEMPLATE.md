@@ -12,18 +12,17 @@ Please confirm that you've met the following criteria before submitting your con
 - [ ] **Icon Clarity:** The brand's logo/icon is clear and recognizable in a 24x24px format.  
    - [ ] If the primary logo doesn’t scale well, you’ve adapted it using the brand’s social media avatar or favicon while maintaining the essence of the original logo.  
    - [ ] The icon is provided in `.svg` format.  
-- [ ] **Theme Testing:** You've tested the button against both light and dark themes:  
-   - [ ] Manually swapped `theme-auto.css` with `theme-light.css` and `theme-dark.css` in `index.html` to check contrast or used [LittleLink Button Builder](https://builder.littlelink.io) contrast checker.
+- [ ] **Accessibility Compliance:** You've tested the button against the project's visual identity:
+   - [ ] Verified contrast against the base theme background.
    - [ ] Added a `#000000`/`#FFFFFF` stroke if necessary to improve contrast and accessibility. [LittleLink Button Builder](https://builder.littlelink.io) will automatically recommend when to add a stroke.  
-- [ ] **Accessibility Compliance:** The button's background and text colors meet visual accessibility standards (unless it contradicts brand guidelines).  
-- [ ] **Alphabetical Order:** Your contribution is alphabetically organized in `brands.css` and `index.html`.  
+- [ ] **Alphabetical Order:** Your contribution is alphabetically organized in `tejo-brands.css` (do not use `brands.css`) and `index.html`.
 - [ ] **Button Preview:** You've added a button preview in `index.html`.  
 - [ ] **Variant Naming Schema:** If adding a variant button (e.g., inverted color scheme):  
-   - [ ] Naming follows the existing pattern (`[Brand Name] Alt` and `.button-brandname-alt`).  
+   - [ ] Naming follows the existing pattern (`[Brand Name] Alt` and `.tejo-brand-brandname-alt`).
    - [ ] Any additional icons are named according to `brandname-alt.svg` schema.  
 - [ ] **Proper Capitalization:**  
-   - [ ] In `brands.css`, the brand name comment follows `/* Brand Name */` format.  
-   - [ ] Code uses lowercase for `.button.button-brandname`.  
+   - [ ] In `tejo-brands.css`, the brand name comment follows `/* Brand Name */` format.
+   - [ ] Code uses lowercase for `.tejo-brand-brandname`.
    - [ ] In `index.html`, comments reflect `<!-- Brand Name -->` format.  
    - [ ] Button text and `alt` attributes match the brand’s official capitalization.  
 - [ ] **PR Details:**  

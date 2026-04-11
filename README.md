@@ -5,13 +5,11 @@ The DIY self-hosted LinkTree alternative. LittleLink has more than 100 branded b
 
 ---
 ### 🆕 LittleLink Button Builder
-Want to make your own buttons for LittleLink but you're not too sure where to start? [Check out our new Button Builder](https://builder.littlelink.io). This new builder lets you preview button styles and with a single click, copy the generated CSS code to put in `css/brands.css`, and copy the generated HTML code to put in `index.html`. This builder also helps automate accessibility features by checking contrast ratios and suggesting strokes when needed, ensuring your custom buttons maintain LittleLink's high standards for visibility in both light and dark themes. Design your buttons visually, preview them live, and get ready to go code. [Live Site](https://builder.littlelink.io) | [GitHub Repo](https://github.com/sethcottle/littlelink-button-builder)
+Want to make your own buttons for LittleLink but you're not too sure where to start? [Check out our new Button Builder](https://builder.littlelink.io). This new builder lets you preview button styles and with a single click, copy the generated CSS code to put in `css/tejo-brands.css` (the old `css/brands.css` is kept for reference only), and copy the generated HTML code to put in `index.html`. This builder also helps automate accessibility features by checking contrast ratios and suggesting strokes when needed, ensuring your custom buttons maintain LittleLink's high standards for visibility. Design your buttons visually, preview them live, and get ready to go code. [Live Site](https://builder.littlelink.io) | [GitHub Repo](https://github.com/sethcottle/littlelink-button-builder)
 
 ---
-### 🌞 Themes and Accessibility
-LittleLink offers `auto`, `light`, and `dark` themes right out of the box. If the default color schemes don't match your preference, you can easily customize them by updating the values in `style.css`. You can set any of the themes right in `index.html`. To enhance visual accessibility in both `light` and `dark` modes, buttons lacking sufficient contrast with the background are outlined with an inverse stroke to ensure visibility. While LittleLink emphasizes accessibility, it's important to acknowledge that not all brands incorporated into LittleLink achieve this standard. Branded buttons that come into LittleLink always retain the original essence of the brand and some branded buttons might fall short of optimal accessibility in terms of contrast.
-
-![Theme](https://cdn.cottle.cloud/GitHub/LittleLink/ThemeSupport.gif)
+### 🌞 Visual Identity and Accessibility
+This project uses a fixed brutalist visual identity (high contrast, hard shadows) defined in `css/tejo-base.css`. It does not support multiple themes (light/dark/auto). To enhance visual accessibility, buttons lacking sufficient contrast with the background are outlined with an inverse stroke to ensure visibility. While we emphasize accessibility, it's important to acknowledge that not all brands incorporated into LittleLink achieve this standard. Branded buttons that come into LittleLink always retain the original essence of the brand and some branded buttons might fall short of optimal accessibility in terms of contrast.
 
 ---
 ### 🥇 Performance
