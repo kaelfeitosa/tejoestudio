@@ -1,0 +1,27 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "![Logo](https://cdn.cottle.cloud/GitHub/LittleLink/littlelink.gif)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaelfeitosa/tejoestudio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kaelfeitosa/tejoestudio/issues"
+  },
+  "homepage": "https://github.com/kaelfeitosa/tejoestudio#readme",
+  "dependencies": {
+    "handlebars": "^4.7.9"
+  }
+}

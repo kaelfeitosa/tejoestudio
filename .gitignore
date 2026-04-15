@@ -7,3 +7,7 @@
 # Generated PDFs and scripts dependencies
 pdf_gen/node_modules/
 pdf_gen/package-lock.json
+node_modules/
+
+# Generated localized HTML files
+dist/

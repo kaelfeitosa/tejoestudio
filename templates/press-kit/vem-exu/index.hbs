@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{presskit.page_title}}</title>
+  <meta name="description"
+    content="{{presskit.meta_description}}">
+  <meta name="author" content="Tejo Estúdio">
+  <link rel="canonical" href="{{site_url}}{{canonical_path}}">
+  <meta property="og:title" content="{{presskit.page_title}}">
+  <meta property="og:description"
+    content="{{presskit.meta_og_description}}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{site_url}}press-kit/vem-exu/02_media/keyart/vem_exu_keyart_01.png">
+  <link rel="icon" type="image/png" href="{{{base_path}}}images/tejo_icon.png">
+  <link rel="stylesheet" href="{{{base_path}}}css/tejo-base.css">
+  <link rel="stylesheet" href="{{{base_path}}}press-kit/vem-exu/presskit.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" defer></script>
+  <script src="{{{base_path}}}press-kit/vem-exu/presskit-downloads.js" defer></script>
+  {{> partials/lang_redirect}}
+</head>
+
+<body>
+  <a class="pk-skip-link" href="#conteudo">{{presskit.skip_content}}</a>
+
+  <header class="pk-topbar">
+    <div class="pk-topbar-inner">
+      <a class="pk-wordmark" href="{{{language_path}}}index.html">&larr; {{presskit.back_home}}</a>
+      <nav class="pk-nav" aria-label="{{presskit.aria_nav_presskit}}">
+        <a href="#quick-facts">{{presskit.nav_summary}}</a>
+        <a href="#sobre-o-jogo">{{presskit.nav_about}}</a>
+        <a href="#para-publicacao">{{presskit.nav_publish}}</a>
+        <a href="#media">{{presskit.nav_media}}</a>
+        <a href="#equipe">{{presskit.nav_team}}</a>
+        <a href="#contato">{{presskit.nav_contact}}</a>
+
+      <div class="tejo-lang-switcher-container">
+        {{#each other_langs}}
+        <a href="{{{link}}}" class="tejo-lang-switcher" aria-label="{{aria}}" onclick="if(window.tejoSetLang){ window.tejoSetLang('{{code}}'); return false; }">
+          {{label}}
+        </a>
+        {{/each}}
+      </div>
+      <button class="tejo-btn primary pk-nav-cta" data-download="full">{{presskit.download_full}}</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="pk-shell">
+    <section id="topo" class="pk-hero" aria-labelledby="pk-titulo">
+      <div class="pk-hero-copy">
+        <p class="pk-kicker">Press Kit</p>
+        <h1 id="pk-titulo">Vem, Exu</h1>
+        <p class="pk-lead">
+          {{presskit.hero_lead}}
+        </p>
+        <p class="pk-sublead">
+          {{presskit.hero_subtitle}}.
+        </p>
+        <nav class="pk-actions" aria-label="{{presskit.aria_main_actions}}">
+          <a class="tejo-btn primary" href="https://play.google.com/store/apps/details?id=com.tejoestudio.exu"
+            target="_blank" rel="noopener">{{presskit.hero_btn_play}}</a>
+
+          <a class="tejo-btn secondary" href="#">
+            {{presskit.hero_btn_wishlist}}
+          </a>
+        </nav>
+
+        <p class="pk-caption">
+          {{{presskit.hero_caption}}}
+        </p>
+      </div>
+
+      <figure class="pk-hero-figure">
+        <img src="{{{base_path}}}press-kit/vem-exu/02_media/keyart/vem_exu_keyart_01.png" alt="{{{presskit.alt_keyart_official}}}">
+      </figure>
+    </section>
+
+
+    <section id="quick-facts" class="pk-section" aria-labelledby="facts-titulo">
+      <header class="pk-section-heading">
+        <h2 id="facts-titulo">{{presskit.nav_summary}}</h2>
+      </header>
+      <dl class="pk-facts-list">
+        <div>
+          <dt>{{presskit.fact_name}}</dt>
+          <dd>Vem, Exu</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_genre}}</dt>
+          <dd>{{presskit.fact_genre_val}}</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_price}}</dt>
+          <dd>{{presskit.fact_price_val}}</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_platforms}}</dt>
+          <dd>{{presskit.fact_platforms_val}}</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_duration}}</dt>
+          <dd>{{presskit.fact_duration_val}}</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_language}}</dt>
+          <dd>{{presskit.fact_language_val}}</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_start}}</dt>
+          <dd>2024</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_fans}}</dt>
+          <dd>Florence, Journey, GRIS</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_engine}}</dt>
+          <dd>Godot</dd>
+        </div>
+        <div>
+          <dt>{{presskit.fact_status}}</dt>
+          <dd>{{presskit.fact_status_val}}</dd>
+        </div>
+        <div>
+          <dt>{{presskit.nav_contact}}</dt>
+          <dd>tejoestudio@gmail.com</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="trailer" class="pk-section" aria-labelledby="trailer-titulo">
+      <header class="pk-section-heading">
+        <h2 id="trailer-titulo">{{presskit.trailer}}</h2>
+      </header>
+      <figure class="pk-video-frame">
+        <iframe src="https://www.youtube.com/embed/rsUTitTiryc" title="{{presskit.trailer}} - Vem, Exu" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </figure>
+      <div class="pk-video-actions">
+        <button data-download="trailer">{{presskit.download_btn}}</button>
+      </div>
+    </section>
+
+    <section id="sobre-o-jogo" class="pk-section" aria-labelledby="sobre-titulo">
+      <header class="pk-section-heading">
+        <h2 id="sobre-titulo">{{presskit.nav_about}}</h2>
+      </header>
+
+      <p>
+        {{{presskit.about_desc}}}
+      </p>
+
+    </section>
+
+    <section id="diferencial" class="pk-section" aria-labelledby="diferencial-titulo">
+      <header class="pk-section-heading">
+        <h2 id="diferencial-titulo">{{presskit.why_matters_title}}</h2>
+      </header>
+
+
+
+      <p>
+        {{{presskit.why_matters_desc}}}
+      </p>
+
+      <ul class="pk-bullet-columns">
+        <li>{{presskit.why_matters_1}}</li>
+        <li>{{presskit.why_matters_2}}</li>
+        <li>{{presskit.why_matters_3}}</li>
+        <li>{{presskit.why_matters_4}}</li>
+        <li>{{presskit.why_matters_5}}</li>
+      </ul>
+    </section>
+
+    <section id="jogabilidade" class="pk-section" aria-labelledby="jogabilidade-titulo">
+      <header class="pk-section-heading">
+        <h2 id="jogabilidade-titulo">{{presskit.gameplay_title}}</h2>
+      </header>
+      <p>{{presskit.gameplay_desc}}</p>
+
+      <ul>
+        <li>{{presskit.gameplay_1}}</li>
+        <li>{{presskit.gameplay_2}}</li>
+        <li>{{presskit.gameplay_3}}</li>
+        <li>{{presskit.gameplay_4}}</li>
+        <li>{{presskit.gameplay_5}}</li>
+      </ul>
+
+      <p>{{presskit.gameplay_conclusion}}</p>
+    </section>
+
+    <section id="para-publicacao" class="pk-section" aria-labelledby="publicacao-titulo">
+      <header class="pk-section-heading">
+        <h2 id="publicacao-titulo">{{presskit.nav_publish}}</h2>
+      </header>
+      <p class="pk-caption" style="margin-bottom: 1rem;">{{presskit.publish_caption}}</p>
+
+      <h3>{{presskit.publish_short_title}}</h3>
+      <p>{{presskit.publish_short_desc}}</p>
+
+      <h3>{{presskit.publish_medium_title}}</h3>
+      <p>{{{presskit.publish_medium_desc}}}</p>
+
+      <h3>{{presskit.publish_long_title}}</h3>
+      <p>{{{presskit.publish_long_p1}}}</p>
+      <p>{{{presskit.publish_long_p2}}}</p>
+      <p>{{{presskit.publish_long_p3}}}</p>
+
+      <h3>{{presskit.what_saying}}</h3>
+      <div class="pk-quotes-grid">
+        <blockquote class="pk-card-accent">
+          <p>{{presskit.quote_1}}</p>
+          <cite>{{presskit.quote_1_cite}}</cite>
+        </blockquote>
+
+        <blockquote class="pk-card-accent">
+          <p>{{presskit.quote_2}}</p>
+          <cite>{{presskit.quote_2_cite}}</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="media" class="pk-section" aria-labelledby="media-titulo">
+      <header class="pk-section-heading">
+        <h2 id="media-titulo">{{presskit.nav_media}}</h2>
+      </header>
+
+
+
+      <section class="pk-media-block" aria-labelledby="gifs-titulo">
+        <header class="pk-media-heading">
+          <h3 id="gifs-titulo">{{{presskit.gifs_title}}}</h3>
+          <button data-download="gifs">{{{presskit.download_btn}}}</button>
+        </header>
+        <div class="pk-gallery pk-gallery-gifs">
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_01.gif" alt="{{{presskit.alt_gif_01}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_02.gif" alt="{{{presskit.alt_gif_02}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_03.gif" alt="{{{presskit.alt_gif_03}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_04.gif" alt="{{{presskit.alt_gif_04}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_05.gif" alt="{{{presskit.alt_gif_05}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_06.gif" alt="{{{presskit.alt_gif_06}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_07.gif" alt="{{{presskit.alt_gif_07}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_08.gif" alt="{{{presskit.alt_gif_08}}}"></figure>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="clips-titulo">
+        <header class="pk-media-heading">
+          <h3 id="clips-titulo">{{{presskit.clips_title}}}</h3>
+          <button data-download="clips">{{{presskit.download_clips}}}</button>
+        </header>
+        <p style="color: var(--pk-muted); font-size: 0.9rem;">{{{presskit.clips_desc}}}</p>
+        <div class="pk-gallery pk-gallery-clips">
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_01.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_02.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_03.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_04.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_05.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_06.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_07.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="{{{base_path}}}press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_08.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="screenshots-titulo">
+        <header class="pk-media-heading">
+          <h3 id="screenshots-titulo">Screenshots</h3>
+          <button data-download="screenshots">{{{presskit.download_btn}}}</button>
+        </header>
+        <div class="pk-gallery pk-gallery-screens">
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_01.jpg" alt="{{{presskit.alt_screenshot_01}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_02.jpg" alt="{{{presskit.alt_screenshot_02}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_03.jpg" alt="{{{presskit.alt_screenshot_03}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_04.jpg" alt="{{{presskit.alt_screenshot_04}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_05.jpg" alt="{{{presskit.alt_screenshot_05}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_07.jpg" alt="{{{presskit.alt_screenshot_07}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_08.jpg" alt="{{{presskit.alt_screenshot_08}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_09.jpg" alt="{{{presskit.alt_screenshot_09}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_10.jpg" alt="{{{presskit.alt_screenshot_10}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_11.jpg" alt="{{{presskit.alt_screenshot_11}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_12.jpg" alt="{{{presskit.alt_screenshot_12}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_13.jpg" alt="{{{presskit.alt_screenshot_13}}}"></figure>
+        </div>
+      </section>
+
+
+
+      <section class="pk-media-block" aria-labelledby="keyart-titulo">
+        <header class="pk-media-heading">
+          <h3 id="keyart-titulo">{{{presskit.keyart_title}}}</h3>
+          <button data-download="keyart">{{{presskit.download_btn}}}</button>
+        </header>
+        <div class="pk-gallery pk-gallery-keyart">
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/keyart/vem_exu_keyart_01.png" alt="{{{presskit.alt_keyart_01}}}"></figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/02_media/keyart/vem_exu_keyart_02.png" alt="{{{presskit.alt_keyart_02}}}"></figure>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="logos-titulo">
+        <header class="pk-media-heading">
+          <h3 id="logos-titulo">{{{presskit.logos_title}}}</h3>
+          <button data-download="logos">{{{presskit.download_btn}}}</button>
+        </header>
+        <div class="pk-gallery pk-gallery-logos">
+          <figure class="pk-logo-item"><img src="{{{base_path}}}press-kit/vem-exu/03_branding/logos/vem_exu_logo_black.png" alt="{{{presskit.alt_logo_exu_black}}}">
+          </figure>
+          <figure class="pk-logo-item pk-bg-dark"><img src="{{{base_path}}}press-kit/vem-exu/03_branding/logos/vem_exu_logo_white.png"
+              alt="{{{presskit.alt_logo_exu_white}}}"></figure>
+          <figure class="pk-logo-item"><img src="{{{base_path}}}press-kit/vem-exu/03_branding/studio/tejo_logo_black.png"
+              alt="{{{presskit.alt_logo_tejo_black}}}"></figure>
+          <figure class="pk-logo-item pk-bg-dark"><img src="{{{base_path}}}press-kit/vem-exu/03_branding/studio/tejo_logo_white.png"
+              alt="{{{presskit.alt_logo_tejo_white}}}"></figure>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="personagens-titulo">
+        <header class="pk-media-heading">
+          <h3 id="personagens-titulo">{{{presskit.characters_title}}}</h3>
+          <button data-download="characters">{{{presskit.download_btn}}}</button>
+        </header>
+        <div class="pk-gallery pk-gallery-banners">
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/03_branding/characters/vem_exu_character_full_01.png" alt="{{{presskit.alt_character_01}}}">
+          </figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/03_branding/characters/vem_exu_character_full_02.png" alt="{{{presskit.alt_character_02}}}">
+          </figure>
+          <figure><img src="{{{base_path}}}press-kit/vem-exu/03_branding/characters/vem_exu_character_full_03.png" alt="{{{presskit.alt_character_03}}}">
+          </figure>
+        </div>
+      </section>
+      <section class="pk-media-block" aria-labelledby="eventos-titulo">
+        <header class="pk-media-heading">
+          <h3 id="eventos-titulo">{{{presskit.events_title}}}</h3>
+          <button data-download="events">{{{presskit.download_btn}}}</button>
+        </header>
+        <p style="color: var(--pk-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          {{{presskit.events_desc}}}
+        </p>
+        <div class="pk-gallery pk-gallery-events">
+          <!-- SANA -->
+          <figure><img src="{{{base_path}}}images/records/sana_2026_1_01.jpeg" alt="{{{presskit.alt_event_sana_01}}}"></figure>
+          <figure><img src="{{{base_path}}}images/records/sana_2026_1_02.jpeg" alt="{{{presskit.alt_event_sana_02}}}"></figure>
+
+          <!-- Feira do Conhecimento -->
+          <figure><img src="{{{base_path}}}images/records/feira_do_conhecimento_01.jpeg" alt="{{{presskit.alt_event_feira_01}}}"></figure>
+          <figure><img src="{{{base_path}}}images/records/feira_do_conhecimento_02.jpeg" alt="{{{presskit.alt_event_feira_02}}}"></figure>
+
+          <!-- Escolas e Comunidade -->
+          <figure><img src="{{{base_path}}}images/records/escola_torres_de_melo_01.jpg" alt="{{{presskit.alt_event_escola_01}}}"></figure>
+        </div>
+      </section>
+    </section>
+
+
+
+    <section id="equipe" class="pk-section" aria-labelledby="equipe-titulo">
+      <header class="pk-section-heading">
+        <h2 id="equipe-titulo">{{{presskit.nav_team}}}</h2>
+      </header>
+
+      <div class="pk-team-list">
+        {{#each presskit.team}}
+        <div class="pk-team-item">
+          <h3>{{{name}}}</h3>
+          <p class="pk-role">{{{role}}}</p>
+          {{#if desc}}
+          <p>{{{desc}}}</p>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </section>
+
+
+
+    <section id="extras" class="pk-section" aria-labelledby="extras-titulo">
+      <header class="pk-section-heading" style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem;">
+        <h2 id="extras-titulo">{{{presskit.stickers_title}}}</h2>
+        <button data-download="stickers">{{{presskit.download_btn}}}</button>
+      </header>
+      <p>{{{presskit.stickers_desc}}}</p>
+      <div class="pk-sticker-grid">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_01.png" alt="{{{presskit.alt_sticker_color_01}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_02.png" alt="{{{presskit.alt_sticker_color_02}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_03.png" alt="{{{presskit.alt_sticker_color_03}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_04.png" alt="{{{presskit.alt_sticker_color_04}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_05.png" alt="{{{presskit.alt_sticker_color_05}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_06.png" alt="{{{presskit.alt_sticker_color_06}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_07.png" alt="{{{presskit.alt_sticker_color_07}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_08.png" alt="{{{presskit.alt_sticker_color_08}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_11.png" alt="{{{presskit.alt_sticker_color_11}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_12.png" alt="{{{presskit.alt_sticker_color_12}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_14.png" alt="{{{presskit.alt_sticker_color_14}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_16.png" alt="{{{presskit.alt_sticker_color_16}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_18.png" alt="{{{presskit.alt_sticker_color_18}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_19.png" alt="{{{presskit.alt_sticker_color_19}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_black_09.png" alt="{{{presskit.alt_sticker_black_09}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_black_20.png" alt="{{{presskit.alt_sticker_black_20}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_10.png" alt="{{{presskit.alt_sticker_white_10}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_13.png" alt="{{{presskit.alt_sticker_white_13}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_15.png" alt="{{{presskit.alt_sticker_white_15}}}">
+        <img src="{{{base_path}}}press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_17.png" alt="{{{presskit.alt_sticker_white_17}}}">
+      </div>
+    </section>
+
+
+    <section id="contato" class="pk-section" aria-labelledby="contato-titulo">
+      <header class="pk-section-heading">
+        <h2 id="contato-titulo">{{{presskit.nav_contact}}}</h2>
+      </header>
+      <dl class="pk-contact-list">
+        <div>
+          <dt>Email</dt>
+          <dd><a href="mailto:tejoestudio@gmail.com">tejoestudio@gmail.com</a></dd>
+        </div>
+        <div>
+          <dt>Instagram</dt>
+          <dd><a href="https://www.instagram.com/tejoestudio" target="_blank" rel="noopener">@tejoestudio</a></dd>
+        </div>
+        <div>
+          <dt>Threads</dt>
+          <dd><a href="https://www.threads.net/@tejoestudio" target="_blank" rel="noopener">@tejoestudio</a></dd>
+        </div>
+
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="tejo-footer">
+    <img src="{{{base_path}}}images/tejo_logo_black.png" alt="Tejo Estúdio" class="tejo-footer-logo">
+    <div class="tejo-footer-content">
+      <p>
+        {{{presskit.footer}}}
+        <span class="tejo-footer-meta">{{{presskit.footer_meta}}}</span>
+      </p>
+    </div>
+  </footer>
+  <script>
+    // Hover-to-play functionality for additional clips
+    document.querySelectorAll('.pk-clip-card video').forEach(video => {
+      video.addEventListener('mouseenter', () => {
+        video.play().catch(e => console.log("Auto-play prevented"));
+      });
+      video.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  </script>
+</body>
+
+</html>

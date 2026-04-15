@@ -1,0 +1,43 @@
+<script>
+  {{#if is_default_lang}}
+  (function() {
+    try {
+      if (localStorage.getItem('tejo_lang_redirected') !== 'true') {
+        const userLang = navigator.language || navigator.userLanguage;
+        const availableLangs = {{{available_langs}}};
+        const defaultLang = '{{default_lang}}';
+
+        if (userLang && !userLang.toLowerCase().startsWith(defaultLang)) {
+           const baseLang = userLang.split('-')[0].toLowerCase();
+           if (availableLangs.includes(baseLang)) {
+              localStorage.setItem('tejo_lang_redirected', 'true');
+              const basePath = '{{{base_path}}}' || './';
+              const canonicalBase = '{{{canonical_base}}}';
+              const targetFile = canonicalBase ? canonicalBase + (canonicalBase.endsWith('/') ? 'index.html' : '') : 'index.html';
+
+              window.location.replace(basePath + baseLang + '/' + targetFile);
+           }
+        }
+      }
+    } catch (e) {
+      console.warn('localStorage is not available for language redirection.');
+    }
+  })();
+  {{/if}}
+
+  window.tejoSetLang = function(langCode) {
+    try {
+      localStorage.setItem('tejo_lang_redirected', 'true');
+    } catch(e) {}
+
+    const availableLangs = {{{available_langs}}};
+    if (availableLangs.includes(langCode)) {
+      const basePath = '{{{base_path}}}' || './';
+      const canonicalBase = '{{{canonical_base}}}';
+      const targetFile = canonicalBase ? canonicalBase + (canonicalBase.endsWith('/') ? 'index.html' : '') : 'index.html';
+      const defaultLang = '{{default_lang}}';
+      const targetPrefix = langCode === defaultLang ? '' : langCode + '/';
+      window.location.href = basePath + targetPrefix + targetFile;
+    }
+  };
+</script>
