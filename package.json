@@ -1,7 +1,7 @@
 {
-  "name": "app",
+  "name": "tejoestudio",
   "version": "1.0.0",
-  "description": "![Logo](https://cdn.cottle.cloud/GitHub/LittleLink/littlelink.gif)",
+  "description": "Link aggregator and press kit platform for Tejo Estúdio",
   "main": "index.js",
   "directories": {
     "doc": "docs"
