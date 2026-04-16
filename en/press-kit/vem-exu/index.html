@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vem, Exu | Press Kit</title>
+  <meta name="description"
+    content="Official press kit of Vem, Exu, an interactive story about pride, fear and a lost kite.">
+  <meta name="author" content="Tejo Estúdio">
+  <link rel="canonical" href="/en/press-kit/vem-exu/">
+  <meta property="og:title" content="Vem, Exu | Press Kit">
+  <meta property="og:description"
+    content="Official materials, trailer, screenshots, key art and press information for Vem, Exu.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/press-kit/vem-exu/02_media/keyart/vem_exu_keyart_01.png">
+  <link rel="icon" type="image/png" href="../../../images/tejo_icon.png">
+  <link rel="stylesheet" href="../../../css/tejo-base.css">
+  <link rel="stylesheet" href="../../../press-kit/vem-exu/presskit.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" defer></script>
+  <script src="../../../press-kit/vem-exu/presskit-downloads.js" defer></script>
+  <script>
+  
+    window.tejoSetLang = function(langCode) {
+      try {
+        localStorage.setItem('tejo_lang_redirected', 'true');
+      } catch(e) {}
+  
+      const availableLangs = ["en","pt"];
+      if (availableLangs.includes(langCode)) {
+        const basePath = '../../../' || './';
+        const canonicalBase = 'press-kit/vem-exu/';
+        const targetFile = canonicalBase ? canonicalBase + (canonicalBase.endsWith('/') ? 'index.html' : '') : 'index.html';
+        const defaultLang = 'pt';
+        const targetPrefix = langCode === defaultLang ? '' : langCode + '/';
+        window.location.href = basePath + targetPrefix + targetFile;
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <a class="pk-skip-link" href="#conteudo">Skip to content</a>
+
+  <header class="pk-topbar">
+    <div class="pk-topbar-inner">
+      <a class="pk-wordmark" href="../../../en/index.html">&larr; Back to Home</a>
+      <nav class="pk-nav" aria-label="Press kit navigation">
+        <a href="#quick-facts">Summary</a>
+        <a href="#sobre-o-jogo">About the Game</a>
+        <a href="#para-publicacao">For Publishing</a>
+        <a href="#media">Media</a>
+        <a href="#equipe">Team</a>
+        <a href="#contato">Contact</a>
+
+      <div class="tejo-lang-switcher-container">
+        <a href="../../../press-kit/vem-exu/index.html" class="tejo-lang-switcher" aria-label="Switch language to PT" onclick="if(window.tejoSetLang){ window.tejoSetLang('pt'); return false; }">
+          PT
+        </a>
+      </div>
+      <button class="tejo-btn primary pk-nav-cta" data-download="full">Download Press Kit</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="pk-shell">
+    <section id="topo" class="pk-hero" aria-labelledby="pk-titulo">
+      <div class="pk-hero-copy">
+        <p class="pk-kicker">Press Kit</p>
+        <h1 id="pk-titulo">Vem, Exu</h1>
+        <p class="pk-lead">
+          After losing his kite, Exu faces a storm born from his own anger.
+        </p>
+        <p class="pk-sublead">
+          An interactive story about pride, fear and a lost kite.
+        </p>
+        <nav class="pk-actions" aria-label="Main actions">
+          <a class="tejo-btn primary" href="https://play.google.com/store/apps/details?id=com.tejoestudio.exu"
+            target="_blank" rel="noopener">Play demo now</a>
+
+          <a class="tejo-btn secondary" href="#">
+            Wishlist on Steam (soon)
+          </a>
+        </nav>
+
+        <p class="pk-caption">
+          Based on the short story "Exu was afraid", from the book <a href="https://www.amazon.com.br/Contos-Exu-Rafael-Semino-ebook/dp/B0D192M6VJ" target="_blank" rel="noopener"><em>Tales of Exu</em></a>, by Rafael Semino.
+        </p>
+      </div>
+
+      <figure class="pk-hero-figure">
+        <img src="../../../press-kit/vem-exu/02_media/keyart/vem_exu_keyart_01.png" alt="Official key art of Vem, Exu.">
+      </figure>
+    </section>
+
+
+    <section id="quick-facts" class="pk-section" aria-labelledby="facts-titulo">
+      <header class="pk-section-heading">
+        <h2 id="facts-titulo">Summary</h2>
+      </header>
+      <dl class="pk-facts-list">
+        <div>
+          <dt>Name</dt>
+          <dd>Vem, Exu</dd>
+        </div>
+        <div>
+          <dt>Genre</dt>
+          <dd>Short interactive narrative focused on emotion</dd>
+        </div>
+        <div>
+          <dt>Price</dt>
+          <dd>Free Demo / Final Game (TBD)</dd>
+        </div>
+        <div>
+          <dt>Platforms</dt>
+          <dd>Android (Demo), Steam (Demo July 2026), Release 2027</dd>
+        </div>
+        <div>
+          <dt>Duration</dt>
+          <dd>Demo: 15 min / Full: 50 min</dd>
+        </div>
+        <div>
+          <dt>Language</dt>
+          <dd>Available in Portuguese (English and Spanish soon)</dd>
+        </div>
+        <div>
+          <dt>Project Start</dt>
+          <dd>2024</dd>
+        </div>
+        <div>
+          <dt>For fans of</dt>
+          <dd>Florence, Journey, GRIS</dd>
+        </div>
+        <div>
+          <dt>Engine</dt>
+          <dd>Godot</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>Demo available / In development</dd>
+        </div>
+        <div>
+          <dt>Contact</dt>
+          <dd>tejoestudio@gmail.com</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="trailer" class="pk-section" aria-labelledby="trailer-titulo">
+      <header class="pk-section-heading">
+        <h2 id="trailer-titulo">Trailer</h2>
+      </header>
+      <figure class="pk-video-frame">
+        <iframe src="https://www.youtube.com/embed/rsUTitTiryc" title="Trailer - Vem, Exu" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </figure>
+      <div class="pk-video-actions">
+        <button data-download="trailer">Download</button>
+      </div>
+    </section>
+
+    <section id="sobre-o-jogo" class="pk-section" aria-labelledby="sobre-titulo">
+      <header class="pk-section-heading">
+        <h2 id="sobre-titulo">About the Game</h2>
+      </header>
+
+      <p>
+        After losing his kite in a fight with his brother, Exu tries to sleep carrying anger.<br>During the night, his feelings take the form of a storm where dream and reality mix.<br>By crossing this world, he must face his own pride and deal with what he feels to<br>be able to return.
+      </p>
+
+    </section>
+
+    <section id="diferencial" class="pk-section" aria-labelledby="diferencial-titulo">
+      <header class="pk-section-heading">
+        <h2 id="diferencial-titulo">Why this game matters</h2>
+      </header>
+
+
+
+      <p>
+        Inspired by the short story <em>Exu Was Afraid</em>, the game presents a fictional retelling of a character<br>from African roots, expanding the presence of these narratives in the digital environment through an accessible<br>and universal interactive experience.
+      </p>
+
+      <ul class="pk-bullet-columns">
+        <li>Emotions transform the world and the mechanics</li>
+        <li>Narrative with few texts, understood by interaction</li>
+        <li>Short experience (15–50 min), accessible to new audiences</li>
+        <li>Aesthetics inspired by cordel, woodcut and Brazilian culture</li>
+        <li>Adaptation of literature to interactive language</li>
+      </ul>
+    </section>
+
+    <section id="jogabilidade" class="pk-section" aria-labelledby="jogabilidade-titulo">
+      <header class="pk-section-heading">
+        <h2 id="jogabilidade-titulo">Gameplay</h2>
+      </header>
+      <p>The player interacts directly with the world through simple and intuitive actions:</p>
+
+      <ul>
+        <li>Pop bubbles to get to sleep</li>
+        <li>Connect stars to form constellations</li>
+        <li>Assemble a kite piece by piece</li>
+        <li>Control a kite in the sky</li>
+        <li>Cross space touching planets</li>
+      </ul>
+
+      <p>Progression happens through curiosity, observation and interpretation, without pressure or failure.</p>
+    </section>
+
+    <section id="para-publicacao" class="pk-section" aria-labelledby="publicacao-titulo">
+      <header class="pk-section-heading">
+        <h2 id="publicacao-titulo">For Publishing</h2>
+      </header>
+      <p class="pk-caption" style="margin-bottom: 1rem;">Texts ready for editorial use. Copy the format that best fits your space.</p>
+
+      <h3>One sentence</h3>
+      <p>Vem, Exu is an interactive story where the story is told by the player&#x27;s actions, following a boy who faces a storm created by his own anger.</p>
+
+      <h3>One paragraph</h3>
+      <p>Inspired by the short story “Exu was afraid” by Rafael Semino, Vem, Exu is a short and emotional game.<br>After losing his kite to his brother, Exu goes to sleep angry. His anger awakens a magical storm<br>where dream and reality merge. Crossing skies and constellations, he needs to deal with his own<br>pride to recover his kite and be able to return home.</p>
+
+      <h3>Three paragraphs</h3>
+      <p>Vem, Exu is a short interactive narrative developed by Estúdio Tejo, from Fortaleza, Ceará. Inspired by the short story <em>Exu Was Afraid</em>, from the book <em>Tales of Exu</em> (Rafael Semino), the game follows a boy who, after losing his kite, is taken to a world where his feelings take the form of a storm.</p>
+      <p>The story is told with few texts: the player understands everything by interacting with the environment, through sound and movement. The art direction in black, white and red draws from woodcut and cordel literature, while the reactive soundtrack brings Afro-Brazilian percussion and sounds from Ceará.</p>
+      <p>With about 50 minutes of total duration (15-minute demo), Vem, Exu is an accessible and universal experience: with a minimal language barrier, no time pressure, designed for those who always play and for those who have never played. The demo is available on Google Play, with a Steam version scheduled for July 2026 and full release in 2027.</p>
+
+      <h3>What they are saying</h3>
+      <div class="pk-quotes-grid">
+        <blockquote class="pk-card-accent">
+          <p>“One of the most beautiful games I tested at Sana. The way emotion becomes interaction is unlike anything I&#x27;ve seen.”</p>
+          <cite>• Sana 2025 participant</cite>
+        </blockquote>
+
+        <blockquote class="pk-card-accent">
+          <p>“Even without text, you can understand everything. Very intuitive and sensitive.”</p>
+          <cite>• playtest player</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="media" class="pk-section" aria-labelledby="media-titulo">
+      <header class="pk-section-heading">
+        <h2 id="media-titulo">Media</h2>
+      </header>
+
+
+
+      <section class="pk-media-block" aria-labelledby="gifs-titulo">
+        <header class="pk-media-heading">
+          <h3 id="gifs-titulo">GIFs</h3>
+          <button data-download="gifs">Download</button>
+        </header>
+        <div class="pk-gallery pk-gallery-gifs">
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_01.gif" alt="GIF 01 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_02.gif" alt="GIF 02 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_03.gif" alt="GIF 03 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_04.gif" alt="GIF 04 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_05.gif" alt="GIF 05 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_06.gif" alt="GIF 06 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_07.gif" alt="GIF 07 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/gifs/vem_exu_gif_misc_08.gif" alt="GIF 08 of Vem, Exu."></figure>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="clips-titulo">
+        <header class="pk-media-heading">
+          <h3 id="clips-titulo">Additional Clips</h3>
+          <button data-download="clips">Download clips</button>
+        </header>
+        <p style="color: var(--pk-muted); font-size: 0.9rem;">Supporting video material ideal for Reels, TikTok and editorial use.</p>
+        <div class="pk-gallery pk-gallery-clips">
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_01.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_02.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_03.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_04.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_05.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_06.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_07.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pk-clip-card">
+            <video muted loop playsinline preload="metadata">
+              <source src="../../../press-kit/vem-exu/02_media/video_clips/vem_exu_clip_misc_08.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="screenshots-titulo">
+        <header class="pk-media-heading">
+          <h3 id="screenshots-titulo">Screenshots</h3>
+          <button data-download="screenshots">Download</button>
+        </header>
+        <div class="pk-gallery pk-gallery-screens">
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_01.jpg" alt="Screenshot 01 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_02.jpg" alt="Screenshot 02 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_03.jpg" alt="Screenshot 03 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_04.jpg" alt="Screenshot 04 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_05.jpg" alt="Screenshot 05 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_07.jpg" alt="Screenshot 07 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_08.jpg" alt="Screenshot 08 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_09.jpg" alt="Screenshot 09 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_10.jpg" alt="Screenshot 010 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_11.jpg" alt="Screenshot 011 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_12.jpg" alt="Screenshot 012 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/screenshots/vem_exu_screenshot_13.jpg" alt="Screenshot 013 of Vem, Exu."></figure>
+        </div>
+      </section>
+
+
+
+      <section class="pk-media-block" aria-labelledby="keyart-titulo">
+        <header class="pk-media-heading">
+          <h3 id="keyart-titulo">Key Art</h3>
+          <button data-download="keyart">Download</button>
+        </header>
+        <div class="pk-gallery pk-gallery-keyart">
+          <figure><img src="../../../press-kit/vem-exu/02_media/keyart/vem_exu_keyart_01.png" alt="Key art 01 of Vem, Exu."></figure>
+          <figure><img src="../../../press-kit/vem-exu/02_media/keyart/vem_exu_keyart_02.png" alt="Key art 02 of Vem, Exu."></figure>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="logos-titulo">
+        <header class="pk-media-heading">
+          <h3 id="logos-titulo">Logos and Branding</h3>
+          <button data-download="logos">Download</button>
+        </header>
+        <div class="pk-gallery pk-gallery-logos">
+          <figure class="pk-logo-item"><img src="../../../press-kit/vem-exu/03_branding/logos/vem_exu_logo_black.png" alt="Vem, Exu Logo (Black)">
+          </figure>
+          <figure class="pk-logo-item pk-bg-dark"><img src="../../../press-kit/vem-exu/03_branding/logos/vem_exu_logo_white.png"
+              alt="Vem, Exu Logo (White)"></figure>
+          <figure class="pk-logo-item"><img src="../../../press-kit/vem-exu/03_branding/studio/tejo_logo_black.png"
+              alt="Tejo Studio Logo (Black)"></figure>
+          <figure class="pk-logo-item pk-bg-dark"><img src="../../../press-kit/vem-exu/03_branding/studio/tejo_logo_white.png"
+              alt="Tejo Studio Logo (White)"></figure>
+        </div>
+      </section>
+
+      <section class="pk-media-block" aria-labelledby="personagens-titulo">
+        <header class="pk-media-heading">
+          <h3 id="personagens-titulo">Characters</h3>
+          <button data-download="characters">Download</button>
+        </header>
+        <div class="pk-gallery pk-gallery-banners">
+          <figure><img src="../../../press-kit/vem-exu/03_branding/characters/vem_exu_character_full_01.png" alt="Character 01 of Vem, Exu.">
+          </figure>
+          <figure><img src="../../../press-kit/vem-exu/03_branding/characters/vem_exu_character_full_02.png" alt="Character 02 of Vem, Exu.">
+          </figure>
+          <figure><img src="../../../press-kit/vem-exu/03_branding/characters/vem_exu_character_full_03.png" alt="Character 03 of Vem, Exu.">
+          </figure>
+        </div>
+      </section>
+      <section class="pk-media-block" aria-labelledby="eventos-titulo">
+        <header class="pk-media-heading">
+          <h3 id="eventos-titulo">Events</h3>
+          <button data-download="events">Download</button>
+        </header>
+        <p style="color: var(--pk-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          Exhibited at Sana 2025 and Feira do Conhecimento in Ceará, with public playtests and direct player feedback.
+        </p>
+        <div class="pk-gallery pk-gallery-events">
+          <!-- SANA -->
+          <figure><img src="../../../images/records/sana_2026_1_01.jpeg" alt="Sana 01"></figure>
+          <figure><img src="../../../images/records/sana_2026_1_02.jpeg" alt="Sana 02"></figure>
+
+          <!-- Feira do Conhecimento -->
+          <figure><img src="../../../images/records/feira_do_conhecimento_01.jpeg" alt="Fair 01"></figure>
+          <figure><img src="../../../images/records/feira_do_conhecimento_02.jpeg" alt="Fair 02"></figure>
+
+          <!-- Escolas e Comunidade -->
+          <figure><img src="../../../images/records/escola_torres_de_melo_01.jpg" alt="School 01"></figure>
+        </div>
+      </section>
+    </section>
+
+
+
+    <section id="equipe" class="pk-section" aria-labelledby="equipe-titulo">
+      <header class="pk-section-heading">
+        <h2 id="equipe-titulo">Team</h2>
+      </header>
+
+      <div class="pk-team-list">
+        <div class="pk-team-item">
+          <h3>Michael Feitosa</h3>
+          <p class="pk-role">Game Design, Programming, Creative Direction</p>
+          <p>Game designer and developer with over 15 years of software experience. Coordinates Tejo Studio and leads the development of Vem, Exu.</p>
+        </div>
+        <div class="pk-team-item">
+          <h3>Rafael Semino</h3>
+          <p class="pk-role">Writing</p>
+          <p>Actor, playwright and arts researcher. Master in Arts from UFC and author of the book <em>Tales of Exu</em>.</p>
+        </div>
+        <div class="pk-team-item">
+          <h3>Valdir Marte</h3>
+          <p class="pk-role">Illustration and Art</p>
+          <p>Illustrator and graphic designer working in publishing and cultural projects.</p>
+        </div>
+        <div class="pk-team-item">
+          <h3>Zéis</h3>
+          <p class="pk-role">Soundtrack and Sound Design</p>
+          <p>Singer, songwriter and cultural producer. Develops the soundscape and reactive soundtrack for Vem, Exu.</p>
+        </div>
+        <div class="pk-team-item">
+          <h3>Douglas Levi</h3>
+          <p class="pk-role">Programming</p>
+        </div>
+        <div class="pk-team-item">
+          <h3>Laura Lucca</h3>
+          <p class="pk-role">Accessibility</p>
+        </div>
+        <div class="pk-team-item">
+          <h3>Carlos Marques</h3>
+          <p class="pk-role">Social Media</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="extras" class="pk-section" aria-labelledby="extras-titulo">
+      <header class="pk-section-heading" style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem;">
+        <h2 id="extras-titulo">Stickers</h2>
+        <button data-download="stickers">Download</button>
+      </header>
+      <p>Transparent assets for use on social media and content creation.</p>
+      <div class="pk-sticker-grid">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_01.png" alt="Sticker Color 01">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_02.png" alt="Sticker Color 02">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_03.png" alt="Sticker Color 03">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_04.png" alt="Sticker Color 04">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_05.png" alt="Sticker Color 05">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_06.png" alt="Sticker Color 06">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_07.png" alt="Sticker Color 07">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_08.png" alt="Sticker Color 08">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_11.png" alt="Sticker Color 11">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_12.png" alt="Sticker Color 12">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_14.png" alt="Sticker Color 14">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_16.png" alt="Sticker Color 16">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_18.png" alt="Sticker Color 18">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_color_19.png" alt="Sticker Color 19">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_black_09.png" alt="Sticker Black 09">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_black_20.png" alt="Sticker Black 20">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_10.png" alt="Sticker White 10">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_13.png" alt="Sticker White 13">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_15.png" alt="Sticker White 15">
+        <img src="../../../press-kit/vem-exu/05_extras/stickers/vem_exu_sticker_white_17.png" alt="Sticker White 17">
+      </div>
+    </section>
+
+
+    <section id="contato" class="pk-section" aria-labelledby="contato-titulo">
+      <header class="pk-section-heading">
+        <h2 id="contato-titulo">Contact</h2>
+      </header>
+      <dl class="pk-contact-list">
+        <div>
+          <dt>Email</dt>
+          <dd><a href="mailto:tejoestudio@gmail.com">tejoestudio@gmail.com</a></dd>
+        </div>
+        <div>
+          <dt>Instagram</dt>
+          <dd><a href="https://www.instagram.com/tejoestudio" target="_blank" rel="noopener">@tejoestudio</a></dd>
+        </div>
+        <div>
+          <dt>Threads</dt>
+          <dd><a href="https://www.threads.net/@tejoestudio" target="_blank" rel="noopener">@tejoestudio</a></dd>
+        </div>
+
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="tejo-footer">
+    <img src="../../../images/tejo_logo_black.png" alt="Tejo Estúdio" class="tejo-footer-logo">
+    <div class="tejo-footer-content">
+      <p>
+        Studio from Ceará making small games between art and Brazilian culture.
+        <span class="tejo-footer-meta">Fortaleza, Ceará. &copy; 2026</span>
+        | <a href="../../../privacy.html" style="color: inherit; opacity: 0.8;">Privacy</a>
+      </p>
+    </div>
+  </footer>
+  <script>
+    // Hover-to-play functionality for additional clips
+    document.querySelectorAll('.pk-clip-card video').forEach(video => {
+      video.addEventListener('mouseenter', () => {
+        video.play().catch(e => console.log("Auto-play prevented"));
+      });
+      video.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+  </script>
+</body>
+
+</html>

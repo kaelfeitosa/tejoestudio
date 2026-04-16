@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Tejo Estúdio - Linktree Brands / Buttons
+   ==========================================================================
+
+   IMPORTANTE:
+   Este arquivo contém os estilos para os botões do "Linktree" do Tejo Estúdio.
+   Eles herdam a identidade brutalista (sombras duras, bordas sólidas) do tejo-base.css.
+
+   COMO ADICIONAR UMA NOVA MARCA:
+   1. Copie a estrutura de uma marca existente abaixo.
+   2. Renomeie a classe (ex: .tejo-brand-x).
+   3. Altere o --brand-bg para a cor da marca.
+   4. Altere o --brand-text para branco (#fff) ou preto (#000) garantindo contraste.
+   ========================================================================== */
+
+.tejo-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0 auto 1rem auto;
+  padding: 1rem 1.5rem;
+  font-weight: 700; /* bold */
+  font-size: 1.125rem;
+  text-decoration: none;
+  border: 2px solid var(--border-color);
+  background: var(--brand-bg, var(--bg-color));
+  color: var(--brand-text, var(--text-color));
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.tejo-link-btn:hover {
+  box-shadow: var(--shadow-hard);
+  transform: translate3d(0, -2px, 0);
+  filter: var(--brand-hover-filter, brightness(0.9));
+}
+
+/* Garante que o ícone mantenha proporções e não quebre o layout */
+.tejo-link-btn .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  /* Invert icon if the brand text is white to ensure contrast */
+  filter: var(--brand-icon-filter, none);
+}
+
+/* ==========================================================================
+   Cores das Marcas
+   ========================================================================== */
+
+/* Google Play & Amazon */
+.tejo-brand-playstore,
+.tejo-brand-amazon {
+  --brand-bg: #fff;
+  --brand-text: #000;
+}
+
+/* Instagram */
+.tejo-brand-instagram {
+  --brand-bg: linear-gradient(-135deg, #1400c8, #b900b4, #f50000);
+  --brand-text: #fff;
+}
+
+/* Threads, Portfólio e Press Kit (Cor padrão Tejo) */
+.tejo-brand-threads,
+.tejo-brand-portfolio,
+.tejo-brand-press {
+  --brand-bg: #1a1a1a;
+  --brand-text: #fff;
+  --brand-hover-filter: brightness(1.5);
+}

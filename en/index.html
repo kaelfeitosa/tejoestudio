@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tejo Studio</title>
+  <link rel="icon" type="image/png" href="../images/tejo_icon.png">
+  <meta name="description" content="Tejo Studio official website – game development and software consulting.">
+  <meta name="keywords" content="Tejo Studio, games, development, software consulting, Godot, Unity">
+  <link rel="canonical" href="/en/">
+  <meta name="author" content="Tejo Estúdio">
+
+  <!-- Novos Estilos Base do Tejo Estúdio -->
+  <link rel="stylesheet" href="../css/tejo-base.css">
+  <link rel="stylesheet" href="../css/tejo-brands.css">
+  <script>
+  
+    window.tejoSetLang = function(langCode) {
+      try {
+        localStorage.setItem('tejo_lang_redirected', 'true');
+      } catch(e) {}
+  
+      const availableLangs = ["en","pt"];
+      if (availableLangs.includes(langCode)) {
+        const basePath = '../' || './';
+        const canonicalBase = '';
+        const targetFile = canonicalBase ? canonicalBase + (canonicalBase.endsWith('/') ? 'index.html' : '') : 'index.html';
+        const defaultLang = 'pt';
+        const targetPrefix = langCode === defaultLang ? '' : langCode + '/';
+        window.location.href = basePath + targetPrefix + targetFile;
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <div class="tejo-lang-switcher-container">
+    <a href="../index.html" class="tejo-lang-switcher" aria-label="Switch language to PT" onclick="if(window.tejoSetLang){ window.tejoSetLang('pt'); return false; }">
+      PT
+    </a>
+  </div>
+  <main class="tejo-linktree-container">
+    <h1 class="tejo-visually-hidden">Tejo Studio</h1>
+    <section>
+      <h2 class="tejo-visually-hidden">Vem, Exu!</h2>
+      <img class="tejo-avatar tejo-logo-invertible" src="../images/vem_exu_logo_black.png" alt="Vem, Exu! game logo">
+
+      <a class="tejo-link-btn tejo-brand-playstore"
+        href="https://play.google.com/store/apps/details?id=com.tejoestudio.exu" target="_blank" rel="noopener">
+        <img class="icon" aria-hidden="true" src="../images/icons/google-play.svg" alt="">
+        Try on Google Play
+      </a>
+
+      <p>After a fight with his brother that ends in the loss of his kite, Exu tries to sleep, but his anger awakens a fantastic storm where reality and dream mix. To get the kite back, he must face the storm and learn to overcome his own pride.</p>
+
+      <p>
+        <small>✨ <strong>Based on the short story <em>"Exu was afraid"</em>, from the book <em>Tales of Exu</em>, by Rafael Semino.</strong></small>
+      </p>
+    </section>
+
+    <nav aria-label="Tejo Studio Links">
+      <a class="tejo-link-btn tejo-brand-instagram" href="https://www.instagram.com/tejoestudio" target="_blank"
+        rel="noopener">
+        <img class="icon" aria-hidden="true" src="../images/icons/instagram.svg" alt="">
+        Instagram
+      </a>
+
+      <a class="tejo-link-btn tejo-brand-threads" href="https://www.threads.net/@tejoestudio" target="_blank"
+        rel="noopener">
+        <img class="icon" aria-hidden="true" src="../images/icons/threads.svg" alt="">
+        Threads
+      </a>
+
+      <a class="tejo-link-btn tejo-brand-amazon"
+        href="https://www.amazon.com.br/Contos-Exu-Rafael-Semino-ebook/dp/B0D192M6VJ" target="_blank" rel="noopener">
+        <img class="icon" aria-hidden="true" src="../images/icons/amazon.svg" alt="">
+        Tales of Exu Book
+      </a>
+
+      <a class="tejo-link-btn tejo-brand-press" href="../en/press-kit/vem-exu/index.html" target="_blank" rel="noopener">
+        <img class="icon" aria-hidden="true" src="../images/icons/generic-blog.svg" alt="">
+        Press Kit
+      </a>
+
+      <a class="tejo-link-btn tejo-brand-portfolio" href="../en/portfolio.html" target="_blank" rel="noopener">
+        <img class="icon" aria-hidden="true" src="../images/icons/generic-homepage.svg" alt="">
+        Portfolio
+      </a>
+    </nav>
+
+    <div class="tejo-footer-credits">
+      <small>
+        <em>
+          <span class="tejo-no-wrap">Michael Feitosa: Game Design</span>, <span class="tejo-no-wrap">Rafael Semino: Writer</span>, <span class="tejo-no-wrap">Douglas Levi: Programming</span>, <span class="tejo-no-wrap">Valdir Marte: Illustration</span>, <span class="tejo-no-wrap">Zéis: Sound Design</span>, <span class="tejo-no-wrap">Laura Lucca: Accessibility</span>, <span class="tejo-no-wrap">Carlos Marques: Social Media</span>
+        </em>
+      </small>
+    </div>
+
+    <footer class="tejo-footer">
+      <img src="../images/tejo_logo_black.png" alt="Tejo Estúdio" class="tejo-footer-logo">
+      <div class="tejo-footer-content">
+        <p>
+          Studio from Ceará making small games between art and Brazilian culture.
+          <span class="tejo-footer-meta">Fortaleza, Ceará. &copy; 2026</span>
+          | <a href="../privacy.html" style="color: inherit; opacity: 0.8;">Privacy</a>
+        </p>
+      </div>
+    </footer>
+  </main>
+</body>
+
+</html>

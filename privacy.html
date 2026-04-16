@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacidade | Tejo Estúdio</title>
+  <link rel="icon" type="image/png" href="./images/tejo_icon.png">
+  <meta name="description" content="Política de privacidade e informações sobre coleta de dados do Tejo Estúdio.">
+  <meta name="robots" content="noindex">
+
+  <!-- Novos Estilos Base do Tejo Estúdio -->
+  <link rel="stylesheet" href="./css/tejo-base.css">
+  <link rel="stylesheet" href="./css/tejo-brands.css">
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('tejo_lang_redirected') !== 'true') {
+          const userLang = navigator.language || navigator.userLanguage;
+          const availableLangs = ["en","pt"];
+          const defaultLang = 'pt';
+  
+          if (userLang && !userLang.toLowerCase().startsWith(defaultLang)) {
+             const baseLang = userLang.split('-')[0].toLowerCase();
+             if (availableLangs.includes(baseLang)) {
+                localStorage.setItem('tejo_lang_redirected', 'true');
+                const basePath = './' || './';
+                const canonicalBase = 'privacy.html';
+                const targetFile = canonicalBase ? canonicalBase + (canonicalBase.endsWith('/') ? 'index.html' : '') : 'index.html';
+  
+                window.location.replace(basePath + baseLang + '/' + targetFile);
+             }
+          }
+        }
+      } catch (e) {
+        console.warn('localStorage is not available for language redirection.');
+      }
+    })();
+  
+    window.tejoSetLang = function(langCode) {
+      try {
+        localStorage.setItem('tejo_lang_redirected', 'true');
+      } catch(e) {}
+  
+      const availableLangs = ["en","pt"];
+      if (availableLangs.includes(langCode)) {
+        const basePath = './' || './';
+        const canonicalBase = 'privacy.html';
+        const targetFile = canonicalBase ? canonicalBase + (canonicalBase.endsWith('/') ? 'index.html' : '') : 'index.html';
+        const defaultLang = 'pt';
+        const targetPrefix = langCode === defaultLang ? '' : langCode + '/';
+        window.location.href = basePath + targetPrefix + targetFile;
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <div class="tejo-lang-switcher-container">
+    <a href="./en/privacy.html" class="tejo-lang-switcher" aria-label="Mudar idioma para EN" onclick="if(window.tejoSetLang){ window.tejoSetLang('en'); return false; }">
+      EN
+    </a>
+  </div>
+
+  <main class="tejo-linktree-container tejo-text-left">
+    <nav>
+      <a href="./index.html" aria-label="Voltar para a página inicial">← Voltar para a página principal</a>
+    </nav>
+
+    <h1>Privacidade</h1>
+
+    <section aria-labelledby="analytics-heading">
+      <h2 id="analytics-heading">Analytics</h2>
+      <p>Os serviços contidos nesta seção permitem ao Proprietário monitorar e analisar o tráfego web e podem ser usados para rastrear o comportamento do Usuário.</p>
+
+      <h3>Exemplo LLC</h3>
+      <ul role="list">
+        <li>Dados Pessoais: vários tipos de dados conforme especificado na política de privacidade do serviço</li>
+        <li><a href="https://example.com/privacy/" target="_blank" rel="noopener">Política de Privacidade</a></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="external-content-heading">
+      <h2 id="external-content-heading">Conteúdo Externo</h2>
+      <p>Este tipo de serviço permite visualizar conteúdo hospedado em plataformas externas diretamente nas páginas deste site e interagir com eles.</p>
+      <p>Este tipo de serviço ainda pode coletar dados de tráfego web para as páginas onde o serviço está instalado, even quando os Usuários não o utilizam.</p>
+
+      <h3>Exemplo LLC</h3>
+      <ul role="list">
+        <li>Dados Pessoais: Dados de Uso; vários tipos de dados conforme especificado na política de privacidade do serviço</li>
+        <li><a href="https://example.com/privacy/" target="_blank" rel="noopener">Política de Privacidade</a></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="hosting-heading">
+      <h2 id="hosting-heading">Hospedagem e Infraestrutura</h2>
+      <p>Este tipo de serviço tem a finalidade de hospedar dados e arquivos que permitem que este site exista.</p>
+      <p>Alguns serviços entre os listados abaixo, se houver, podem funcionar através de servidores distribuídos geograficamente, dificultando a determinação do local real onde os Dados Pessoais são armazenados.</p>
+
+      <h3>Exemplo LLC</h3>
+      <ul role="list">
+        <li>Dados Pessoais: vários tipos de dados conforme especificado na política de privacidade do serviço</li>
+        <li><a href="https://example.com/privacy" target="_blank" rel="noopener">Política de Privacidade</a></li>
+      </ul>
+    </section>
+
+    <footer class="tejo-footer">
+      <img src="./images/tejo_logo_black.png" alt="Tejo Estúdio" class="tejo-footer-logo">
+      <div class="tejo-footer-content">
+        <p>
+          Estúdio cearense de pequenos jogos entre arte e cultura brasileira.
+          <span class="tejo-footer-meta">Fortaleza, Ceará. &copy; 2026</span>
+          | <a href="./privacy.html" style="color: inherit; opacity: 0.8;">Privacidade</a>
+        </p>
+      </div>
+    </footer>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Tejo Estúdio - Portfolio Specific Styles
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Layout Containers */
+.portfolio-shell {
+  max-width: 72rem; /* max-w-6xl */
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Sections */
+.portfolio-hero {
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.portfolio-hero h1 {
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  line-height: 0.85;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-section {
+  padding: 6rem 0;
+}
+
+.portfolio-dark-section {
+  background-color: #171717;
+  color: #e5e5e5;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+/* Grid Utilities */
+.portfolio-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .portfolio-col-span-4 { grid-column: span 4 / span 4; }
+  .portfolio-col-span-5 { grid-column: span 5 / span 5; }
+  .portfolio-col-span-7 { grid-column: span 7 / span 7; }
+  .portfolio-col-span-8 { grid-column: span 8 / span 8; }
+  
+  .portfolio-md-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Project Articles */
+.project-article {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .project-article {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+/* Aspect Ratios */
+.aspect-3-4 { aspect-ratio: 3/4; }
+.aspect-video { aspect-ratio: 16/9; }
+
+.object-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Navigation Overlay (Simplified from React) */
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(250, 250, 250, 0.95);
+  backdrop-filter: blur(4px);
+  border-bottom: 2px solid #171717;
+  z-index: 1000;
+}
+
+.nav-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Otimizações para Impressão / PDF Digital (From original portfolio.html)
+   ========================================================================== */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-rendering: optimizeLegibility;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+
+  body {
+    font-size: 11pt;
+    background: white !important;
+  }
+
+  .nav-fixed, 
+  .tejo-lang-switcher-container,
+  .portfolio-hero .tejo-btn,
+  .project-article .tejo-btn {
+    display: none !important;
+  }
+
+  .portfolio-hero {
+    padding-top: 20vh !important;
+    padding-bottom: 5vh !important;
+    min-height: 0 !important;
+    height: auto !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .portfolio-hero h1 {
+    font-size: 5rem !important;
+  }
+
+  section {
+    page-break-before: always;
+    break-before: page;
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
+  footer {
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+    margin-top: 1rem !important;
+    border-top: none !important;
+  }
+
+  .project-article {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  }
+
+  article, figure, img {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .tejo-card, .shadow-hard-lg {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}

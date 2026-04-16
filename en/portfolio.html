@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Michael Feitosa | Portfólio</title>
+  <link rel="icon" type="image/png" href="../images/tejo_icon.png">
+  <meta name="description" content="Portfólio de Michael Feitosa - Game Designer, Artista Digital e Arquiteto de Software.">
+
+  <!-- Novos Estilos Base do Tejo Estúdio -->
+  <link rel="stylesheet" href="../css/tejo-base.css">
+  <link rel="stylesheet" href="../css/tejo-portfolio.css">
+  <script>
+  
+    window.tejoSetLang = function(langCode) {
+      try {
+        localStorage.setItem('tejo_lang_redirected', 'true');
+      } catch(e) {}
+  
+      const availableLangs = ["en","pt"];
+      if (availableLangs.includes(langCode)) {
+        const basePath = '../' || './';
+        const canonicalBase = 'portfolio.html';
+        const targetFile = canonicalBase ? canonicalBase + (canonicalBase.endsWith('/') ? 'index.html' : '') : 'index.html';
+        const defaultLang = 'pt';
+        const targetPrefix = langCode === defaultLang ? '' : langCode + '/';
+        window.location.href = basePath + targetPrefix + targetFile;
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <div class="tejo-lang-switcher-container">
+    <a href="../portfolio.html" class="tejo-lang-switcher" aria-label="Switch language to PT" onclick="if(window.tejoSetLang){ window.tejoSetLang('pt'); return false; }">
+      PT
+    </a>
+  </div>
+
+  <nav class="nav-fixed">
+    <div class="nav-inner">
+      <div class="tejo-brand-logo" style="font-size: 1.5rem; border: 2px solid #000; padding: 0.2rem 0.5rem;">
+        <a href="#home" style="text-decoration: none;">MF.</a>
+      </div>
+      <div class="portfolio-nav-links" style="display: flex; gap: 1.5rem; font-size: 0.8rem; text-transform: uppercase; font-weight: 900;">
+        <a href="#poetica">Poética</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#circulacao">Circulação</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="portfolio-shell portfolio-hero">
+    <h1>MICHAEL<br>FEITOSA</h1>
+    <div style="height: 0.5rem; width: 8rem; background: #000; margin-bottom: 2rem;"></div>
+    <p style="font-size: 1.5rem; font-weight: 700; border-left: 4px solid #ccc; padding-left: 1.5rem;">
+      Game Designer • Artista Digital • Arquiteto de Software
+    </p>
+    <p style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; padding-left: 1.5rem;">
+      Fortaleza, Ceará — Brasil
+    </p>
+
+    <div style="display: flex; gap: 1rem; margin-top: 2.5rem;">
+      <a href="#projetos" class="tejo-btn primary">Ver Projetos &rarr;</a>
+      <a href="../docs/portfolio_hd_pageless.pdf" target="_blank" rel="noopener" class="tejo-btn">
+        <img src="../images/icons/download.svg" alt="" style="width: 1.25rem; height: 1.25rem; display: inline; vertical-align: middle; margin-right: 0.5rem;">
+        Download PDF
+      </a>
+      <a href="https://kaelfeitosa.itch.io" target="_blank" rel="noopener" class="tejo-btn">Itch.io</a>
+    </div>
+  </header>
+
+  <section id="poetica" class="portfolio-dark-section portfolio-section">
+    <div class="portfolio-shell" style="max-width: 50rem;">
+      <h2 style="font-size: 0.8rem; text-align: center; color: #737373; font-family: var(--font-mono); letter-spacing: 0.3em; margin-bottom: 3rem;">
+        POÉTICA E PESQUISA
+      </h2>
+      <blockquote style="font-size: 2.5rem; color: #fff; margin-bottom: 3rem;">
+        “Minha prática investiga memória, infância e cultura popular por meio da criação de jogos narrativos e experiências interativas.”
+      </blockquote>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 3rem; color: #a3a3a3;">
+        <p>
+          Minha estética utiliza monocromia, silhuetas e alto contraste como linguagem visual, explorando a força gráfica de formas simples. Desenvolvo jogos autorais, narrativas interativas e instalações digitais que transformam gestos cotidianos em experiências sensíveis e contemplativas.
+        </p>
+        <p>
+          No <strong>Tejo Estúdio</strong> desenvolvo projetos que exploram a relação entre arte digital, narrativa interativa e tecnologia, investigando como sistemas interativos podem ampliar experiências visuais e relações com o território.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="portfolio-shell portfolio-section">
+    <div style="border-bottom: 2px solid #000; padding-bottom: 2rem; margin-bottom: 5rem; display: flex; align-items: baseline; gap: 1.5rem;">
+      <h2>PROJETOS</h2>
+      <span style="font-family: var(--font-mono); color: #737373;">SELEÇÃO 2024 — 2026</span>
+    </div>
+
+    <div class="portfolio-grid" style="gap: 6rem;">
+      <!-- Vem Exu -->
+      <article class="project-article">
+        <div class="portfolio-col-span-5">
+          <figure class="aspect-3-4">
+            <img src="../images/portfolio/vem_exu.png" alt="Vem Exu" class="object-cover tejo-grayscale">
+          </figure>
+        </div>
+        <div class="portfolio-col-span-7" style="display: flex; flex-direction: column; justify-content: center;">
+          <h3 style="text-transform: uppercase;">Vem, Exu</h3>
+          <p style="font-family: var(--font-mono); font-size: 0.75rem;"><span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">2024–2026</span> <span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">CONTO INTERATIVO DIGITAL</span></p>
+          <p>
+            Um conto interativo inspirado na história “Exu Ficou com Medo”, do livro Contos de Exu, de Rafael Semino. A narrativa acompanha um menino que atravessa uma tempestade fantástica após perder sua arraia.
+          </p>
+          <ul style="font-size: 0.85rem; border-left: 2px solid #ccc; padding-left: 1rem; list-style: none;">
+            <li><strong>Poética:</strong> Gestos pequenos, silhuetas</li>
+            <li><strong>Tech:</strong> Godot 4 (GDScript 2)</li>
+            <li><strong>Destaque:</strong> Projeto desenvolvido com apoio da Lei Paulo Gustavo (CE) em 2024</li>
+          </ul>
+          <div style="margin-top: 1.5rem;">
+            <a href="https://bit.ly/vemexu" target="_blank" rel="noopener" class="tejo-btn">Jogar Demo &nearrow;</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- RAIAR -->
+      <article class="project-article">
+        <div class="portfolio-col-span-7 portfolio-order-2">
+           <figure class="aspect-video" style="background: #171717; display: flex; align-items: center; justify-content: center;">
+              <span style="color: #404040; font-family: var(--font-mono); border: 1px dashed #404040; padding: 1rem;">IMAGEM EM BREVE</span>
+           </figure>
+        </div>
+        <div class="portfolio-col-span-5 portfolio-order-1" style="display: flex; flex-direction: column; justify-content: center;">
+          <h3 style="text-transform: uppercase;">RAIAR</h3>
+          <p style="font-family: var(--font-mono); font-size: 0.75rem;"><span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">2025–2026</span> <span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">INSTALAÇÃO</span></p>
+          <p>
+            Transforma a tradição cearense de soltar arraias em uma experiência digital coletiva. O público utiliza o celular para criar e movimentar pipas digitais em uma projeção generativa.
+          </p>
+          <ul style="font-size: 0.85rem; border-left: 2px solid #ccc; padding-left: 1rem; list-style: none;">
+            <li><strong>Poética:</strong> Vento, céu, participação</li>
+            <li><strong>Tech:</strong> WebSockets, Projeção Generativa</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <!-- Outras Obras -->
+    <div style="margin-top: 8rem; border-top: 2px solid #000; padding-top: 4rem;">
+      <h4 style="margin-bottom: 3rem;">OUTRAS OBRAS</h4>
+      <div class="portfolio-grid portfolio-md-grid-3">
+        <article>
+          <figure style="aspect-ratio: 1; margin-bottom: 1.5rem;">
+            <img src="../images/portfolio/maria_da_lua.png" alt="Maria da Lua" class="object-cover tejo-grayscale">
+          </figure>
+          <h5>Maria da Lua</h5>
+          <p style="font-size: 0.9rem; color: #737373;">Videopoema inspirado no imaginário fantástico nordestino.</p>
+        </article>
+        <article>
+          <figure style="aspect-ratio: 1; margin-bottom: 1.5rem;">
+            <img src="../images/portfolio/hamilton.png" alt="Hamilton" class="object-cover tejo-grayscale">
+          </figure>
+          <h5>Hamilton</h5>
+          <p style="font-size: 0.9rem; color: #737373;">Puzzle casual publicado na Play Store.</p>
+        </article>
+        <article>
+          <figure style="aspect-ratio: 1; margin-bottom: 1.5rem;">
+            <img src="../images/portfolio/sina_de_sia.png" alt="Sina de Siá" class="object-cover tejo-grayscale">
+          </figure>
+          <h5>Sina de Siá</h5>
+          <p style="font-size: 0.9rem; color: #737373;">Metroidvania inspirado na estética do cordel.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="tejo-footer">
+    <img src="../images/tejo_logo_black.png" alt="Tejo Estúdio" class="tejo-footer-logo">
+    <div id="contato" class="tejo-footer-content">
+      <p>
+        Studio from Ceará making small games between art and Brazilian culture.
+        <span class="tejo-footer-meta">Fortaleza, Ceará. &copy; 2026</span>
+        | <a href="../privacy.html" style="color: inherit; opacity: 0.8;">Privacy</a>
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
