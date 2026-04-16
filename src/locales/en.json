@@ -14,7 +14,9 @@
     "credits": "<span class=\"tejo-no-wrap\">Michael Feitosa: Game Design</span>, <span class=\"tejo-no-wrap\">Rafael Semino: Writer</span>, <span class=\"tejo-no-wrap\">Douglas Levi: Programming</span>, <span class=\"tejo-no-wrap\">Valdir Marte: Illustration</span>, <span class=\"tejo-no-wrap\">Zéis: Sound Design</span>, <span class=\"tejo-no-wrap\">Laura Lucca: Accessibility</span>, <span class=\"tejo-no-wrap\">Carlos Marques: Social Media</span>",
     "footer": "Studio from Ceará making small games between art and Brazilian culture.",
     "footer_meta": "Fortaleza, Ceará. &copy; 2026",
-    "aria_nav_links": "Tejo Studio Links"
+    "aria_nav_links": "Tejo Studio Links",
+    "privacy": "Privacy",
+    "download_pdf": "Download PDF"
   },
   "presskit": {
     "title": "Press Kit - Vem, Exu!",

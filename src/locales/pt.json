@@ -14,7 +14,9 @@
     "credits": "<span class=\"tejo-no-wrap\">Michael Feitosa: Game Design</span>, <span class=\"tejo-no-wrap\">Rafael Semino: Roteirista</span>, <span class=\"tejo-no-wrap\">Douglas Levi: Programação</span>, <span class=\"tejo-no-wrap\">Valdir Marte: Ilustração</span>, <span class=\"tejo-no-wrap\">Zéis: Sonografia</span>, <span class=\"tejo-no-wrap\">Laura Lucca: Acessibilidade</span>, <span class=\"tejo-no-wrap\">Carlos Marques: Social Media</span>",
     "footer": "Estúdio cearense de pequenos jogos entre arte e cultura brasileira.",
     "footer_meta": "Fortaleza, Ceará. &copy; 2026",
-    "aria_nav_links": "Links Tejo Estúdio"
+    "aria_nav_links": "Links Tejo Estúdio",
+    "privacy": "Privacidade",
+    "download_pdf": "Baixar PDF"
   },
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
