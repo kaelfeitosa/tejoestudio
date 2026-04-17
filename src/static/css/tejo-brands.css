@@ -50,11 +50,18 @@
    Cores das Marcas
    ========================================================================== */
 
-/* Google Play & Amazon */
+/* Google Play, Amazon & Steam */
 .tejo-brand-playstore,
-.tejo-brand-amazon {
+.tejo-brand-amazon,
+.tejo-brand-steam {
   --brand-bg: #fff;
   --brand-text: #000;
+}
+
+/* Custom override for Steam to use its official dark theme */
+.tejo-brand-steam {
+  --brand-bg: #171a21;
+  --brand-text: #fff;
 }
 
 /* Instagram */
