@@ -130,11 +130,29 @@ body.tejo-bg-vem-exu::before {
   background-repeat: no-repeat;
 }
 
-body.tejo-bg-vem-exu .tejo-linktree-container :is(section p, .tejo-footer-credits, .tejo-footer) {
+body.tejo-bg-vem-exu .tejo-linktree-container > section,
+body.tejo-bg-vem-exu .tejo-linktree-container .tejo-footer-credits,
+body.tejo-bg-vem-exu .tejo-linktree-container .tejo-footer {
   background-color: var(--bg-color);
-  padding: 0.5rem 1rem;
   border: 2px solid var(--border-color);
   box-shadow: var(--shadow-hard);
+  margin-bottom: 1.5rem;
+}
+
+body.tejo-bg-vem-exu .tejo-linktree-container > section {
+  padding: 1rem;
+}
+
+body.tejo-bg-vem-exu .tejo-linktree-container > section p:last-child {
+  margin-bottom: 0;
+}
+
+body.tejo-bg-vem-exu .tejo-linktree-container .tejo-footer-credits {
+  padding: 0.5rem 1rem;
+}
+
+body.tejo-bg-vem-exu .tejo-linktree-container .tejo-footer {
+  padding: 1.25rem 1rem;
 }
 
 ::selection {
