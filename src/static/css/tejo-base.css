@@ -113,20 +113,24 @@ body {
   font-family: var(--font-sans);
 }
 
+body.tejo-bg-vem-exu {
+  background-color: transparent;
+}
+
 /* Background fixo perfomático usando pseudo-elemento */
 body.tejo-bg-vem-exu::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
+  background-color: var(--bg-color);
   background-image: url('../images/steam_page_background.png');
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
-  will-change: transform;
 }
 
-body.tejo-bg-vem-exu .tejo-linktree-container :is(section p, .tejo-footer-credits) {
+body.tejo-bg-vem-exu .tejo-linktree-container :is(section p, .tejo-footer-credits, .tejo-footer) {
   background-color: var(--bg-color);
   padding: 0.5rem 1rem;
   border: 2px solid var(--border-color);
