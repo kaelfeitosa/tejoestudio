@@ -113,6 +113,21 @@ body {
   font-family: var(--font-sans);
 }
 
+body.tejo-bg-vem-exu {
+  background-image: url('../images/steam_page_background.png');
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+body.tejo-bg-vem-exu .tejo-linktree-container p {
+  background-color: var(--bg-color);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border-color);
+  box-shadow: 4px 4px 0px 0px var(--border-color);
+}
+
 ::selection {
   background-color: var(--accent-color);
   color: var(--accent-text);
