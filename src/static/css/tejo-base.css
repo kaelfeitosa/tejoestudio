@@ -127,8 +127,8 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 56.25vw;
-  background-image: url('../images/steam_page_background.png');
+  height: 57.30vw; /* 706 / 1232 * 100 for the capsule aspect ratio */
+  background-image: url('../images/steam_main_capsule.png');
   background-size: contain;
   background-repeat: no-repeat;
   z-index: -1;
@@ -288,7 +288,7 @@ article {
 
 /* Background-specific spacing */
 .tejo-bg-vem-exu .tejo-linktree-container {
-  margin-top: 30vw;
+  margin-top: 45vw;
 }
 
 /* Linktree Base Container */
@@ -329,10 +329,6 @@ article {
   height: auto;
   margin: 0 auto 1.5rem auto;
   display: block;
-}
-
-.tejo-bg-vem-exu .tejo-avatar {
-  max-width: 15rem; /* Ajustado para compensar a margem e manter proporção visual se necessário, se for essa a percepção do tamanho. Na verdade, vamos ver a diferença que causou o problema */
 }
 
 /* Utilitários - Logos e Ícones */
