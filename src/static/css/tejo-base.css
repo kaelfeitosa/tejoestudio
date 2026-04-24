@@ -123,7 +123,8 @@ body.tejo-bg-vem-exu::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: var(--bg-color);
+  pointer-events: none;
+  background-color: var(--text-color);
   background-image: url('../images/steam_page_background.png');
   background-size: cover;
   background-position: center bottom;
