@@ -91,8 +91,6 @@ select {
   --accent-text: #fff;
 
   --shadow-color: #000;
-  --shadow-hard: 4px 4px 0px 0px var(--shadow-color);
-  --shadow-hard-lg: 8px 8px 0px 0px var(--shadow-color);
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -116,6 +114,26 @@ body {
 ::selection {
   background-color: var(--accent-color);
   color: var(--accent-text);
+}
+
+/* Background Específico: Vem, Exu! */
+.tejo-bg-vem-exu {
+  background-color: #fff;
+}
+
+.tejo-bg-vem-exu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 56.25vw;
+  background-image: url('../images/steam_page_background.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
 /* Tipografia Base */
@@ -193,13 +211,11 @@ button.primary {
 button.primary:hover {
   background-color: var(--bg-color);
   color: var(--text-color);
-  box-shadow: var(--shadow-hard);
 }
 
 button:not(.primary):not(.tejo-link-btn):hover,
 a.tejo-btn:not(.primary):not(.tejo-link-btn):hover {
   background-color: var(--button-hover-bg);
-  box-shadow: var(--shadow-hard);
 }
 
 /* Imagens (Estilo Brutalista / P&B) */
@@ -210,13 +226,11 @@ img {
 figure {
   margin-bottom: 2rem;
   border: 2px solid var(--border-color);
-  box-shadow: var(--shadow-hard);
   background-color: var(--bg-color);
   transition: all 0.3s ease;
 }
 
 figure:hover {
-  box-shadow: var(--shadow-hard-lg);
 }
 
 figure img {
@@ -332,7 +346,6 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  box-shadow: var(--shadow-hard);
 }
 
 /* Otimizações para Impressão */
@@ -408,13 +421,11 @@ textarea:focus {
   background: var(--bg-color, #fff);
   color: var(--text-color, #000);
   border: 2px solid var(--border-color, #000);
-  box-shadow: 2px 2px 0 var(--border-color, #000);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 .tejo-lang-switcher:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--border-color, #000);
 }
 
 .tejo-lang-switcher-container {
