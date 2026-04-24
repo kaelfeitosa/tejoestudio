@@ -150,7 +150,7 @@ body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
 body.tejo-bg-vem-exu .tejo-logo-invertible {
   margin-top: -3rem;
   margin-bottom: 2rem;
-  filter: drop-shadow(0px 0px 4px #fff) drop-shadow(0px 0px 4px #fff) drop-shadow(0px 0px 8px #fff);
+  filter: drop-shadow(0px 0px 8px #fff);
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
