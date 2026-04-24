@@ -132,15 +132,17 @@ body.tejo-bg-vem-exu::before {
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > section p,
-body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
+body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits,
+body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
   background-color: var(--bg-color);
   border: 2px solid var(--border-color);
   box-shadow: var(--shadow-hard);
-  margin-bottom: 1.5rem;
 }
 
-body.tejo-bg-vem-exu .tejo-linktree-container > section p {
+body.tejo-bg-vem-exu .tejo-linktree-container > section p,
+body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
   padding: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Move the logo up to overlap the background art and apply a tight white blur outline
@@ -152,15 +154,8 @@ body.tejo-bg-vem-exu .tejo-logo-invertible {
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
-  background-color: var(--bg-color);
-  border: 2px solid var(--border-color);
-  box-shadow: var(--shadow-hard);
   margin-top: 0;
   margin-bottom: 0;
-}
-
-body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
-  padding: 0.5rem 1rem;
 }
 
 ::selection {
