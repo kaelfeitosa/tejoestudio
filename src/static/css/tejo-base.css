@@ -114,7 +114,7 @@ body {
 }
 
 body.tejo-bg-vem-exu {
-  background-color: #000;
+  background-color: #fff;
 }
 
 /* Background fixo performático usando pseudo-elemento */
@@ -144,12 +144,11 @@ body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
   margin-bottom: 1.5rem;
 }
 
-/* Move the logo up to overlap the background art and apply a tight white blur outline
-   so the black text remains readable regardless of the background detail behind it. */
+/* Move the logo up to overlap the background art.
+   Since the background is now white, the black logo needs no drop shadow. */
 body.tejo-bg-vem-exu .tejo-logo-invertible {
   margin-top: -3rem;
   margin-bottom: 2rem;
-  filter: drop-shadow(0px 0px 8px #fff);
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
