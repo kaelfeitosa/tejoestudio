@@ -121,17 +121,23 @@ body.tejo-bg-vem-exu {
 body.tejo-bg-vem-exu::before {
   content: "";
   position: fixed;
-  inset: 0;
+  /* Anchor to top, span full width. Aspect ratio roughly matches the image
+     to ensure percentage-based mask gradients align perfectly with the image's bottom edge */
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 56.25vw; /* Assumes a standard 16:9 1920x1080 steam background image */
   z-index: -1;
   pointer-events: none;
   background-image: url('../images/steam_page_background.png');
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
-  /* Use a viewport width (vw) based gradient stop to roughly match the image aspect ratio
-     so it fades out right as the image ends, regardless of screen width. */
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 30vw, transparent 56vw);
-  mask-image: linear-gradient(to bottom, black 0%, black 30vw, transparent 56vw);
+
+  /* Fade out only the bottom 10% of the image */
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 90%, transparent 100%);
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > section p,
