@@ -114,7 +114,7 @@ body {
 }
 
 body.tejo-bg-vem-exu {
-  background-color: transparent;
+  background-color: #000;
 }
 
 /* Background fixo performático usando pseudo-elemento */
@@ -124,7 +124,6 @@ body.tejo-bg-vem-exu::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-color: #000;
   background-image: url('../images/steam_page_background.png');
   background-size: contain;
   background-position: center top;
