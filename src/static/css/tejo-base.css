@@ -165,10 +165,9 @@ body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
   margin-bottom: 1.5rem;
 }
 
-/* Move the logo up to overlap the background art.
-   Since the background is now white, the black logo needs no drop shadow. */
+/* Ensure the logo has the proper spacing when placed after the background image */
 body.tejo-bg-vem-exu .tejo-logo-invertible {
-  margin-top: -3rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
 }
 
