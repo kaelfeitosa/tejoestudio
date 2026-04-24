@@ -118,7 +118,7 @@ body {
 
 /* Background Específico: Vem, Exu! */
 .tejo-bg-vem-exu {
-  background-color: #fff;
+  background-color: #fafafa; /* Clean white background for the rest of the page */
 }
 
 .tejo-bg-vem-exu::before {
@@ -132,7 +132,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   z-index: -1;
-  /* Smooth/Easing Gradient (Scrim) for a more natural fade */
+  /* Smooth/Easing Gradient (Scrim) for a more natural fade of the image itself */
   mask-image: linear-gradient(to bottom,
     rgba(0, 0, 0, 1) 60%,
     rgba(0, 0, 0, 0.95) 70%,
@@ -142,6 +142,18 @@ body {
     rgba(0, 0, 0, 0) 100%
   );
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0.95) 70%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0.15) 97%, rgba(0,0,0,0) 100%);
+}
+
+/* Single, correct pseudo-element to fade the base color of the artwork into the page background */
+.tejo-bg-vem-exu::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 65vw; /* Extends slightly past the 57.3vw image to smooth out the transition */
+  background: linear-gradient(to bottom, #111111 40vw, #fafafa 65vw); /* Fades from the dark artwork color to the clean white page background */
+  z-index: -2; /* Placed behind the ::before artwork */
 }
 
 /* Tipografia Base */
