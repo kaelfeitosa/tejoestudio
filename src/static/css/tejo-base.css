@@ -132,8 +132,7 @@ body.tejo-bg-vem-exu::before {
 
 body.tejo-bg-vem-exu .tejo-linktree-container > section p,
 body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits,
-body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer,
-body.tejo-bg-vem-exu .tejo-linktree-container .tejo-link-btn {
+body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
   background-color: var(--bg-color);
   border: 2px solid var(--border-color);
   box-shadow: var(--shadow-hard);
