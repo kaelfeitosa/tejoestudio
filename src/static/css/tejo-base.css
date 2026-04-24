@@ -135,27 +135,25 @@ body.tejo-bg-vem-exu::before {
   background-position: center top;
   background-repeat: no-repeat;
 
-  /* Apply an eased fade to the bottom 20% of the image for a natural visual transition */
+  /* Apply an elongated, highly eased fade from 50% down to 100% for an ultra-natural transition */
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0.738) 83.8%,
-    rgba(0, 0, 0, 0.541) 87.6%,
-    rgba(0, 0, 0, 0.382) 91.4%,
-    rgba(0, 0, 0, 0.278) 95.2%,
-    rgba(0, 0, 0, 0.194) 99%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.89) 60%,
+    rgba(0, 0, 0, 0.75) 70%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.25) 90%,
     rgba(0, 0, 0, 0) 100%
   );
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0.738) 83.8%,
-    rgba(0, 0, 0, 0.541) 87.6%,
-    rgba(0, 0, 0, 0.382) 91.4%,
-    rgba(0, 0, 0, 0.278) 95.2%,
-    rgba(0, 0, 0, 0.194) 99%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.89) 60%,
+    rgba(0, 0, 0, 0.75) 70%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.25) 90%,
     rgba(0, 0, 0, 0) 100%
   );
 }
