@@ -128,6 +128,9 @@ body.tejo-bg-vem-exu::before {
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
+  /* Apply a fade-out to transparent at the bottom to transition smoothly into the white body */
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 70%);
+  mask-image: linear-gradient(to bottom, black 0%, black 30%, transparent 70%);
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > section p,
