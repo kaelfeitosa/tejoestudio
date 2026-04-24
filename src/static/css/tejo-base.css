@@ -163,10 +163,16 @@ body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
   margin-bottom: 1.5rem;
 }
 
-/* Ensure the logo has the proper spacing when placed after the background image */
+/* Push the entire content down so it rests in the fade/white area, letting the background art breathe */
+body.tejo-bg-vem-exu .tejo-linktree-container {
+  padding-top: 40vw; /* Responsive top padding based on the image aspect ratio */
+}
+
+/* Ensure the logo has the proper spacing and size for a clean composition */
 body.tejo-bg-vem-exu .tejo-logo-invertible {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  max-width: 16rem; /* Slightly smaller for better hierarchy on white */
+  margin-top: 0;
+  margin-bottom: 1.5rem; /* Closer to the buttons to form a visual group */
 }
 
 ::selection {
