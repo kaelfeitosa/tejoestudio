@@ -126,14 +126,13 @@ body.tejo-bg-vem-exu::before {
   pointer-events: none;
   background-color: #000;
   background-image: url('../images/steam_page_background.png');
-  background-size: contain;
+  background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > section p,
-body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits,
-body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
+body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
   background-color: var(--bg-color);
   border: 2px solid var(--border-color);
   box-shadow: var(--shadow-hard);
@@ -144,10 +143,6 @@ body.tejo-bg-vem-exu .tejo-linktree-container > section p {
   padding: 0.5rem 1rem;
 }
 
-body.tejo-bg-vem-exu .tejo-linktree-container > section p:last-of-type {
-  margin-bottom: 1.5rem; /* Ensure space after last paragraph */
-}
-
 /* Ensure the logo stays white since the background is dark.
    The base image is black, so we use brightness(0) invert(1) to make it pure white */
 body.tejo-bg-vem-exu .tejo-logo-invertible {
@@ -155,6 +150,9 @@ body.tejo-bg-vem-exu .tejo-logo-invertible {
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-hard);
   margin-top: 0;
   margin-bottom: 0;
 }
