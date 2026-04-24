@@ -132,8 +132,16 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   z-index: -1;
-  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  /* Smooth/Easing Gradient (Scrim) for a more natural fade */
+  mask-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.95) 70%,
+    rgba(0, 0, 0, 0.8) 80%,
+    rgba(0, 0, 0, 0.5) 90%,
+    rgba(0, 0, 0, 0.15) 97%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0.95) 70%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0.15) 97%, rgba(0,0,0,0) 100%);
 }
 
 /* Tipografia Base */
