@@ -286,6 +286,11 @@ article {
   margin-bottom: 3rem;
 }
 
+/* Background-specific spacing */
+.tejo-bg-vem-exu .tejo-linktree-container {
+  margin-top: 30vw;
+}
+
 /* Linktree Base Container */
 .tejo-linktree-container {
   max-width: 37.5rem;
@@ -326,9 +331,13 @@ article {
   display: block;
 }
 
+.tejo-bg-vem-exu .tejo-avatar {
+  max-width: 15rem; /* Ajustado para compensar a margem e manter proporção visual se necessário, se for essa a percepção do tamanho. Na verdade, vamos ver a diferença que causou o problema */
+}
+
 /* Utilitários - Logos e Ícones */
 .tejo-logo-invertible { 
-  /* Removida inversão automática para manter tom claro fixo */
+  filter: brightness(0) invert(1);
 }
 
 /* Estrutura Base de Formulários */
