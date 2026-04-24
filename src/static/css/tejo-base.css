@@ -113,6 +113,68 @@ body {
   font-family: var(--font-sans);
 }
 
+body.tejo-bg-vem-exu {
+  background-color: #fff;
+}
+
+/* Background fixo performático usando pseudo-elemento */
+body.tejo-bg-vem-exu::before {
+  content: "";
+  position: fixed;
+  /* Anchor to top, span full width. Aspect ratio roughly matches the image
+     to ensure percentage-based mask gradients align perfectly with the image's bottom edge */
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 56.25vw; /* Assumes a standard 16:9 1920x1080 steam background image */
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('../images/steam_page_background.png');
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  /* Apply an elongated, highly eased fade from 50% down to 100% for an ultra-natural transition */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.89) 60%,
+    rgba(0, 0, 0, 0.75) 70%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.25) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0.89) 60%,
+    rgba(0, 0, 0, 0.75) 70%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.25) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+body.tejo-bg-vem-exu .tejo-linktree-container > section p,
+body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer-credits {
+  margin-bottom: 1.5rem;
+}
+
+/* Push the entire content down so it rests in the fade/white area, letting the background art breathe */
+body.tejo-bg-vem-exu .tejo-linktree-container {
+  padding-top: 40vw; /* Responsive top padding based on the image aspect ratio */
+}
+
+/* Ensure the logo has the proper spacing and size for a clean composition */
+body.tejo-bg-vem-exu .tejo-logo-invertible {
+  max-width: 16rem; /* Slightly smaller for better hierarchy on white */
+  margin-top: 0;
+  margin-bottom: 1.5rem; /* Closer to the buttons to form a visual group */
+}
+
 ::selection {
   background-color: var(--accent-color);
   color: var(--accent-text);
