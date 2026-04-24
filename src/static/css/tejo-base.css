@@ -139,6 +139,7 @@ body.tejo-bg-vem-exu .tejo-linktree-container > :is(section, nav, .tejo-footer-c
 
 body.tejo-bg-vem-exu .tejo-linktree-container > .tejo-footer {
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 body.tejo-bg-vem-exu .tejo-linktree-container > :is(section, nav) {
