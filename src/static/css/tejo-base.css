@@ -330,6 +330,7 @@ article {
 
 /* Scoped removal of brutalist styles for the Vem, Exu! landing page */
 .tejo-bg-vem-exu button,
+.tejo-bg-vem-exu button:hover,
 .tejo-bg-vem-exu figure,
 .tejo-bg-vem-exu input[type="text"]:focus,
 .tejo-bg-vem-exu input[type="email"]:focus,
