@@ -118,7 +118,7 @@ body {
 
 /* Background Específico: Vem, Exu! */
 .tejo-bg-vem-exu {
-  background-color: #fafafa; /* Clean white background for the rest of the page */
+  background-color: var(--bg-color); /* Clean white background for the rest of the page */
 }
 
 .tejo-bg-vem-exu::before {
@@ -152,7 +152,7 @@ body {
   left: 0;
   width: 100%;
   height: 65vw; /* Extends slightly past the 57.3vw image to smooth out the transition */
-  background: linear-gradient(to bottom, #111111 40vw, #fafafa 65vw); /* Fades from the dark artwork color to the clean white page background */
+  background: linear-gradient(to bottom, #111111 40vw, var(--bg-color) 65vw); /* Fades from the dark artwork color to the clean white page background */
   z-index: -2; /* Placed behind the ::before artwork */
 }
 
@@ -305,7 +305,8 @@ article {
 
 /* Background-specific spacing */
 .tejo-bg-vem-exu .tejo-linktree-container {
-  margin-top: 65vw;
+  /* Limit the margin on extremely wide screens to prevent content hiding below the fold */
+  margin-top: clamp(20rem, 65vw, 65vh);
 }
 
 /* Linktree Base Container */
@@ -350,7 +351,10 @@ article {
 
 /* Utilitários - Logos e Ícones */
 .tejo-logo-invertible { 
-  filter: brightness(0) invert(1);
+  /* Removed fixed inversion to maintain clear tone visibility against varying backgrounds */
+}
+.tejo-bg-vem-exu .tejo-logo-invertible {
+  /* Apply only when specifically inside a dark themed background container if needed, though logo is removed here */
 }
 
 /* Estrutura Base de Formulários */
