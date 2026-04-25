@@ -28,6 +28,9 @@
   <main class="tejo-linktree-container">
     <h1 class="tejo-visually-hidden">{{index.title}}</h1>
     <section>
+      <p><strong>{{{index.vem_exu_subtitle}}}</strong></p>
+      <br>
+
       <a class="tejo-link-btn tejo-brand-steam"
         href="https://store.steampowered.com/app/4605020/Vem_Exu/" target="_blank" rel="noopener">
         <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/steam.svg" alt="">
@@ -46,30 +49,24 @@
         {{{index.playstore_btn}}}
       </a>
 
-      <p>{{{index.vem_exu_desc1}}}</p>
+      <div class="tejo-text-left" style="margin-top: 3rem;">
+        <p>{{{index.vem_exu_desc_p1}}}</p>
+        <p>{{{index.vem_exu_desc_p2}}}</p>
+        <p>{{{index.vem_exu_desc_p3}}}</p>
+        <p>{{{index.vem_exu_desc_p4}}}</p>
+      </div>
 
-      <p>
+      <p style="margin-top: 2rem;">
         <small>✨ <strong>{{{index.vem_exu_desc2}}}</strong></small>
       </p>
+
     </section>
 
-    <nav aria-label="{{{index.aria_nav_links}}}">
+    <nav aria-label="{{{index.aria_nav_links}}}" style="margin-top: 3rem;">
       <a class="tejo-link-btn tejo-brand-instagram" href="https://www.instagram.com/tejoestudio" target="_blank"
         rel="noopener">
         <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/instagram.svg" alt="">
         {{{index.instagram}}}
-      </a>
-
-      <a class="tejo-link-btn tejo-brand-threads" href="https://www.threads.net/@tejoestudio" target="_blank"
-        rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/threads.svg" alt="">
-        {{{index.threads}}}
-      </a>
-
-      <a class="tejo-link-btn tejo-brand-amazon"
-        href="https://www.amazon.com.br/Contos-Exu-Rafael-Semino-ebook/dp/B0D192M6VJ" target="_blank" rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/amazon.svg" alt="">
-        {{{index.amazon}}}
       </a>
 
       <a class="tejo-link-btn tejo-brand-press" href="{{{language_path}}}press-kit/vem-exu/index.html" target="_blank" rel="noopener">
@@ -77,9 +74,10 @@
         {{{index.presskit}}}
       </a>
 
-      <a class="tejo-link-btn tejo-brand-portfolio" href="{{{language_path}}}portfolio.html" target="_blank" rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/generic-homepage.svg" alt="">
-        {{{index.portfolio}}}
+      <a class="tejo-link-btn tejo-brand-amazon"
+        href="https://www.amazon.com.br/Contos-Exu-Rafael-Semino-ebook/dp/B0D192M6VJ" target="_blank" rel="noopener">
+        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/amazon.svg" alt="">
+        {{{index.amazon}}}
       </a>
     </nav>
 
