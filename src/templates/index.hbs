@@ -17,7 +17,7 @@
   {{> partials/lang_redirect}}
 </head>
 
-<body>
+<body class="tejo-bg-vem-exu">
   <div class="tejo-lang-switcher-container">
     {{#each other_langs}}
     <a href="{{{link}}}" class="tejo-lang-switcher" aria-label="{{aria}}" onclick="if(window.tejoSetLang){ window.tejoSetLang('{{code}}'); return false; }">
@@ -29,7 +29,7 @@
     <h1 class="tejo-visually-hidden">{{index.title}}</h1>
     <section>
       <h2 class="tejo-visually-hidden">{{hidden_title_exu}}</h2>
-      <img class="tejo-avatar tejo-logo-invertible" src="{{{base_path}}}images/vem_exu_logo_black.png" alt="{{alt_logo_exu}}">
+      <img class="tejo-visually-hidden" src="{{{base_path}}}images/vem_exu_logo.png" alt="{{alt_logo_exu}}">
 
       <a class="tejo-link-btn tejo-brand-steam"
         href="https://store.steampowered.com/app/4605020/Vem_Exu/" target="_blank" rel="noopener">

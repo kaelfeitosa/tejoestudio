@@ -91,8 +91,8 @@ select {
   --accent-text: #fff;
 
   --shadow-color: #000;
-  --shadow-hard: 4px 4px 0px 0px var(--shadow-color);
-  --shadow-hard-lg: 8px 8px 0px 0px var(--shadow-color);
+  --shadow-hard: 4px 4px 0 var(--shadow-color);
+  --shadow-hard-lg: 8px 8px 0 var(--shadow-color);
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -100,6 +100,9 @@ select {
 
   /* Button specific */
   --button-hover-bg: #f5f5f5;
+
+  /* Variables for Artwork backgrounds */
+  --artwork-base-color: #111111;
 }
 
 /* Utilities (Global) */
@@ -116,6 +119,53 @@ body {
 ::selection {
   background-color: var(--accent-color);
   color: var(--accent-text);
+}
+
+/* Background Específico: Vem, Exu! */
+.tejo-bg-vem-exu {
+  background-color: var(--bg-color); /* Clean white background for the rest of the page */
+}
+
+.tejo-bg-vem-exu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 57.30vw; /* 706 / 1232 * 100 for the capsule aspect ratio */
+  background-image: url('../images/steam_main_capsule.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+  /* Smooth/Easing Gradient (Scrim) for a more natural fade of the image itself */
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.95) 70%,
+    rgba(0, 0, 0, 0.8) 80%,
+    rgba(0, 0, 0, 0.5) 90%,
+    rgba(0, 0, 0, 0.15) 97%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.95) 70%,
+    rgba(0, 0, 0, 0.8) 80%,
+    rgba(0, 0, 0, 0.5) 90%,
+    rgba(0, 0, 0, 0.15) 97%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Single, correct pseudo-element to fade the base color of the artwork into the page background */
+.tejo-bg-vem-exu::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65vw; /* Extends slightly past the 57.3vw image to smooth out the transition */
+  background: linear-gradient(to bottom, var(--artwork-base-color) 40vw, var(--bg-color) 65vw); /* Fades from the dark artwork color to the clean white page background */
+  z-index: -2; /* Placed behind the ::before artwork */
 }
 
 /* Tipografia Base */
@@ -272,6 +322,24 @@ article {
   margin-bottom: 3rem;
 }
 
+/* Background-specific spacing */
+.tejo-bg-vem-exu .tejo-linktree-container {
+  /* Limit the margin on extremely wide screens to prevent content hiding below the fold */
+  margin-top: clamp(20rem, 65vw, 65vh);
+}
+
+/* Scoped removal of brutalist styles for the Vem, Exu! landing page */
+.tejo-bg-vem-exu button,
+.tejo-bg-vem-exu button:hover,
+.tejo-bg-vem-exu figure,
+.tejo-bg-vem-exu input[type="text"]:focus,
+.tejo-bg-vem-exu input[type="email"]:focus,
+.tejo-bg-vem-exu textarea:focus,
+.tejo-bg-vem-exu .tejo-lang-switcher,
+.tejo-bg-vem-exu .tejo-lang-switcher:hover {
+  box-shadow: none;
+}
+
 /* Linktree Base Container */
 .tejo-linktree-container {
   max-width: 37.5rem;
@@ -313,9 +381,6 @@ article {
 }
 
 /* Utilitários - Logos e Ícones */
-.tejo-logo-invertible { 
-  /* Removida inversão automática para manter tom claro fixo */
-}
 
 /* Estrutura Base de Formulários */
 input[type="text"],
