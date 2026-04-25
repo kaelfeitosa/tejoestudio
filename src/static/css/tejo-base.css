@@ -126,7 +126,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 57.30vw; /* 706 / 1232 * 100 for the capsule aspect ratio */
   background-image: url('../images/steam_main_capsule.png');
   background-size: contain;
@@ -150,7 +150,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 65vw; /* Extends slightly past the 57.3vw image to smooth out the transition */
   background: linear-gradient(to bottom, #111111 40vw, #fafafa 65vw); /* Fades from the dark artwork color to the clean white page background */
   z-index: -2; /* Placed behind the ::before artwork */
@@ -250,9 +250,6 @@ figure {
   transition: all 0.3s ease;
 }
 
-figure:hover {
-}
-
 figure img {
   width: 100%;
   height: auto;
@@ -308,7 +305,7 @@ article {
 
 /* Background-specific spacing */
 .tejo-bg-vem-exu .tejo-linktree-container {
-  margin-top: 45vw;
+  margin-top: 65vw;
 }
 
 /* Linktree Base Container */
