@@ -83,6 +83,7 @@ select {
 
 :root {
   /* Fixed Brutalist Theme */
+  --artwork-base-color: #010101;
   --bg-color: #fafafa; /* neutral-50 */
   --text-color: #171717; /* neutral-900 */
   --text-muted: #737373; /* neutral-500 */
@@ -280,6 +281,33 @@ article {
   text-align: center;
 }
 
+.tejo-bg-vem-exu .tejo-linktree-container {
+  margin-top: clamp(20rem, 65vw, 65vh);
+}
+
+.tejo-bg-vem-exu::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  width: 100%;
+  height: 57.30vw;
+  background: url('../press-kit/vem-exu/02_branding/store/steam_main_capsule.png') no-repeat top center;
+  background-size: contain;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.tejo-bg-vem-exu::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--artwork-base-color) 0%, var(--bg-color) 57.30vw);
+}
+
 .tejo-footer-credits {
   margin-bottom: 1.5rem;
   line-height: 1.625;
@@ -313,9 +341,6 @@ article {
 }
 
 /* Utilitários - Logos e Ícones */
-.tejo-logo-invertible { 
-  /* Removida inversão automática para manter tom claro fixo */
-}
 
 /* Estrutura Base de Formulários */
 input[type="text"],
