@@ -328,18 +328,6 @@ article {
   margin-top: clamp(20rem, 65vw, 65vh);
 }
 
-/* Scoped removal of brutalist styles for the Vem, Exu! landing page */
-.tejo-bg-vem-exu button,
-.tejo-bg-vem-exu button:hover,
-.tejo-bg-vem-exu figure,
-.tejo-bg-vem-exu input[type="text"]:focus,
-.tejo-bg-vem-exu input[type="email"]:focus,
-.tejo-bg-vem-exu textarea:focus,
-.tejo-bg-vem-exu .tejo-lang-switcher,
-.tejo-bg-vem-exu .tejo-lang-switcher:hover {
-  box-shadow: none;
-}
-
 /* Linktree Base Container */
 .tejo-linktree-container {
   max-width: 37.5rem;
