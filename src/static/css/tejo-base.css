@@ -474,3 +474,9 @@ textarea:focus {
     margin-bottom: 0.5rem;
   }
 }
+
+.tejo-mt-3 { margin-top: 3rem; }
+.tejo-mt-2 { margin-top: 2rem; }
+
+
+.tejo-mb-2 { margin-bottom: 2rem; }
