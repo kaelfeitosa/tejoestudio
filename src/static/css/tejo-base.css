@@ -283,7 +283,7 @@ article {
 }
 
 .tejo-bg-vem-exu .tejo-linktree-container {
-  margin-top: clamp(8rem, 28vw, 15rem);
+  margin-top: clamp(4rem, 18vw, 10rem);
 }
 
 .tejo-bg-vem-exu::before {
