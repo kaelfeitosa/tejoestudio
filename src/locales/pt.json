@@ -121,8 +121,6 @@
     "quote_1_cite": "• participante do Sana 2025",
     "quote_2": "“Mesmo sem texto, dá pra entender tudo. Muito intuitivo e sensível.”",
     "quote_2_cite": "• jogador em playtest",
-    "footer": "Estúdio cearense de pequenos jogos entre arte e cultura brasileira.",
-    "footer_meta": "Fortaleza, Ceará. &copy; 2026",
     "hero_lead": "Depois de perder sua arraia, Exu enfrenta uma tempestade nascida da própria raiva.",
     "hero_btn_play": "Jogar demo agora",
     "hero_btn_wishlist": "Lista de Desejos na Steam",
@@ -232,8 +230,7 @@
     "alt_event_sana_02": "Sana 02",
     "alt_event_feira_01": "Feira 01",
     "alt_event_feira_02": "Feira 02",
-    "alt_event_escola_01": "Escola 01",
-    "tejo_desc": "Estúdio independente de jogos narrativos e experiências interativas."
+    "alt_event_escola_01": "Escola 01"
   },
   "lang_code": "pt-BR",
   "hidden_title_exu": "Vem, Exu!",

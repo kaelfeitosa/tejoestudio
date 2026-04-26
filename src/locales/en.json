@@ -121,8 +121,6 @@
     "quote_1_cite": "• Sana 2025 participant",
     "quote_2": "“Even without text, you can understand everything. Very intuitive and sensitive.”",
     "quote_2_cite": "• playtest player",
-    "footer": "Studio from Ceará making small games between art and Brazilian culture.",
-    "footer_meta": "Fortaleza, Ceará. &copy; 2026",
     "hero_lead": "After losing his kite, Exu faces a storm born from his own anger.",
     "hero_btn_play": "Play demo now",
     "hero_btn_wishlist": "Wishlist on Steam",
@@ -232,8 +230,7 @@
     "alt_event_sana_02": "Sana 02",
     "alt_event_feira_01": "Fair 01",
     "alt_event_feira_02": "Fair 02",
-    "alt_event_escola_01": "School 01",
-    "tejo_desc": "Independent studio making narrative games and interactive experiences."
+    "alt_event_escola_01": "School 01"
   },
   "lang_code": "en",
   "hidden_title_exu": "Vem, Exu!",
