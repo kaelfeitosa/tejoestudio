@@ -39,6 +39,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  position: relative;
 }
 
 /* A elements that don't have a class get default styles */
@@ -282,12 +283,12 @@ article {
 }
 
 .tejo-bg-vem-exu .tejo-linktree-container {
-  margin-top: clamp(20rem, 65vw, 65vh);
+  margin-top: clamp(14rem, 35vw, 25rem);
 }
 
 .tejo-bg-vem-exu::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
@@ -301,7 +302,7 @@ article {
 
 .tejo-bg-vem-exu::after {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -2;
   pointer-events: none;
