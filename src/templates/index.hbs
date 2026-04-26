@@ -28,58 +28,57 @@
   <main class="tejo-linktree-container">
     <h1 class="tejo-visually-hidden">{{index.title}}</h1>
     <section>
-      <a class="tejo-link-btn tejo-brand-steam"
-        href="https://store.steampowered.com/app/4605020/Vem_Exu/" target="_blank" rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/steam.svg" alt="">
-        {{{index.steam_wishlist_btn}}}
-      </a>
+      <p class="tejo-mt-2 tejo-mb-2"><strong>{{index.vem_exu_subtitle}}</strong></p>
 
-      <a class="tejo-link-btn tejo-brand-steam"
-        href="https://store.steampowered.com/app/4605020/Vem_Exu/" target="_blank" rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/steam.svg" alt="">
-        {{{index.steam_demo_btn}}}
-      </a>
+      <nav aria-label="{{index.aria_main_links}}">
+        <a class="tejo-link-btn tejo-brand-steam"
+          href="https://store.steampowered.com/app/4605020/Vem_Exu/" target="_blank" rel="noopener">
+          <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/steam.svg" alt="">
+          {{{index.steam_wishlist_btn}}}
+        </a>
 
-      <a class="tejo-link-btn tejo-brand-playstore"
-        href="https://play.google.com/store/apps/details?id=com.tejoestudio.exu" target="_blank" rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/google-play.svg" alt="">
-        {{{index.playstore_btn}}}
-      </a>
+        <a class="tejo-link-btn tejo-brand-steam"
+          href="https://store.steampowered.com/app/4605020/Vem_Exu/" target="_blank" rel="noopener">
+          <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/steam.svg" alt="">
+          {{{index.steam_demo_btn}}}
+        </a>
 
-      <p>{{{index.vem_exu_desc1}}}</p>
+        <a class="tejo-link-btn tejo-brand-playstore"
+          href="https://play.google.com/store/apps/details?id=com.tejoestudio.exu" target="_blank" rel="noopener">
+          <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/google-play.svg" alt="">
+          {{{index.playstore_btn}}}
+        </a>
+      </nav>
 
-      <p>
+      <div class="tejo-mt-3">
+        <p>{{index.vem_exu_desc_p1}}</p>
+        <p>{{index.vem_exu_desc_p2}}</p>
+        <p>{{index.vem_exu_desc_p3}}</p>
+        <p>{{index.vem_exu_desc_p4}}</p>
+      </div>
+
+      <p class="tejo-mt-2">
         <small>✨ <strong>{{{index.vem_exu_desc2}}}</strong></small>
       </p>
+
     </section>
 
-    <nav aria-label="{{{index.aria_nav_links}}}">
+    <nav aria-label="{{index.aria_nav_links}}" class="tejo-mt-3">
       <a class="tejo-link-btn tejo-brand-instagram" href="https://www.instagram.com/tejoestudio" target="_blank"
         rel="noopener">
         <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/instagram.svg" alt="">
-        {{{index.instagram}}}
+        {{index.instagram}}
       </a>
 
-      <a class="tejo-link-btn tejo-brand-threads" href="https://www.threads.net/@tejoestudio" target="_blank"
-        rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/threads.svg" alt="">
-        {{{index.threads}}}
+      <a class="tejo-link-btn tejo-brand-press" href="{{{language_path}}}press-kit/vem-exu/index.html">
+        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/generic-blog.svg" alt="">
+        {{index.presskit}}
       </a>
 
       <a class="tejo-link-btn tejo-brand-amazon"
         href="https://www.amazon.com.br/Contos-Exu-Rafael-Semino-ebook/dp/B0D192M6VJ" target="_blank" rel="noopener">
         <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/amazon.svg" alt="">
-        {{{index.amazon}}}
-      </a>
-
-      <a class="tejo-link-btn tejo-brand-press" href="{{{language_path}}}press-kit/vem-exu/index.html" target="_blank" rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/generic-blog.svg" alt="">
-        {{{index.presskit}}}
-      </a>
-
-      <a class="tejo-link-btn tejo-brand-portfolio" href="{{{language_path}}}portfolio.html" target="_blank" rel="noopener">
-        <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/generic-homepage.svg" alt="">
-        {{{index.portfolio}}}
+        {{index.amazon}}
       </a>
     </nav>
 
@@ -87,9 +86,11 @@
       <img src="{{{base_path}}}images/tejo_logo_black.png" alt="Tejo Estúdio" class="tejo-footer-logo">
       <div class="tejo-footer-content">
         <p>
-          {{{index.footer}}}
+          {{index.footer}}
           <span class="tejo-footer-meta">{{{index.footer_meta}}}</span>
-          | <a href="{{{base_path}}}privacy.html" style="color: inherit; opacity: 0.8;">{{{index.privacy}}}</a>
+          | <a href="{{{language_path}}}portfolio.html" style="color: inherit; opacity: 0.8;">{{index.portfolio}}</a>
+          | <a href="https://www.threads.net/@tejoestudio" target="_blank" rel="noopener" style="color: inherit; opacity: 0.8;">{{index.threads}}</a>
+          | <a href="{{{base_path}}}privacy.html" style="color: inherit; opacity: 0.8;">{{index.privacy}}</a>
         </p>
       </div>
     </footer>
