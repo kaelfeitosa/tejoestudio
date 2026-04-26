@@ -6,13 +6,10 @@
     "playstore_btn": "Também no Google Play",
     "steam_wishlist_btn": "Wishlist na Steam",
     "steam_demo_btn": "Jogar a demo",
-    "vem_exu_desc1": "Após uma briga com o irmão que termina na perda da sua arraia, Exu tenta dormir, mas sua raiva desperta uma tempestade fantástica onde realidade e sonho se misturam. Para recuperar a arraia, ele precisa enfrentar a tempestade e aprender a vencer o próprio orgulho.",
     "vem_exu_desc2": "Baseado no conto <em>“Exu ficou com medo”</em>, do livro <em>Contos de Exu</em>, de Rafael Semino, com ilustrações de Valdir Marte, música de Zéis e game design de Michael Feitosa.",
     "instagram": "Instagram",
-    "threads": "Threads",
     "amazon": "Livro Contos de Exu",
     "presskit": "Press Kit",
-    "portfolio": "Portfólio",
     "footer": "Estúdio independente de jogos narrativos e experiências interativas.",
     "footer_meta": "Fortaleza, Ceará. &copy; 2026",
     "aria_nav_links": "Links Tejo Estúdio",
@@ -235,7 +232,8 @@
     "alt_event_sana_02": "Sana 02",
     "alt_event_feira_01": "Feira 01",
     "alt_event_feira_02": "Feira 02",
-    "alt_event_escola_01": "Escola 01"
+    "alt_event_escola_01": "Escola 01",
+    "tejo_desc": "Estúdio independente de jogos narrativos e experiências interativas."
   },
   "lang_code": "pt-BR",
   "hidden_title_exu": "Vem, Exu!",
