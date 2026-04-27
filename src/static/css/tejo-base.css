@@ -39,7 +39,6 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  position: relative;
 }
 
 /* A elements that don't have a class get default styles */
@@ -282,8 +281,19 @@ article {
   text-align: center;
 }
 
+.tejo-bg-vem-exu {
+  position: relative;
+}
+
 .tejo-bg-vem-exu .tejo-linktree-container {
   margin-top: clamp(4rem, 18vw, 10rem);
+}
+
+.tejo-bg-vem-exu .tejo-linktree-container,
+.tejo-bg-vem-exu .tejo-linktree-container h1,
+.tejo-bg-vem-exu .tejo-linktree-container p {
+  color: #f3f1e6; /* var(--bg-color) clear base to prevent contrast issues with dark art */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .tejo-bg-vem-exu::before {
