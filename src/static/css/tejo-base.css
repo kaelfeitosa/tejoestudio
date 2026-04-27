@@ -281,13 +281,19 @@ article {
   text-align: center;
 }
 
+.tejo-bg-vem-exu {
+  position: relative;
+}
+
 .tejo-bg-vem-exu .tejo-linktree-container {
-  margin-top: clamp(20rem, 65vw, 65vh);
+  margin-top: clamp(4rem, 18vw, 10rem);
+  color: var(--bg-color); /* Clear base to prevent contrast issues with dark art */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .tejo-bg-vem-exu::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
@@ -301,7 +307,7 @@ article {
 
 .tejo-bg-vem-exu::after {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -2;
   pointer-events: none;
