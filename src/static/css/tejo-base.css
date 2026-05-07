@@ -409,6 +409,10 @@ article {
   font-weight: 700;
 }
 
+.tejo-description-compact p {
+  margin-bottom: 0.5rem;
+}
+
 .tejo-visually-hidden {
   position: absolute;
   width: 1px;
