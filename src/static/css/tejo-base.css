@@ -405,6 +405,10 @@ article {
   white-space: nowrap;
 }
 
+.tejo-font-bold {
+  font-weight: 700;
+}
+
 .tejo-visually-hidden {
   position: absolute;
   width: 1px;
