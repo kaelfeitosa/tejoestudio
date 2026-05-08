@@ -149,6 +149,15 @@ h2, .tejo-h2 {
   font-weight: 700;
 }
 
+.tejo-narrative-text {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.tejo-credits-text {
+  color: var(--text-muted);
+}
+
 h1 {
   font-size: 3.75rem; /* 60px - text-6xl base */
   text-transform: uppercase;

@@ -68,3 +68,10 @@
   --brand-text: #fff;
   --brand-hover-filter: brightness(1.5);
 }
+
+/* White Button Variant (Generic) */
+.tejo-brand-white {
+  --brand-bg: #fff;
+  --brand-text: #000;
+  --brand-icon-filter: invert(1);
+}
