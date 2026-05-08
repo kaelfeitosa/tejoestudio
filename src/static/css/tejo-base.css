@@ -405,8 +405,7 @@ article {
   white-space: nowrap;
 }
 
-.tejo-description-compact p {
-  margin-bottom: 0.5rem;
+.tejo-font-bold {
   font-weight: 700;
 }
 
