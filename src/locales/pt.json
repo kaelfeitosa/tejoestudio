@@ -1,7 +1,8 @@
 {
   "portfolio": {
     "title": "Michael Feitosa | Portfólio",
-    "description": "Portfólio de Michael Feitosa - Game Designer, Artista Digital e Arquiteto de Software."
+    "description": "Portfólio de Michael Feitosa - Game Designer, Artista Digital e Arquiteto de Software.",
+    "job_title": "Game Designer, Artista Digital e Arquiteto de Software"
   },
   "privacy": {
     "title": "Privacidade | Tejo Estúdio",
@@ -34,6 +35,7 @@
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
     "description": "Material para imprensa do jogo Vem, Exu!",
+    "schema_genres": "[\"Conto Interativo\", \"Narrativa\", \"Aventura\"]",
     "back_home": "Voltar para Início",
     "download_btn": "Baixar",
     "keyart_title": "Key Art",
