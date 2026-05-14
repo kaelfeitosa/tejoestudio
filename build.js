@@ -119,6 +119,11 @@ function generatePages(templates, locales, distDir, templatesPath, localesPath) 
   const availableLangs = Object.keys(locales);
   const generatedPages = [];
 
+  // Pre-fetch locale modification times to avoid redundant I/O
+  const localeMTimes = Object.fromEntries(
+    availableLangs.map(lang => [lang, fs.statSync(path.join(localesPath, `${lang}.json`)).mtime])
+  );
+
   Object.keys(templates).forEach(templateKey => {
     const template = templates[templateKey];
     const baseOutputPath = templateKey.replace(/\.hbs$/, '.html');
@@ -136,7 +141,7 @@ function generatePages(templates, locales, distDir, templatesPath, localesPath) 
       const toRoot = getToRoot(isDefault, baseOutputPath);
       const canonicalPath = getCanonicalPath(lang, baseOutputPath);
 
-      const localeMtime = fs.statSync(path.join(localesPath, `${lang}.json`)).mtime;
+      const localeMtime = localeMTimes[lang];
       const lastmod = new Date(Math.max(templateMtime, localeMtime)).toISOString().split('T')[0];
 
       const pageData = {
