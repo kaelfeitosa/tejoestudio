@@ -9,6 +9,10 @@
     content="{{presskit.meta_description}}">
   <meta name="author" content="Tejo Estúdio">
   <link rel="canonical" href="{{site_url}}{{canonical_path}}">
+  <link rel="alternate" hreflang="{{lang}}" href="{{site_url}}{{canonical_path}}">
+  {{#each other_langs}}
+  <link rel="alternate" hreflang="{{code}}" href="{{../site_url}}{{canonical_path}}">
+  {{/each}}
   <!-- Open Graph -->
   <meta property="og:title" content="{{presskit.page_title}}">
   <meta property="og:description"

@@ -134,8 +134,7 @@ function generatePages(templates, locales, distDir) {
       fs.writeFileSync(outputPath, template(pageData));
       console.log(`Generated: ${path.relative(__dirname, outputPath)}`);
 
-      const urlPath = isDefault ? canonicalBase : `${lang}/${canonicalBase}`;
-      generatedPages.push({ path: urlPath, file: baseOutputPath });
+      generatedPages.push({ path: pageData.canonical_path, file: baseOutputPath });
     });
   });
 
@@ -182,7 +181,7 @@ function getOtherLangs(currentLang, availableLangs, toRoot, baseOutputPath, loca
       const canonicalPath = (lang === CONFIG.DEFAULT_LANG) ? canonicalBase : `${lang}/${canonicalBase}`;
 
       return {
-        code: lang,
+        code: locales[lang].lang_code || (lang === CONFIG.DEFAULT_LANG ? 'pt-BR' : lang),
         label: lang.toUpperCase(),
         link: `${toRoot}${folder}${baseOutputPath}`,
         canonical_path: canonicalPath,
