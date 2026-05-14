@@ -110,6 +110,10 @@ function getCanonicalPath(lang, baseOutputPath) {
   return (lang === CONFIG.DEFAULT_LANG) ? canonicalBase : `${lang}/${canonicalBase}`;
 }
 
+function getLangCode(lang, locales) {
+  return locales[lang].lang_code || (lang === CONFIG.DEFAULT_LANG ? 'pt-BR' : lang);
+}
+
 function generatePages(templates, locales, distDir) {
   const availableLangs = Object.keys(locales);
   const generatedPages = [];
@@ -117,6 +121,10 @@ function generatePages(templates, locales, distDir) {
   Object.keys(templates).forEach(templateKey => {
     const template = templates[templateKey];
     const baseOutputPath = templateKey.replace(/\.hbs$/, '.html');
+
+    // Determine indexability explicitly. Add more exclusions here if needed.
+    const excludedPages = ['privacy.html'];
+    const isIndexable = !excludedPages.some(p => baseOutputPath.endsWith(p));
 
     availableLangs.forEach(lang => {
       const isDefault = lang === CONFIG.DEFAULT_LANG;
@@ -127,7 +135,7 @@ function generatePages(templates, locales, distDir) {
 
       const pageData = {
         ...locales[lang],
-        lang: locales[lang].lang_code || (isDefault ? 'pt-BR' : lang),
+        lang: getLangCode(lang, locales),
         canonical_path: canonicalPath,
         site_url: CONFIG.SITE_URL,
         base_path: toRoot,
@@ -139,9 +147,6 @@ function generatePages(templates, locales, distDir) {
       fs.writeFileSync(outputPath, template(pageData));
       console.log(`Generated: ${path.relative(__dirname, outputPath)}`);
 
-      // Determine indexability explicitly. Add more exclusions here if needed.
-      const excludedPages = ['privacy.html'];
-      const isIndexable = !excludedPages.some(p => baseOutputPath.endsWith(p));
       generatedPages.push({ path: pageData.canonical_path, file: baseOutputPath, indexable: isIndexable });
     });
   });
@@ -187,7 +192,7 @@ function getOtherLangs(currentLang, availableLangs, toRoot, baseOutputPath, loca
       const folder = (lang === CONFIG.DEFAULT_LANG) ? '' : `${lang}/`;
 
       return {
-        code: locales[lang].lang_code || (lang === CONFIG.DEFAULT_LANG ? 'pt-BR' : lang),
+        code: getLangCode(lang, locales),
         label: lang.toUpperCase(),
         link: `${toRoot}${folder}${baseOutputPath}`,
         canonical_path: getCanonicalPath(lang, baseOutputPath),
