@@ -139,13 +139,14 @@ function generatePages(templates, locales, distDir) {
 }
 
 function generateSitemap(pages, distDir) {
+  const lastmod = new Date().toISOString().split('T')[0];
   // Filter out pages that shouldn't be indexed (e.g. privacy.html)
   const indexablePages = pages.filter(page => !page.file.includes('privacy.html'));
   const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexablePages.map(page => `  <url>
     <loc>${CONFIG.SITE_URL}${page.path}</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <lastmod>${lastmod}</lastmod>
   </url>`).join('\n')}
 </urlset>`;
 

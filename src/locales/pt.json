@@ -1,4 +1,12 @@
 {
+  "portfolio": {
+    "title": "Michael Feitosa | Portfólio",
+    "description": "Portfólio de Michael Feitosa - Game Designer, Artista Digital e Arquiteto de Software."
+  },
+  "privacy": {
+    "title": "Privacidade | Tejo Estúdio",
+    "description": "Política de privacidade e informações sobre coleta de dados do Tejo Estúdio."
+  },
   "index": {
     "title": "Tejo Estúdio",
     "description": "Site oficial do Tejo Estúdio – desenvolvimento de jogos e consultoria de software.",
