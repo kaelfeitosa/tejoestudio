@@ -147,8 +147,8 @@ function generatePages(templates, locales, distDir, templatesPath) {
       };
 
       // Safely fallback raw JSON-LD array strings for presskit template
-      if (pageData.presskit) {
-        pageData.presskit.schema_genres = pageData.presskit.schema_genres || '["Interactive Tale"]';
+      if (pageData.presskit && !pageData.presskit.schema_genres) {
+        pageData.presskit = { ...pageData.presskit, schema_genres: '["Interactive Tale"]' };
       }
 
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
