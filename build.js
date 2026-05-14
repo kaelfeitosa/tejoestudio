@@ -140,7 +140,8 @@ function generatePages(templates, locales, distDir) {
       console.log(`Generated: ${path.relative(__dirname, outputPath)}`);
 
       // Determine indexability explicitly. Add more exclusions here if needed.
-      const isIndexable = !baseOutputPath.endsWith('privacy.html');
+      const excludedPages = ['privacy.html'];
+      const isIndexable = !excludedPages.some(p => baseOutputPath.endsWith(p));
       generatedPages.push({ path: pageData.canonical_path, file: baseOutputPath, indexable: isIndexable });
     });
   });
