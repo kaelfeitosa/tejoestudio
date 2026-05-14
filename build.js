@@ -26,7 +26,7 @@ function runBuild() {
     const locales = loadLocales(paths.locales);
     const templates = compileTemplates(paths.templates);
     copyAssets(paths.static, paths.dist);
-    const generatedPages = generatePages(templates, locales, paths.dist, paths.templates);
+    const generatedPages = generatePages(templates, locales, paths.dist, paths.templates, paths.locales);
     if (CONFIG.SITE_URL.startsWith('http')) {
       generateSitemap(generatedPages, paths.dist);
       generateRobotsTxt(paths.dist);
@@ -115,7 +115,7 @@ function getLangCode(lang, locales) {
   return locales[lang].lang_code || (lang === CONFIG.DEFAULT_LANG ? 'pt-BR' : lang);
 }
 
-function generatePages(templates, locales, distDir, templatesPath) {
+function generatePages(templates, locales, distDir, templatesPath, localesPath) {
   const availableLangs = Object.keys(locales);
   const generatedPages = [];
 
@@ -124,7 +124,7 @@ function generatePages(templates, locales, distDir, templatesPath) {
     const baseOutputPath = templateKey.replace(/\.hbs$/, '.html');
 
     const fullTemplatePath = path.join(templatesPath, templateKey);
-    const mtime = fs.statSync(fullTemplatePath).mtime.toISOString().split('T')[0];
+    const templateMtime = fs.statSync(fullTemplatePath).mtime;
 
     // Determine indexability explicitly. Add more exclusions here if needed.
     const isIndexable = !CONFIG.EXCLUDED_FROM_SITEMAP.some(p => baseOutputPath.endsWith(p));
@@ -135,6 +135,9 @@ function generatePages(templates, locales, distDir, templatesPath) {
       const outputPath = path.join(distDir, langFolder, baseOutputPath);
       const toRoot = getToRoot(isDefault, baseOutputPath);
       const canonicalPath = getCanonicalPath(lang, baseOutputPath);
+
+      const localeMtime = fs.statSync(path.join(localesPath, `${lang}.json`)).mtime;
+      const lastmod = new Date(Math.max(templateMtime, localeMtime)).toISOString().split('T')[0];
 
       const pageData = {
         ...locales[lang],
@@ -159,12 +162,24 @@ function generatePages(templates, locales, distDir, templatesPath) {
         path: pageData.canonical_path,
         file: baseOutputPath,
         indexable: isIndexable,
-        lastmod: mtime
+        lastmod: lastmod
       });
     });
   });
 
   return generatedPages;
+}
+
+function escapeXml(unsafe) {
+  return unsafe.replace(/[<>&'"]/g, function (c) {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+    }
+  });
 }
 
 function generateSitemap(pages, distDir) {
@@ -173,8 +188,8 @@ function generateSitemap(pages, distDir) {
   const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexablePages.map(page => `  <url>
-    <loc>${CONFIG.SITE_URL}${page.path}</loc>
-    <lastmod>${page.lastmod}</lastmod>
+    <loc>${escapeXml(CONFIG.SITE_URL + page.path)}</loc>
+    <lastmod>${escapeXml(page.lastmod)}</lastmod>
   </url>`).join('\n')}
 </urlset>`;
 
