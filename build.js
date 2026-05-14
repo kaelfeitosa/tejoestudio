@@ -4,7 +4,8 @@ const Handlebars = require('handlebars');
 
 const CONFIG = {
   DEFAULT_LANG: 'pt',
-  SITE_URL: (process.env.SITE_URL || '/').replace(/\/$/, '') + '/'
+  SITE_URL: (process.env.SITE_URL || '/').replace(/\/$/, '') + '/',
+  EXCLUDED_FROM_SITEMAP: ['privacy.html']
 };
 
 /**
@@ -25,7 +26,7 @@ function runBuild() {
     const locales = loadLocales(paths.locales);
     const templates = compileTemplates(paths.templates);
     copyAssets(paths.static, paths.dist);
-    const generatedPages = generatePages(templates, locales, paths.dist);
+    const generatedPages = generatePages(templates, locales, paths.dist, paths.templates);
     if (CONFIG.SITE_URL.startsWith('http')) {
       generateSitemap(generatedPages, paths.dist);
       generateRobotsTxt(paths.dist);
@@ -114,7 +115,7 @@ function getLangCode(lang, locales) {
   return locales[lang].lang_code || (lang === CONFIG.DEFAULT_LANG ? 'pt-BR' : lang);
 }
 
-function generatePages(templates, locales, distDir) {
+function generatePages(templates, locales, distDir, templatesPath) {
   const availableLangs = Object.keys(locales);
   const generatedPages = [];
 
@@ -122,9 +123,11 @@ function generatePages(templates, locales, distDir) {
     const template = templates[templateKey];
     const baseOutputPath = templateKey.replace(/\.hbs$/, '.html');
 
+    const fullTemplatePath = path.join(templatesPath, templateKey);
+    const mtime = fs.statSync(fullTemplatePath).mtime.toISOString().split('T')[0];
+
     // Determine indexability explicitly. Add more exclusions here if needed.
-    const excludedPages = ['privacy.html'];
-    const isIndexable = !excludedPages.some(p => baseOutputPath.endsWith(p));
+    const isIndexable = !CONFIG.EXCLUDED_FROM_SITEMAP.some(p => baseOutputPath.endsWith(p));
 
     availableLangs.forEach(lang => {
       const isDefault = lang === CONFIG.DEFAULT_LANG;
@@ -143,11 +146,21 @@ function generatePages(templates, locales, distDir) {
         other_langs: getOtherLangs(lang, availableLangs, toRoot, baseOutputPath, locales)
       };
 
+      // Safely fallback raw JSON-LD array strings for presskit template
+      if (pageData.presskit) {
+        pageData.presskit.schema_genres = pageData.presskit.schema_genres || '["Interactive Tale"]';
+      }
+
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
       fs.writeFileSync(outputPath, template(pageData));
       console.log(`Generated: ${path.relative(__dirname, outputPath)}`);
 
-      generatedPages.push({ path: pageData.canonical_path, file: baseOutputPath, indexable: isIndexable });
+      generatedPages.push({
+        path: pageData.canonical_path,
+        file: baseOutputPath,
+        indexable: isIndexable,
+        lastmod: mtime
+      });
     });
   });
 
@@ -155,14 +168,13 @@ function generatePages(templates, locales, distDir) {
 }
 
 function generateSitemap(pages, distDir) {
-  const lastmod = new Date().toISOString().split('T')[0];
   // Filter out non-indexable pages
   const indexablePages = pages.filter(page => page.indexable);
   const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexablePages.map(page => `  <url>
     <loc>${CONFIG.SITE_URL}${page.path}</loc>
-    <lastmod>${lastmod}</lastmod>
+    <lastmod>${page.lastmod}</lastmod>
   </url>`).join('\n')}
 </urlset>`;
 
