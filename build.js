@@ -26,8 +26,12 @@ function runBuild() {
     const templates = compileTemplates(paths.templates);
     copyAssets(paths.static, paths.dist);
     const generatedPages = generatePages(templates, locales, paths.dist);
-    generateSitemap(generatedPages, paths.dist);
-    generateRobotsTxt(paths.dist);
+    if (CONFIG.SITE_URL.startsWith('http')) {
+      generateSitemap(generatedPages, paths.dist);
+      generateRobotsTxt(paths.dist);
+    } else {
+      console.warn("Skipping sitemap.xml and robots.txt generation: SITE_URL must be an absolute URL (e.g., starts with 'http'). Current SITE_URL: " + CONFIG.SITE_URL);
+    }
     
     console.log("Build completed successfully!");
   } catch (error) {
@@ -174,10 +178,14 @@ function getOtherLangs(currentLang, availableLangs, toRoot, baseOutputPath, loca
     .filter(l => l !== currentLang)
     .map(lang => {
       const folder = (lang === CONFIG.DEFAULT_LANG) ? '' : `${lang}/`;
+      const canonicalBase = baseOutputPath.replace(/index\.html$/, '');
+      const canonicalPath = (lang === CONFIG.DEFAULT_LANG) ? canonicalBase : `${lang}/${canonicalBase}`;
+
       return {
         code: lang,
         label: lang.toUpperCase(),
         link: `${toRoot}${folder}${baseOutputPath}`,
+        canonical_path: canonicalPath,
         aria: (locales[currentLang].lang_switcher_aria || 'Switch to {lang}').replace('{lang}', lang.toUpperCase())
       };
     });

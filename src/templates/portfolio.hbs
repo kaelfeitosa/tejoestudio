@@ -7,6 +7,11 @@
   <title>{{portfolio.title}}</title>
   <link rel="icon" type="image/png" href="{{{base_path}}}images/tejo_icon.png">
   <meta name="description" content="{{portfolio.description}}">
+  <link rel="canonical" href="{{site_url}}{{canonical_path}}">
+  <link rel="alternate" hreflang="{{lang}}" href="{{site_url}}{{canonical_path}}">
+  {{#each other_langs}}
+  <link rel="alternate" hreflang="{{code}}" href="{{../site_url}}{{canonical_path}}">
+  {{/each}}
 
   <!-- Open Graph -->
   <meta property="og:title" content="{{portfolio.title}}">
@@ -25,6 +30,26 @@
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-base.css">
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-portfolio.css">
   {{> partials/lang_redirect}}
+
+  <!-- Schema.org / JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Michael Feitosa",
+    "url": "{{site_url}}{{canonical_path}}",
+    "jobTitle": "Game Designer, Digital Artist, and Software Architect",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Tejo Estúdio"
+    },
+    "sameAs": [
+      "https://github.com/michaelfeitosa",
+      "https://x.com/feitosa_michael",
+      "https://linkedin.com/in/michaelfeitosa"
+    ]
+  }
+  </script>
 </head>
 
 <body>
