@@ -25,7 +25,9 @@ function runBuild() {
     const locales = loadLocales(paths.locales);
     const templates = compileTemplates(paths.templates);
     copyAssets(paths.static, paths.dist);
-    generatePages(templates, locales, paths.dist);
+    const generatedPages = generatePages(templates, locales, paths.dist);
+    generateSitemap(generatedPages, paths.dist);
+    generateRobotsTxt(paths.dist);
     
     console.log("Build completed successfully!");
   } catch (error) {
@@ -101,6 +103,7 @@ function copyAssets(staticPath, distDir) {
 
 function generatePages(templates, locales, distDir) {
   const availableLangs = Object.keys(locales);
+  const generatedPages = [];
 
   Object.keys(templates).forEach(templateKey => {
     const template = templates[templateKey];
@@ -126,8 +129,38 @@ function generatePages(templates, locales, distDir) {
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
       fs.writeFileSync(outputPath, template(pageData));
       console.log(`Generated: ${path.relative(__dirname, outputPath)}`);
+
+      const urlPath = isDefault ? canonicalBase : `${lang}/${canonicalBase}`;
+      generatedPages.push({ path: urlPath, file: baseOutputPath });
     });
   });
+
+  return generatedPages;
+}
+
+function generateSitemap(pages, distDir) {
+  // Filter out pages that shouldn't be indexed (e.g. privacy.html)
+  const indexablePages = pages.filter(page => !page.file.includes('privacy.html'));
+  const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${indexablePages.map(page => `  <url>
+    <loc>${CONFIG.SITE_URL}${page.path}</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+  </url>`).join('\n')}
+</urlset>`;
+
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapContent);
+  console.log('Generated: sitemap.xml');
+}
+
+function generateRobotsTxt(distDir) {
+  const robotsTxtContent = `User-agent: *
+Allow: /
+
+Sitemap: ${CONFIG.SITE_URL}sitemap.xml
+`;
+  fs.writeFileSync(path.join(distDir, 'robots.txt'), robotsTxtContent);
+  console.log('Generated: robots.txt');
 }
 
 function getToRoot(isDefault, outputPath) {
