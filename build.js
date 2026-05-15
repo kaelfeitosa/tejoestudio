@@ -135,6 +135,7 @@ function generatePages(templates, locales, distDir, templatesPath) {
 
     // Determine indexability explicitly. Add more exclusions here if needed.
     const isIndexable = !CONFIG.EXCLUDED_FROM_SITEMAP.includes(baseOutputPath);
+    const canonicalBase = baseOutputPath.replace(/index\.html$/, '');
 
     availableLangs.forEach(lang => {
       const isDefault = lang === CONFIG.DEFAULT_LANG;
@@ -150,6 +151,7 @@ function generatePages(templates, locales, distDir, templatesPath) {
         ...locales[lang],
         lang: getLangCode(lang, locales),
         canonical_path: canonicalPath,
+        canonical_base_path: canonicalBase,
         site_url: CONFIG.SITE_URL,
         base_path: toRoot,
         language_path: `${toRoot}${langFolder}`,
@@ -190,7 +192,7 @@ function generateSitemap(pages, distDir) {
   const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexablePages.map(page => `  <url>
-    <loc>${escapeXml(CONFIG.SITE_URL + page.path)}</loc>
+    <loc>${escapeXml(encodeURI(CONFIG.SITE_URL + page.path))}</loc>
     <lastmod>${escapeXml(page.lastmod)}</lastmod>
   </url>`).join('\n')}
 </urlset>`;
