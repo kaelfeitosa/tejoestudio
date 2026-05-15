@@ -28,7 +28,7 @@ function runBuild() {
     const locales = loadLocales(paths.locales);
     const templates = compileTemplates(paths.templates);
     copyAssets(paths.static, paths.dist);
-    const generatedPages = generatePages(templates, locales, paths.dist, paths.templates, paths.locales);
+    const generatedPages = generatePages(templates, locales, paths.dist, paths.templates);
     if (CONFIG.SITE_URL.startsWith('http')) {
       generateSitemap(generatedPages, paths.dist);
       generateRobotsTxt(paths.dist);
