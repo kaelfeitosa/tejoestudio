@@ -59,7 +59,12 @@ function loadLocales(localesPath) {
   const locales = {};
   localeFiles.forEach(file => {
     const lang = path.basename(file, '.json');
-    locales[lang] = JSON.parse(fs.readFileSync(path.join(localesPath, file), 'utf8'));
+    const fullPath = path.join(localesPath, file);
+    const mtime = fs.statSync(fullPath).mtime;
+    const content = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+    // Store metadata on the locale object using a non-enumerable property
+    Object.defineProperty(content, '_mtime', { value: mtime, enumerable: false });
+    locales[lang] = content;
   });
   return locales;
 }
@@ -117,14 +122,9 @@ function getLangCode(lang, locales) {
   return locales[lang].lang_code || (lang === CONFIG.DEFAULT_LANG ? 'pt-BR' : lang);
 }
 
-function generatePages(templates, locales, distDir, templatesPath, localesPath) {
+function generatePages(templates, locales, distDir, templatesPath) {
   const availableLangs = Object.keys(locales);
   const generatedPages = [];
-
-  // Pre-fetch locale modification times to avoid redundant I/O
-  const localeMTimes = Object.fromEntries(
-    availableLangs.map(lang => [lang, fs.statSync(path.join(localesPath, `${lang}.json`)).mtime])
-  );
 
   Object.keys(templates).forEach(templateKey => {
     const template = templates[templateKey];
@@ -134,7 +134,7 @@ function generatePages(templates, locales, distDir, templatesPath, localesPath) 
     const templateMtime = fs.statSync(fullTemplatePath).mtime;
 
     // Determine indexability explicitly. Add more exclusions here if needed.
-    const isIndexable = !CONFIG.EXCLUDED_FROM_SITEMAP.some(p => baseOutputPath.endsWith(p));
+    const isIndexable = !CONFIG.EXCLUDED_FROM_SITEMAP.includes(baseOutputPath);
 
     availableLangs.forEach(lang => {
       const isDefault = lang === CONFIG.DEFAULT_LANG;
@@ -143,7 +143,7 @@ function generatePages(templates, locales, distDir, templatesPath, localesPath) 
       const toRoot = getToRoot(isDefault, baseOutputPath);
       const canonicalPath = getCanonicalPath(lang, baseOutputPath);
 
-      const localeMtime = localeMTimes[lang];
+      const localeMtime = locales[lang]._mtime;
       const lastmod = new Date(Math.max(templateMtime, localeMtime)).toISOString().split('T')[0];
 
       const pageData = {
