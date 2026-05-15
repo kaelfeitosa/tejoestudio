@@ -35,7 +35,7 @@
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
     "description": "Material para imprensa do jogo Vem, Exu!",
-    "schema_genres": "[\"Conto Interativo\", \"Narrativa\", \"Aventura\"]",
+    "schema_genres": ["Conto Interativo", "Narrativa", "Aventura"],
     "back_home": "Voltar para Início",
     "download_btn": "Baixar",
     "keyart_title": "Key Art",

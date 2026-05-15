@@ -35,7 +35,7 @@
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
     "description": "Press material for the game Vem, Exu!",
-    "schema_genres": "[\"Interactive Tale\", \"Narrative\", \"Adventure\"]",
+    "schema_genres": ["Interactive Tale", "Narrative", "Adventure"],
     "back_home": "Back to Home",
     "download_btn": "Download",
     "keyart_title": "Key Art",

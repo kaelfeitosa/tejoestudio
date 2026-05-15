@@ -8,6 +8,8 @@ const CONFIG = {
   EXCLUDED_FROM_SITEMAP: ['privacy.html']
 };
 
+Handlebars.registerHelper('json', context => JSON.stringify(context));
+
 /**
  * Main build process
  */
@@ -154,9 +156,9 @@ function generatePages(templates, locales, distDir, templatesPath, localesPath) 
         other_langs: getOtherLangs(lang, availableLangs, toRoot, baseOutputPath, locales)
       };
 
-      // Safely fallback raw JSON-LD array strings for presskit template
-      if (pageData.presskit && !pageData.presskit.schema_genres) {
-        pageData.presskit = { ...pageData.presskit, schema_genres: '["Interactive Tale"]' };
+      // Safely fallback JSON-LD array for presskit template
+      if (baseOutputPath === 'press-kit/vem-exu/index.html' && pageData.presskit && !pageData.presskit.schema_genres) {
+        pageData.presskit = { ...pageData.presskit, schema_genres: ['Interactive Tale'] };
       }
 
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
