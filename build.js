@@ -4,8 +4,11 @@ const Handlebars = require('handlebars');
 
 const CONFIG = {
   DEFAULT_LANG: 'pt',
-  SITE_URL: (process.env.SITE_URL || '/').replace(/\/$/, '') + '/'
+  SITE_URL: (process.env.SITE_URL || '/').replace(/\/$/, '') + '/',
+  EXCLUDED_FROM_SITEMAP: ['privacy.html']
 };
+
+Handlebars.registerHelper('json', context => JSON.stringify(context ?? null));
 
 /**
  * Main build process
@@ -25,7 +28,13 @@ function runBuild() {
     const locales = loadLocales(paths.locales);
     const templates = compileTemplates(paths.templates);
     copyAssets(paths.static, paths.dist);
-    generatePages(templates, locales, paths.dist);
+    const generatedPages = generatePages(templates, locales, paths.dist, paths.templates);
+    if (CONFIG.SITE_URL.startsWith('http')) {
+      generateSitemap(generatedPages, paths.dist);
+      generateRobotsTxt(paths.dist);
+    } else {
+      console.warn("Skipping sitemap.xml and robots.txt generation: SITE_URL must be an absolute URL (e.g., starts with 'http'). Current SITE_URL: " + CONFIG.SITE_URL);
+    }
     
     console.log("Build completed successfully!");
   } catch (error) {
@@ -50,7 +59,12 @@ function loadLocales(localesPath) {
   const locales = {};
   localeFiles.forEach(file => {
     const lang = path.basename(file, '.json');
-    locales[lang] = JSON.parse(fs.readFileSync(path.join(localesPath, file), 'utf8'));
+    const fullPath = path.join(localesPath, file);
+    const mtime = fs.statSync(fullPath).mtime;
+    const content = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+    // Store metadata on the locale object using a non-enumerable property
+    Object.defineProperty(content, '_mtime', { value: mtime, enumerable: false });
+    locales[lang] = content;
   });
   return locales;
 }
@@ -99,12 +113,28 @@ function copyAssets(staticPath, distDir) {
   fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
 }
 
-function generatePages(templates, locales, distDir) {
+function getCanonicalPath(lang, baseOutputPath) {
+  const canonicalBase = baseOutputPath.replace(/index\.html$/, '');
+  return (lang === CONFIG.DEFAULT_LANG) ? canonicalBase : `${lang}/${canonicalBase}`;
+}
+
+function getLangCode(lang, locales) {
+  return locales[lang].lang_code || (lang === CONFIG.DEFAULT_LANG ? 'pt-BR' : lang);
+}
+
+function generatePages(templates, locales, distDir, templatesPath) {
   const availableLangs = Object.keys(locales);
+  const generatedPages = [];
 
   Object.keys(templates).forEach(templateKey => {
     const template = templates[templateKey];
     const baseOutputPath = templateKey.replace(/\.hbs$/, '.html');
+
+    const fullTemplatePath = path.join(templatesPath, templateKey);
+    const templateMtime = fs.statSync(fullTemplatePath).mtime;
+
+    // Determine indexability explicitly. Add more exclusions here if needed.
+    const isIndexable = !CONFIG.EXCLUDED_FROM_SITEMAP.includes(baseOutputPath);
     const canonicalBase = baseOutputPath.replace(/index\.html$/, '');
 
     availableLangs.forEach(lang => {
@@ -112,11 +142,16 @@ function generatePages(templates, locales, distDir) {
       const langFolder = isDefault ? '' : `${lang}/`;
       const outputPath = path.join(distDir, langFolder, baseOutputPath);
       const toRoot = getToRoot(isDefault, baseOutputPath);
+      const canonicalPath = getCanonicalPath(lang, baseOutputPath);
+
+      const localeMtime = locales[lang]._mtime;
+      const lastmod = new Date(Math.max(templateMtime, localeMtime)).toISOString().split('T')[0];
 
       const pageData = {
         ...locales[lang],
-        lang: locales[lang].lang_code || (isDefault ? 'pt-BR' : lang),
-        canonical_path: isDefault ? canonicalBase : `${lang}/${canonicalBase}`,
+        lang: getLangCode(lang, locales),
+        canonical_path: canonicalPath,
+        canonical_base_path: canonicalBase,
         site_url: CONFIG.SITE_URL,
         base_path: toRoot,
         language_path: `${toRoot}${langFolder}`,
@@ -126,8 +161,54 @@ function generatePages(templates, locales, distDir) {
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
       fs.writeFileSync(outputPath, template(pageData));
       console.log(`Generated: ${path.relative(__dirname, outputPath)}`);
+
+      generatedPages.push({
+        path: pageData.canonical_path,
+        file: baseOutputPath,
+        indexable: isIndexable,
+        lastmod: lastmod
+      });
     });
   });
+
+  return generatedPages;
+}
+
+function escapeXml(unsafe) {
+  return unsafe.replace(/[<>&'"]/g, function (c) {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+    }
+  });
+}
+
+function generateSitemap(pages, distDir) {
+  // Filter out non-indexable pages
+  const indexablePages = pages.filter(page => page.indexable);
+  const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${indexablePages.map(page => `  <url>
+    <loc>${escapeXml(encodeURI(CONFIG.SITE_URL + page.path))}</loc>
+    <lastmod>${escapeXml(page.lastmod)}</lastmod>
+  </url>`).join('\n')}
+</urlset>`;
+
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapContent);
+  console.log('Generated: sitemap.xml');
+}
+
+function generateRobotsTxt(distDir) {
+  const robotsTxtContent = `User-agent: *
+Allow: /
+
+Sitemap: ${CONFIG.SITE_URL}sitemap.xml
+`;
+  fs.writeFileSync(path.join(distDir, 'robots.txt'), robotsTxtContent);
+  console.log('Generated: robots.txt');
 }
 
 function getToRoot(isDefault, outputPath) {
@@ -140,10 +221,12 @@ function getOtherLangs(currentLang, availableLangs, toRoot, baseOutputPath, loca
     .filter(l => l !== currentLang)
     .map(lang => {
       const folder = (lang === CONFIG.DEFAULT_LANG) ? '' : `${lang}/`;
+
       return {
-        code: lang,
+        code: getLangCode(lang, locales),
         label: lang.toUpperCase(),
         link: `${toRoot}${folder}${baseOutputPath}`,
+        canonical_path: getCanonicalPath(lang, baseOutputPath),
         aria: (locales[currentLang].lang_switcher_aria || 'Switch to {lang}').replace('{lang}', lang.toUpperCase())
       };
     });

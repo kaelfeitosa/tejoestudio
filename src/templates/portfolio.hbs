@@ -4,14 +4,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Michael Feitosa | Portfólio</title>
+  <title>{{portfolio.title}}</title>
   <link rel="icon" type="image/png" href="{{{base_path}}}images/tejo_icon.png">
-  <meta name="description" content="Portfólio de Michael Feitosa - Game Designer, Artista Digital e Arquiteto de Software.">
+  <meta name="description" content="{{portfolio.description}}">
+  <link rel="canonical" href="{{site_url}}{{canonical_path}}">
+  <link rel="alternate" hreflang="x-default" href="{{site_url}}{{canonical_base_path}}">
+  <link rel="alternate" hreflang="{{lang}}" href="{{site_url}}{{canonical_path}}">
+  {{#each other_langs}}
+  <link rel="alternate" hreflang="{{code}}" href="{{../site_url}}{{canonical_path}}">
+  {{/each}}
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{portfolio.title}}">
+  <meta property="og:description" content="{{portfolio.description}}">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="{{site_url}}{{canonical_path}}">
+  <meta property="og:image" content="{{site_url}}images/tejo_logo_black.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{portfolio.title}}">
+  <meta name="twitter:description" content="{{portfolio.description}}">
+  <meta name="twitter:image" content="{{site_url}}images/tejo_logo_black.png">
 
   <!-- Novos Estilos Base do Tejo Estúdio -->
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-base.css">
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-portfolio.css">
   {{> partials/lang_redirect}}
+
+  <!-- Schema.org / JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Michael Feitosa",
+    "url": "{{site_url}}{{canonical_path}}",
+    "jobTitle": {{{json portfolio.job_title}}},
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Tejo Estúdio"
+    },
+    "sameAs": [
+      "https://github.com/michaelfeitosa",
+      "https://x.com/feitosa_michael",
+      "https://linkedin.com/in/michaelfeitosa"
+    ]
+  }
+  </script>
 </head>
 
 <body>

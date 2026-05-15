@@ -9,12 +9,48 @@
   <meta name="description" content="{{index.description}}">
   <meta name="keywords" content="{{index.keywords}}">
   <link rel="canonical" href="{{site_url}}{{canonical_path}}">
+  <link rel="alternate" hreflang="x-default" href="{{site_url}}{{canonical_base_path}}">
+  <link rel="alternate" hreflang="{{lang}}" href="{{site_url}}{{canonical_path}}">
+  {{#each other_langs}}
+  <link rel="alternate" hreflang="{{code}}" href="{{../site_url}}{{canonical_path}}">
+  {{/each}}
   <meta name="author" content="Tejo Estúdio">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{index.title}}">
+  <meta property="og:description" content="{{index.description}}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{site_url}}{{canonical_path}}">
+  <meta property="og:image" content="{{site_url}}press-kit/vem-exu/02_branding/store/steam_key_art.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{index.title}}">
+  <meta name="twitter:description" content="{{index.description}}">
+  <meta name="twitter:image" content="{{site_url}}press-kit/vem-exu/02_branding/store/steam_key_art.png">
 
   <!-- Novos Estilos Base do Tejo Estúdio -->
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-base.css">
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-brands.css">
   {{> partials/lang_redirect}}
+
+  <!-- Schema.org / JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Tejo Estúdio",
+    "url": "{{site_url}}",
+    "logo": "{{site_url}}images/tejo_logo_black.png",
+    "description": {{{json index.footer}}},
+    "sameAs": [
+      "https://x.com/tejoestudio",
+      "https://instagram.com/tejoestudio",
+      "https://threads.net/@tejoestudio",
+      "https://tejoestudio.bsky.social"
+    ]
+  }
+  </script>
 </head>
 
 <body class="tejo-bg-vem-exu">

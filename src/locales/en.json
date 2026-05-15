@@ -1,4 +1,13 @@
 {
+  "portfolio": {
+    "title": "Michael Feitosa | Portfolio",
+    "description": "Portfolio of Michael Feitosa - Game Designer, Digital Artist, and Software Architect.",
+    "job_title": "Game Designer, Digital Artist, and Software Architect"
+  },
+  "privacy": {
+    "title": "Privacy | Tejo Studio",
+    "description": "Privacy policy and data collection information for Tejo Studio."
+  },
   "index": {
     "title": "Tejo Studio",
     "description": "Tejo Studio official website – game development and software consulting.",
@@ -26,6 +35,7 @@
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
     "description": "Press material for the game Vem, Exu!",
+    "schema_genres": ["Interactive Tale", "Narrative", "Adventure"],
     "back_home": "Back to Home",
     "download_btn": "Download",
     "keyart_title": "Key Art",
