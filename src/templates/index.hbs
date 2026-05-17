@@ -44,10 +44,12 @@
     "logo": "{{site_url}}images/tejo_logo_black.png",
     "description": {{{json index.footer}}},
     "sameAs": [
-      "https://x.com/tejoestudio",
       "https://instagram.com/tejoestudio",
-      "https://threads.net/@tejoestudio",
-      "https://tejoestudio.bsky.social"
+      "https://www.threads.net/@tejoestudio",
+      "https://bsky.app/profile/tejoestudio.bsky.social",
+      "https://www.tiktok.com/@tejoestudio",
+      "https://youtube.com/@tejoestudio",
+      "https://x.com/KaelGameDev"
     ]
   }
   </script>
@@ -163,9 +165,10 @@
           {{index.footer}}
           <span class="tejo-footer-meta">{{{index.footer_meta}}}</span>
           | <a href="{{{language_path}}}portfolio.html" style="color: inherit; opacity: 0.8;">{{index.portfolio}}</a>
-          | <a href="https://www.threads.net/@tejoestudio" target="_blank" rel="noopener" style="color: inherit; opacity: 0.8;">{{index.threads}}</a>
+
           | <a href="{{{base_path}}}privacy.html" style="color: inherit; opacity: 0.8;">{{index.privacy}}</a>
         </p>
+        {{> partials/footer_social}}
       </div>
     </footer>
   </main>
