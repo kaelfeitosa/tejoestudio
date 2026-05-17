@@ -29,12 +29,21 @@
     "vem_exu_subtitle": "An interactive tale about anger, fantasy and a lost kite.",
     "vem_exu_desc": "After losing his kite in a fight with his brother, Exu tries to sleep.<br>But the anger doesn't go away.<br>During the night, his feelings turn into a storm where dream and reality mix.<br>To get the kite back, Exu must cross this world and face his own pride.",
     "aria_main_links": "Play Vem, Exu",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "threads": "Threads",
+    "bluesky": "Bluesky",
+    "tiktok": "TikTok",
+    "youtube": "YouTube",
+    "twitter": "X (Twitter)"
   },
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
     "description": "Press material for the game Vem, Exu!",
-    "schema_genres": ["Interactive Tale", "Narrative", "Adventure"],
+    "schema_genres": [
+      "Interactive Tale",
+      "Narrative",
+      "Adventure"
+    ],
     "back_home": "Back to Home",
     "download_btn": "Download",
     "keyart_title": "Key Art",

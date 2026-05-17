@@ -29,12 +29,21 @@
     "vem_exu_subtitle": "Um conto interativo sobre raiva, fantasia e uma arraia perdida.",
     "vem_exu_desc": "Após perder sua arraia em uma briga com o irmão, Exu tenta dormir.<br>Mas a raiva não passa.<br>Durante a noite, seus sentimentos viram uma tempestade onde sonho e realidade se misturam.<br>Para recuperar a arraia, Exu precisa atravessar esse mundo e enfrentar o próprio orgulho.",
     "aria_main_links": "Jogar Vem, Exu",
-    "portfolio": "Portfólio"
+    "portfolio": "Portfólio",
+    "threads": "Threads",
+    "bluesky": "Bluesky",
+    "tiktok": "TikTok",
+    "youtube": "YouTube",
+    "twitter": "X (Twitter)"
   },
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
     "description": "Material para imprensa do jogo Vem, Exu!",
-    "schema_genres": ["Conto Interativo", "Narrativa", "Aventura"],
+    "schema_genres": [
+      "Conto Interativo",
+      "Narrativa",
+      "Aventura"
+    ],
     "back_home": "Voltar para Início",
     "download_btn": "Baixar",
     "keyart_title": "Key Art",
