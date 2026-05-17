@@ -34,7 +34,14 @@
     "bluesky": "Bluesky",
     "tiktok": "TikTok",
     "youtube": "YouTube",
-    "twitter": "X (Twitter)"
+    "twitter": "X (Twitter)",
+    "email": "Email",
+    "aria_follow_instagram": "Follow us on Instagram",
+    "aria_follow_threads": "Follow us on Threads",
+    "aria_follow_bluesky": "Follow us on Bluesky",
+    "aria_follow_tiktok": "Follow us on TikTok",
+    "aria_visit_youtube": "Visit our YouTube channel",
+    "aria_follow_twitter": "Follow us on X (Twitter)"
   },
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
