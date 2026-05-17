@@ -700,17 +700,18 @@ textarea:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.7;
-  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  opacity: 1;
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
 .tejo-footer-social a:hover {
-  opacity: 1;
   transform: translateY(-2px);
+  filter: brightness(0.5);
 }
 
 .tejo-footer-social img {
-  width: 1.5rem;
-  height: 1.5rem;
-  filter: var(--brand-icon-filter, none);
+  width: 1.75rem;
+  height: 1.75rem;
+  /* Convert all SVG colors to solid black */
+  filter: grayscale(100%) brightness(0);
 }
