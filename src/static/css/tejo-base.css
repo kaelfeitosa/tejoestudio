@@ -701,12 +701,12 @@ textarea:focus {
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .tejo-footer-social a:hover {
   transform: translateY(-2px);
-  filter: brightness(0.5);
+  opacity: 0.5;
 }
 
 .tejo-footer-social img {
