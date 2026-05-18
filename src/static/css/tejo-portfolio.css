@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Tejo Estúdio - Portfolio Specific Styles
+   Tejo Estúdio - Portfolio Specific Styles (Brutalist Visual Identity)
    ========================================================================== */
 
 html {
@@ -41,50 +41,7 @@ html {
   border-bottom: 2px solid #000;
 }
 
-/* Grid Utilities */
-.portfolio-grid {
-  display: grid;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .portfolio-grid-cols-12 {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-  .portfolio-col-span-4 { grid-column: span 4 / span 4; }
-  .portfolio-col-span-5 { grid-column: span 5 / span 5; }
-  .portfolio-col-span-7 { grid-column: span 7 / span 7; }
-  .portfolio-col-span-8 { grid-column: span 8 / span 8; }
-  
-  .portfolio-md-grid-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-/* Project Articles */
-.project-article {
-  display: grid;
-  gap: 2rem;
-  align-items: start;
-}
-
-@media (min-width: 768px) {
-  .project-article {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-}
-
-/* Aspect Ratios */
-.aspect-3-4 { aspect-ratio: 3/4; }
-.aspect-video { aspect-ratio: 16/9; }
-
-.object-cover {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-/* Navigation Overlay (Simplified from React) */
+/* Fixed Navigation Header */
 .nav-fixed {
   position: fixed;
   top: 0;
@@ -103,6 +60,623 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.tejo-brand-logo {
+  font-size: 1.5rem;
+  border: 2px solid #000;
+  padding: 0.2rem 0.5rem;
+}
+
+.tejo-brand-logo a {
+  text-decoration: none;
+}
+
+.portfolio-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+@media (max-width: 768px) {
+  .nav-inner {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+  .portfolio-nav-links {
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Hero Section Elements */
+.portfolio-hero-divider {
+  height: 0.5rem;
+  width: 8rem;
+  background: #000;
+  margin-bottom: 2rem;
+}
+
+.portfolio-hero-role {
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-left: 4px solid #ccc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-hero-location {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.portfolio-hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* Poetics Section */
+.portfolio-poetics-container {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.portfolio-poetics-title {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #737373;
+  font-family: var(--font-mono);
+  letter-spacing: 0.3em;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+.portfolio-poetics-quote {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+.portfolio-poetics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 3rem;
+  color: #a3a3a3;
+}
+
+@media (max-width: 768px) {
+  .portfolio-poetics-quote {
+    font-size: 1.75rem;
+  }
+  .portfolio-poetics-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Projects Section */
+.portfolio-projects-header {
+  border-bottom: 2px solid #000;
+  padding-bottom: 2rem;
+  margin-bottom: 5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.portfolio-projects-subtitle {
+  font-family: var(--font-mono);
+  color: #737373;
+}
+
+.portfolio-projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.project-article {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.project-details-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-details-column h3 {
+  text-transform: uppercase;
+}
+
+.project-tags {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.project-tag {
+  background: #e5e5e5;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+}
+
+.project-bullets {
+  font-size: 0.85rem;
+  border-left: 2px solid #ccc;
+  padding-left: 1rem;
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.project-bullets li {
+  margin-bottom: 0.5rem;
+}
+
+.project-team-block {
+  font-size: 0.85rem;
+  border-left: 2px solid #ccc;
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.project-team-block p {
+  color: #737373;
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.project-quote {
+  font-size: 0.9rem;
+  font-style: italic;
+  border-left: 3px solid #000;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #525252;
+  text-align: left;
+}
+
+.project-quote cite {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.project-action-btn {
+  margin-top: 1.5rem;
+}
+
+/* Other Works Sub-section */
+.portfolio-other-works {
+  margin-top: 8rem;
+  border-top: 2px solid #000;
+  padding-top: 4rem;
+}
+
+.portfolio-other-works h4 {
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+.portfolio-other-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.portfolio-other-grid figure {
+  aspect-ratio: 1;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-other-grid p {
+  font-size: 0.9rem;
+  color: #737373;
+}
+
+@media (min-width: 768px) {
+  .project-article {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .portfolio-col-span-4 { grid-column: span 4 / span 4; }
+  .portfolio-col-span-5 { grid-column: span 5 / span 5; }
+  .portfolio-col-span-7 { grid-column: span 7 / span 7; }
+  .portfolio-col-span-8 { grid-column: span 8 / span 8; }
+  
+  .portfolio-other-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .portfolio-order-1 { order: 1; }
+  .portfolio-order-2 { order: 2; }
+}
+
+/* Grants (Editais e Apoios) */
+.portfolio-grants {
+  background-color: #fff;
+  color: #171717;
+  border-top: 2px solid #000;
+}
+
+.portfolio-grants h3 {
+  font-size: 2.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.portfolio-square-bullet {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #000;
+  display: inline-block;
+}
+
+.portfolio-grants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
+}
+
+.portfolio-grant-card {
+  border: 2px solid #000;
+  padding: 2rem;
+  background: #fafafa;
+  box-shadow: 4px 4px 0px 0px #000;
+  transition: all 0.2s ease-in-out;
+}
+
+.portfolio-grant-card:hover {
+  transform: translate3d(-2px, -2px, 0);
+  box-shadow: 6px 6px 0px 0px #000;
+}
+
+.portfolio-grant-card h4 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.portfolio-grant-card p {
+  margin: 0;
+  color: #404040;
+  font-size: 0.95rem;
+}
+
+/* Circulation */
+.portfolio-circulation-title {
+  color: #fff;
+  font-size: 2.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.portfolio-circulation-desc {
+  color: #a3a3a3;
+  max-width: 45rem;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.portfolio-circulation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2.5rem;
+}
+
+.portfolio-event-card {
+  background: #222;
+  border: 2px solid #333;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+.portfolio-event-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-event-tag {
+  background: #fff;
+  color: #000;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.portfolio-event-title {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.portfolio-event-desc {
+  color: #a3a3a3;
+  line-height: 1.6;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-event-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.portfolio-gallery-item {
+  margin: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #444;
+  box-shadow: none;
+}
+
+.portfolio-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.portfolio-gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+/* Research & Process */
+.portfolio-research {
+  background: #f5f5f5;
+  color: #171717;
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
+}
+
+.portfolio-research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 4rem;
+}
+
+.portfolio-research-grid h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.portfolio-mono-list {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.portfolio-mono-list li {
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.portfolio-mono-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #000;
+  display: inline-block;
+}
+
+.portfolio-bullet-asterisk::before {
+  content: "✦" !important;
+  background: transparent !important;
+  left: 0;
+  top: 50%;
+  font-size: 0.85rem;
+  color: #000;
+}
+
+/* About Section */
+.portfolio-about {
+  background-color: #fff;
+  border-top: 2px solid #000;
+}
+
+.portfolio-about-card {
+  border: 2px solid #000;
+  padding: 3rem;
+  background: #fafafa;
+  box-shadow: 8px 8px 0px 0px #000;
+  max-width: 55rem;
+  margin: 0 auto;
+}
+
+.portfolio-about-card h2 {
+  font-size: 2.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+}
+
+.portfolio-about-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.portfolio-about-avatar {
+  margin: 0;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border: 2px solid #000;
+  background: #f5f5f5;
+  box-shadow: none;
+}
+
+.portfolio-about-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+.portfolio-about-avatar:hover img {
+  opacity: 1;
+}
+
+.portfolio-about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #262626;
+}
+
+.portfolio-about-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 2rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+.portfolio-about-footer h3 {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #737373;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.portfolio-contact-block {
+  font-style: normal;
+}
+
+.portfolio-contact-block a {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.portfolio-contact-block a:hover {
+  text-decoration: underline;
+}
+
+.portfolio-social-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.portfolio-social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  transition: background 0.3s;
+}
+
+.portfolio-social-links a:hover {
+  background: #333;
+}
+
+.portfolio-social-links img {
+  width: 1.25rem;
+  height: 1.25rem;
+  filter: invert(1);
+}
+
+.portfolio-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 2px solid #000;
+  background: #fff;
+  color: #000;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  box-shadow: 4px 4px 0px 0px #000;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.portfolio-download-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .portfolio-about-content {
+    grid-template-columns: 18rem 1fr;
+  }
+}
+
+/* Aspect Ratios */
+.aspect-3-4 { aspect-ratio: 3/4; }
+.aspect-video { aspect-ratio: 16/9; }
+
+.object-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 /* ==========================================================================

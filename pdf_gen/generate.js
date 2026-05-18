@@ -70,7 +70,7 @@ const path = require('path');
         await new Promise(r => setTimeout(r, 500));
         
         // Generate PDF
-        const pdfPath = path.resolve(__dirname, '../portfolio_hd_pageless.pdf');
+        const pdfPath = path.resolve(__dirname, '../src/static/docs/portfolio_michael_feitosa.pdf');
         console.log(`Generating PDF at ${pdfPath}...`);
         
         await page.pdf({

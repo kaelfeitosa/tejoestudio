@@ -6,51 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{portfolio.title}}</title>
   <link rel="icon" type="image/png" href="{{{base_path}}}images/tejo_icon.png">
-  <meta name="description" content="{{portfolio.description}}">
-  <link rel="canonical" href="{{site_url}}{{canonical_path}}">
-  <link rel="alternate" hreflang="x-default" href="{{site_url}}{{canonical_base_path}}">
-  <link rel="alternate" hreflang="{{lang}}" href="{{site_url}}{{canonical_path}}">
-  {{#each other_langs}}
-  <link rel="alternate" hreflang="{{code}}" href="{{../site_url}}{{canonical_path}}">
-  {{/each}}
+  <meta name="description" content="{{portfolio.meta_description}}">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="{{portfolio.title}}">
-  <meta property="og:description" content="{{portfolio.description}}">
-  <meta property="og:type" content="profile">
-  <meta property="og:url" content="{{site_url}}{{canonical_path}}">
-  <meta property="og:image" content="{{site_url}}images/tejo_logo_black.png">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{{portfolio.title}}">
-  <meta name="twitter:description" content="{{portfolio.description}}">
-  <meta name="twitter:image" content="{{site_url}}images/tejo_logo_black.png">
-
-  <!-- Novos Estilos Base do Tejo Estúdio -->
+  <!-- Estilos Base do Tejo Estúdio -->
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-base.css">
   <link rel="stylesheet" href="{{{base_path}}}css/tejo-portfolio.css">
   {{> partials/lang_redirect}}
-
-  <!-- Schema.org / JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Michael Feitosa",
-    "url": "{{site_url}}{{canonical_path}}",
-    "jobTitle": {{{json portfolio.job_title}}},
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Tejo Estúdio"
-    },
-    "sameAs": [
-      "https://github.com/michaelfeitosa",
-      "https://x.com/feitosa_michael",
-      "https://linkedin.com/in/michaelfeitosa"
-    ]
-  }
-  </script>
 </head>
 
 <body>
@@ -62,33 +23,37 @@
     {{/each}}
   </div>
 
+  <!-- Barra de Navegação Superior Semântica -->
   <nav class="nav-fixed">
     <div class="nav-inner">
-      <div class="tejo-brand-logo" style="font-size: 1.5rem; border: 2px solid #000; padding: 0.2rem 0.5rem;">
-        <a href="#home" style="text-decoration: none;">MF.</a>
+      <div class="tejo-brand-logo">
+        <a href="#home">MF.</a>
       </div>
-      <div class="portfolio-nav-links" style="display: flex; gap: 1.5rem; font-size: 0.8rem; text-transform: uppercase; font-weight: 900;">
-        <a href="#poetica">Poética</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#circulacao">Circulação</a>
-        <a href="#contato">Contato</a>
+      <div class="portfolio-nav-links">
+        <a href="{{{language_path}}}index.html">{{portfolio.nav_home}}</a>
+        <a href="#poetica">{{portfolio.nav_poetics}}</a>
+        <a href="#projetos">{{portfolio.nav_projects}}</a>
+        <a href="#circulacao">{{portfolio.nav_circulation}}</a>
+        <a href="#sobre">{{portfolio.nav_about}}</a>
+        <a href="#contato">{{portfolio.nav_contact}}</a>
       </div>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <header id="home" class="portfolio-shell portfolio-hero">
     <h1>MICHAEL<br>FEITOSA</h1>
-    <div style="height: 0.5rem; width: 8rem; background: #000; margin-bottom: 2rem;"></div>
-    <p style="font-size: 1.5rem; font-weight: 700; border-left: 4px solid #ccc; padding-left: 1.5rem;">
-      Game Designer • Artista Digital • Arquiteto de Software
+    <div class="portfolio-hero-divider"></div>
+    <p class="portfolio-hero-role">
+      {{portfolio.hero_role}}
     </p>
-    <p style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; padding-left: 1.5rem;">
-      Fortaleza, Ceará — Brasil
+    <p class="portfolio-hero-location">
+      {{portfolio.hero_location}}
     </p>
 
-    <div style="display: flex; gap: 1rem; margin-top: 2.5rem;">
-      <a href="#projetos" class="tejo-btn primary">Ver Projetos &rarr;</a>
-      <a href="{{{base_path}}}docs/portfolio_hd_pageless.pdf" target="_blank" rel="noopener" class="tejo-btn">
+    <div class="portfolio-hero-actions">
+      <a href="#projetos" class="tejo-btn primary">{{portfolio.hero_view_projects}} &rarr;</a>
+      <a href="{{{base_path}}}docs/portfolio_michael_feitosa.pdf" target="_blank" rel="noopener" class="tejo-btn">
         <img src="{{{base_path}}}images/icons/download.svg" alt="" style="width: 1.25rem; height: 1.25rem; display: inline; vertical-align: middle; margin-right: 0.5rem;">
         {{{index.download_pdf}}}
       </a>
@@ -96,114 +61,323 @@
     </div>
   </header>
 
-  <section id="poetica" class="portfolio-dark-section portfolio-section">
-    <div class="portfolio-shell" style="max-width: 50rem;">
-      <h2 style="font-size: 0.8rem; text-align: center; color: #737373; font-family: var(--font-mono); letter-spacing: 0.3em; margin-bottom: 3rem;">
-        POÉTICA E PESQUISA
-      </h2>
-      <blockquote style="font-size: 2.5rem; color: #fff; margin-bottom: 3rem;">
-        “Minha prática investiga memória, infância e cultura popular por meio da criação de jogos narrativos e experiências interativas.”
-      </blockquote>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 3rem; color: #a3a3a3;">
-        <p>
-          Minha estética utiliza monocromia, silhuetas e alto contraste como linguagem visual, explorando a força gráfica de formas simples. Desenvolvo jogos autorais, narrativas interativas e instalações digitais que transformam gestos cotidianos em experiências sensíveis e contemplativas.
-        </p>
-        <p>
-          No <strong>Tejo Estúdio</strong> desenvolvo projetos que exploram a relação entre arte digital, narrativa interativa e tecnologia, investigando como sistemas interativos podem ampliar experiências visuais e relações com o território.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projetos" class="portfolio-shell portfolio-section">
-    <div style="border-bottom: 2px solid #000; padding-bottom: 2rem; margin-bottom: 5rem; display: flex; align-items: baseline; gap: 1.5rem;">
-      <h2>PROJETOS</h2>
-      <span style="font-family: var(--font-mono); color: #737373;">SELEÇÃO 2024 — 2026</span>
-    </div>
-
-    <div class="portfolio-grid" style="gap: 6rem;">
-      <!-- Vem Exu -->
-      <article class="project-article">
-        <div class="portfolio-col-span-5">
-          <figure class="aspect-3-4">
-            <img src="{{{base_path}}}images/portfolio/vem_exu.png" alt="Vem Exu" class="object-cover tejo-grayscale">
-          </figure>
-        </div>
-        <div class="portfolio-col-span-7" style="display: flex; flex-direction: column; justify-content: center;">
-          <h3 style="text-transform: uppercase;">Vem, Exu</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.75rem;"><span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">2024–2026</span> <span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">CONTO INTERATIVO DIGITAL</span></p>
+  <!-- Main Content Wrapper -->
+  <main>
+    
+    <!-- Poética -->
+    <section id="poetica" class="portfolio-dark-section portfolio-section">
+      <div class="portfolio-shell portfolio-poetics-container">
+        <h2 class="portfolio-poetics-title">
+          {{portfolio.poetics_title}}
+        </h2>
+        <blockquote class="portfolio-poetics-quote">
+          {{portfolio.poetics_quote}}
+        </blockquote>
+        <div class="portfolio-poetics-grid">
           <p>
-            Um conto interativo inspirado na história “Exu Ficou com Medo”, do livro Contos de Exu, de Rafael Semino. A narrativa acompanha um menino que atravessa uma tempestade fantástica após perder sua arraia.
+            {{{portfolio.poetics_p1}}}
           </p>
-          <ul style="font-size: 0.85rem; border-left: 2px solid #ccc; padding-left: 1rem; list-style: none;">
-            <li><strong>Poética:</strong> Gestos pequenos, silhuetas</li>
-            <li><strong>Tech:</strong> Godot 4 (GDScript 2)</li>
-            <li><strong>Destaque:</strong> Projeto desenvolvido com apoio da Lei Paulo Gustavo (CE) em 2024</li>
-          </ul>
-          <div style="margin-top: 1.5rem;">
-            <a href="https://bit.ly/vemexu" target="_blank" rel="noopener" class="tejo-btn">Jogar Demo &nearrow;</a>
+          <p>
+            {{{portfolio.poetics_p2}}}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Obras e Projetos Principais -->
+    <section id="projetos" class="portfolio-shell portfolio-section">
+      <header class="portfolio-projects-header">
+        <h2>{{portfolio.projects_title}}</h2>
+        <span class="portfolio-projects-subtitle">{{portfolio.projects_subtitle}}</span>
+      </header>
+
+      <div class="portfolio-projects-list">
+        <!-- Vem Exu -->
+        <article class="project-article">
+          <div class="portfolio-col-span-5">
+            <figure class="aspect-3-4">
+              <img src="{{{base_path}}}images/portfolio/vem_exu.png" alt="{{portfolio.vem_exu_title}}" class="object-cover tejo-grayscale">
+            </figure>
           </div>
-        </div>
-      </article>
+          <div class="portfolio-col-span-7 project-details-column">
+            <h3>{{portfolio.vem_exu_title}}</h3>
+            <div class="project-tags">
+              <span class="project-tag">{{portfolio.vem_exu_tag1}}</span>
+              <span class="project-tag">{{portfolio.vem_exu_tag2}}</span>
+            </div>
+            <p>
+              {{{portfolio.vem_exu_desc}}}
+            </p>
+            
+            <ul class="project-bullets">
+              <li>{{{portfolio.vem_exu_poetics}}}</li>
+              <li>{{{portfolio.vem_exu_tech}}}</li>
+              <li>{{{portfolio.vem_exu_highlight}}}</li>
+              <li>{{{portfolio.vem_exu_circulation}}}</li>
+            </ul>
+            
+            <div class="project-team-block">
+              <strong>{{{portfolio.vem_exu_team}}}</strong>
+              <p>{{{portfolio.vem_exu_team_desc}}}</p>
+            </div>
 
-      <!-- RAIAR -->
-      <article class="project-article">
-        <div class="portfolio-col-span-7 portfolio-order-2">
-           <figure class="aspect-video" style="background: #171717; display: flex; align-items: center; justify-content: center;">
-              <span style="color: #404040; font-family: var(--font-mono); border: 1px dashed #404040; padding: 1rem;">IMAGEM EM BREVE</span>
-           </figure>
-        </div>
-        <div class="portfolio-col-span-5 portfolio-order-1" style="display: flex; flex-direction: column; justify-content: center;">
-          <h3 style="text-transform: uppercase;">RAIAR</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.75rem;"><span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">2025–2026</span> <span style="background: #e5e5e5; padding: 0.2rem 0.5rem;">INSTALAÇÃO</span></p>
-          <p>
-            Transforma a tradição cearense de soltar arraias em uma experiência digital coletiva. O público utiliza o celular para criar e movimentar pipas digitais em uma projeção generativa.
-          </p>
-          <ul style="font-size: 0.85rem; border-left: 2px solid #ccc; padding-left: 1rem; list-style: none;">
-            <li><strong>Poética:</strong> Vento, céu, participação</li>
-            <li><strong>Tech:</strong> WebSockets, Projeção Generativa</li>
-          </ul>
-        </div>
-      </article>
-    </div>
+            <!-- Prova Social (Aspas do Press Kit) -->
+            <blockquote class="project-quote">
+              {{{presskit.quote_1}}}
+              <cite>{{{presskit.quote_1_cite}}}</cite>
+            </blockquote>
 
-    <!-- Outras Obras -->
-    <div style="margin-top: 8rem; border-top: 2px solid #000; padding-top: 4rem;">
-      <h4 style="margin-bottom: 3rem;">OUTRAS OBRAS</h4>
-      <div class="portfolio-grid portfolio-md-grid-3">
-        <article>
-          <figure style="aspect-ratio: 1; margin-bottom: 1.5rem;">
-            <img src="{{{base_path}}}images/portfolio/maria_da_lua.png" alt="Maria da Lua" class="object-cover tejo-grayscale">
-          </figure>
-          <h5>Maria da Lua</h5>
-          <p style="font-size: 0.9rem; color: #737373;">Videopoema inspirado no imaginário fantástico nordestino.</p>
+            <div class="project-action-btn">
+              <a href="https://bit.ly/vemexu" target="_blank" rel="noopener" class="tejo-btn">{{portfolio.vem_exu_play_demo}} &nearrow;</a>
+            </div>
+          </div>
         </article>
-        <article>
-          <figure style="aspect-ratio: 1; margin-bottom: 1.5rem;">
-            <img src="{{{base_path}}}images/portfolio/hamilton.png" alt="Hamilton" class="object-cover tejo-grayscale">
-          </figure>
-          <h5>Hamilton</h5>
-          <p style="font-size: 0.9rem; color: #737373;">Puzzle casual publicado na Play Store.</p>
-        </article>
-        <article>
-          <figure style="aspect-ratio: 1; margin-bottom: 1.5rem;">
-            <img src="{{{base_path}}}images/portfolio/sina_de_sia.png" alt="Sina de Siá" class="object-cover tejo-grayscale">
-          </figure>
-          <h5>Sina de Siá</h5>
-          <p style="font-size: 0.9rem; color: #737373;">Metroidvania inspirado na estética do cordel.</p>
+
+        <!-- RAIAR -->
+        <article class="project-article">
+          <div class="portfolio-col-span-7 portfolio-order-2">
+             <figure class="aspect-video" style="background: #171717; display: flex; align-items: center; justify-content: center; margin: 0; box-shadow: var(--shadow-hard);">
+                <span style="color: #404040; font-family: var(--font-mono); border: 1px dashed #404040; padding: 1rem;">{{portfolio.raiar_image_soon}}</span>
+             </figure>
+          </div>
+          <div class="portfolio-col-span-5 portfolio-order-1 project-details-column">
+            <h3>{{portfolio.raiar_title}}</h3>
+            <div class="project-tags">
+              <span class="project-tag">{{portfolio.raiar_tag1}}</span>
+              <span class="project-tag">{{portfolio.raiar_tag2}}</span>
+            </div>
+            <p>
+              {{{portfolio.raiar_desc}}}
+            </p>
+            <ul class="project-bullets">
+              <li>{{{portfolio.raiar_poetics}}}</li>
+              <li>{{{portfolio.raiar_tech}}}</li>
+              <li>{{{portfolio.raiar_highlight}}}</li>
+            </ul>
+          </div>
         </article>
       </div>
-    </div>
-  </section>
+
+      <!-- Outras Obras -->
+      <div class="portfolio-other-works">
+        <h4>{{portfolio.other_works_title}}</h4>
+        <div class="portfolio-other-grid">
+          <article>
+            <figure>
+              <img src="{{{base_path}}}images/portfolio/maria_da_lua.png" alt="{{portfolio.maria_lua_title}}" class="object-cover tejo-grayscale">
+            </figure>
+            <h5>{{portfolio.maria_lua_title}}</h5>
+            <p>{{{portfolio.maria_lua_desc}}}</p>
+          </article>
+          <article>
+            <figure>
+              <img src="{{{base_path}}}images/portfolio/hamilton.png" alt="{{portfolio.hamilton_title}}" class="object-cover tejo-grayscale">
+            </figure>
+            <h5>{{portfolio.hamilton_title}}</h5>
+            <p>{{{portfolio.hamilton_desc}}}</p>
+          </article>
+          <article>
+            <figure>
+              <img src="{{{base_path}}}images/portfolio/sina_de_sia.png" alt="{{portfolio.sina_sia_title}}" class="object-cover tejo-grayscale">
+            </figure>
+            <h5>{{portfolio.sina_sia_title}}</h5>
+            <p>{{{portfolio.sina_sia_desc}}}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editais e Apoios -->
+    <section class="portfolio-grants portfolio-section">
+      <div class="portfolio-shell">
+        <h3>
+          <span class="portfolio-square-bullet"></span>
+          {{portfolio.grants_title}}
+        </h3>
+        <div class="portfolio-grants-grid">
+          <article class="portfolio-grant-card">
+            <h4>{{portfolio.grant_lpg_title}}</h4>
+            <p>{{portfolio.grant_lpg_desc}}</p>
+          </article>
+          <article class="portfolio-grant-card">
+            <h4>{{portfolio.grant_artes_title}}</h4>
+            <p>{{portfolio.grant_artes_desc}}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exposições e Circulação -->
+    <section id="circulacao" class="portfolio-dark-section portfolio-section">
+      <div class="portfolio-shell">
+        <h3 class="portfolio-circulation-title">
+          ✦ {{portfolio.circulation_title}}
+        </h3>
+        <p class="portfolio-circulation-desc">
+          {{portfolio.circulation_desc}}
+        </p>
+        
+        <div class="portfolio-circulation-grid">
+          <!-- SANA -->
+          <article class="portfolio-event-card">
+            <div>
+              <header class="portfolio-event-header">
+                <span class="portfolio-event-tag">{{portfolio.event_sana_tag}}</span>
+                <strong class="portfolio-event-title">{{portfolio.event_sana_title}}</strong>
+              </header>
+              <p class="portfolio-event-desc">
+                {{portfolio.event_sana_desc}}
+              </p>
+            </div>
+            <div class="portfolio-event-gallery">
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/sana_2026_1_01.jpeg" alt="{{{presskit.alt_event_sana_01}}}" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/sana_2026_1_02.jpeg" alt="{{{presskit.alt_event_sana_02}}}" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/sana_2026_1_03.jpeg" alt="Sana 3" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+            </div>
+          </article>
+
+          <!-- Feira do Conhecimento -->
+          <article class="portfolio-event-card">
+            <div>
+              <header class="portfolio-event-header">
+                <span class="portfolio-event-tag">{{portfolio.event_feira_tag}}</span>
+                <strong class="portfolio-event-title">{{portfolio.event_feira_title}}</strong>
+              </header>
+              <p class="portfolio-event-desc">
+                {{portfolio.event_feira_desc}}
+              </p>
+            </div>
+            <div class="portfolio-event-gallery">
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/feira_do_conhecimento_01.jpeg" alt="{{{presskit.alt_event_feira_01}}}" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/feira_do_conhecimento_02.jpeg" alt="{{{presskit.alt_event_feira_02}}}" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/feira_do_conhecimento_03.jpeg" alt="Feira 3" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+            </div>
+          </article>
+
+          <!-- Escolas -->
+          <article class="portfolio-event-card">
+            <div>
+              <header class="portfolio-event-header">
+                <span class="portfolio-event-tag">{{portfolio.event_escolas_tag}}</span>
+                <strong class="portfolio-event-title">{{portfolio.event_escolas_title}}</strong>
+              </header>
+              <p class="portfolio-event-desc">
+                {{portfolio.event_escolas_desc}}
+              </p>
+            </div>
+            <div class="portfolio-event-gallery">
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/escola_torres_de_melo_01.jpg" alt="{{{presskit.alt_event_escola_01}}}" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/nac_passare_01.jpg" alt="NAC Passaré 1" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+              <figure class="portfolio-gallery-item">
+                <img src="{{{base_path}}}press-kit/vem-exu/03_community/events/nac_passare_02.jpg" alt="NAC Passaré 2" class="tejo-grayscale" onclick="window.open(this.src)">
+              </figure>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pesquisa e Temas & Processos e Tecnologias -->
+    <section class="portfolio-research portfolio-section">
+      <div class="portfolio-shell portfolio-research-grid">
+        <!-- Pesquisa e Temas -->
+        <div>
+          <h3>
+            <span class="portfolio-square-bullet"></span>
+            {{portfolio.research_title}}
+          </h3>
+          <ul class="portfolio-mono-list">
+            <li>{{portfolio.research_item1}}</li>
+            <li>{{portfolio.research_item2}}</li>
+            <li>{{portfolio.research_item3}}</li>
+            <li>{{portfolio.research_item4}}</li>
+            <li>{{portfolio.research_item5}}</li>
+          </ul>
+        </div>
+        
+        <!-- Processos e Tecnologias -->
+        <div>
+          <h3>
+            <span class="portfolio-square-bullet portfolio-bullet-asterisk"></span>
+            {{portfolio.process_title}}
+          </h3>
+          <ul class="portfolio-mono-list">
+            <li>{{portfolio.process_item1}}</li>
+            <li>{{portfolio.process_item2}}</li>
+            <li>{{portfolio.process_item3}}</li>
+            <li>{{portfolio.process_item4}}</li>
+            <li>{{portfolio.process_item5}}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre Mim -->
+    <section id="sobre" class="portfolio-about portfolio-section">
+      <div class="portfolio-shell">
+        <article class="portfolio-about-card">
+          <h2>{{portfolio.about_title}}</h2>
+          
+          <div class="portfolio-about-content">
+            <!-- Foto -->
+            <figure class="portfolio-about-avatar">
+              <img src="{{{base_path}}}images/michael_feitosa.png" alt="Michael Feitosa" class="tejo-grayscale">
+            </figure>
+            
+            <!-- Texto -->
+            <div class="portfolio-about-text">
+              <p>{{{portfolio.about_p1}}}</p>
+              <p>{{{portfolio.about_p2}}}</p>
+              <p>{{{portfolio.about_p3}}}</p>
+            </div>
+          </div>
+
+          <!-- Contatos do Sobre -->
+          <footer class="portfolio-about-footer">
+            <address id="contato" class="portfolio-contact-block">
+              <h3>{{portfolio.nav_contact}}</h3>
+              <a href="mailto:michaelrfeitosa@gmail.com">
+                ✉ michaelrfeitosa@gmail.com
+              </a>
+            </address>
+
+            <div class="portfolio-docs-block">
+              <h3>{{portfolio.about_docs}}</h3>
+              <a href="{{{base_path}}}docs/curriculo_michael_feitosa.pdf" download class="portfolio-download-btn">
+                {{portfolio.about_resume}}
+              </a>
+            </div>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+  </main>
 
   <footer class="tejo-footer">
     <img src="{{{base_path}}}images/tejo_logo_black.png" alt="Tejo Estúdio" class="tejo-footer-logo">
-    <div id="contato" class="tejo-footer-content">
+    <div class="tejo-footer-content">
       <p>
-        {{{index.footer}}}
+        {{index.footer}}<br>
         <span class="tejo-footer-meta">{{{index.footer_meta}}}</span>
-        | <a href="{{{language_path}}}portfolio.html" style="color: inherit; opacity: 0.8;">{{index.portfolio}}</a>
-        | <a href="{{{language_path}}}privacy.html" style="color: inherit; opacity: 0.8;">{{index.privacy}}</a>
+        | <a href="{{{language_path}}}index.html">{{portfolio.nav_home}}</a>
+        | <a href="{{{language_path}}}privacy.html">{{{index.privacy}}}</a>
       </p>
       {{> partials/footer_social}}
     </div>
