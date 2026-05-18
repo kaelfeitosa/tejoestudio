@@ -47,7 +47,14 @@
     "url_bluesky": "https://bsky.app/profile/tejoestudio.bsky.social",
     "url_tiktok": "https://www.tiktok.com/@tejoestudio",
     "url_youtube": "https://youtube.com/@tejoestudio",
-    "url_twitter": "https://x.com/tejoestudio"
+    "url_twitter": "https://x.com/tejoestudio",
+    "email_address": "tejoestudio@gmail.com",
+    "handle_instagram": "@tejoestudio",
+    "handle_threads": "@tejoestudio",
+    "handle_bluesky": "@tejoestudio",
+    "handle_tiktok": "@tejoestudio",
+    "handle_youtube": "@tejoestudio",
+    "handle_twitter": "@tejoestudio"
   },
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
