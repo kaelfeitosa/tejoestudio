@@ -11,8 +11,8 @@ const path = require('path');
         const width = 1920;
         await page.setViewport({ width, height: 1080 }); // Initial HD viewport
         
-        // Use the absolute path to portfolio.html
-        const filePath = path.resolve(__dirname, '../portfolio.html');
+        // Use the absolute path to portfolio.html in the dist directory
+        const filePath = path.resolve(__dirname, '../dist/portfolio.html');
         // Construct a file URL
         const fileUrl = `file:///${filePath.replace(/\\/g, '/')}`;
         console.log(`Loading page: ${fileUrl}`);
