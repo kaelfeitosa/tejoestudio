@@ -41,7 +41,13 @@
     "aria_follow_bluesky": "Follow us on Bluesky",
     "aria_follow_tiktok": "Follow us on TikTok",
     "aria_visit_youtube": "Visit our YouTube channel",
-    "aria_follow_twitter": "Follow us on X (Twitter)"
+    "aria_follow_twitter": "Follow us on X (Twitter)",
+    "url_instagram": "https://instagram.com/tejoestudio",
+    "url_threads": "https://www.threads.net/@tejoestudio",
+    "url_bluesky": "https://bsky.app/profile/tejoestudio.bsky.social",
+    "url_tiktok": "https://www.tiktok.com/@tejoestudio",
+    "url_youtube": "https://youtube.com/@tejoestudio",
+    "url_twitter": "https://x.com/tejoestudio"
   },
   "presskit": {
     "title": "Press Kit - Vem, Exu!",
