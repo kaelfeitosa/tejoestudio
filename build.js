@@ -155,6 +155,10 @@ function generatePages(templates, locales, distDir, templatesPath) {
         site_url: CONFIG.SITE_URL,
         base_path: toRoot,
         language_path: `${toRoot}${langFolder}`,
+        is_default_lang: isDefault,
+        available_langs: JSON.stringify(availableLangs),
+        default_lang: CONFIG.DEFAULT_LANG,
+        canonical_base: canonicalBase,
         other_langs: getOtherLangs(lang, availableLangs, toRoot, baseOutputPath, locales)
       };
 

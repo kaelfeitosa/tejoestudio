@@ -114,7 +114,6 @@
               <li>{{{portfolio.vem_exu_tech}}}</li>
               <li>{{{portfolio.vem_exu_team}}} {{{portfolio.vem_exu_team_desc}}}</li>
               <li>{{{portfolio.vem_exu_highlight}}}</li>
-              <li>{{{portfolio.vem_exu_circulation}}}</li>
             </ul>
 
             <!-- Prova Social (Aspas do Press Kit) -->
@@ -159,45 +158,37 @@
         <h4>{{portfolio.other_works_title}}</h4>
         <div class="portfolio-other-grid">
           <article>
-            <figure>
-              <img src="{{{base_path}}}images/portfolio/maria_da_lua.png" alt="{{portfolio.maria_lua_title}}" class="object-cover tejo-grayscale">
-            </figure>
-            <h5>{{portfolio.maria_lua_title}}</h5>
+            <a href="https://youtu.be/F-0FELizya8" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
+              <figure style="border: 2px solid #000; box-shadow: 4px 4px 0px #000; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; overflow: hidden;" onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='6px 6px 0px #000';" onmouseout="this.style.transform='none'; this.style.boxShadow='4px 4px 0px #000';">
+                <img src="{{{base_path}}}images/portfolio/maria_da_lua.png" alt="{{portfolio.maria_lua_title}}" class="object-cover tejo-grayscale" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+              </figure>
+            </a>
+            <h5 style="margin-top: 1rem; font-weight: 900; text-transform: uppercase;">{{portfolio.maria_lua_title}}</h5>
             <p>{{{portfolio.maria_lua_desc}}}</p>
+            <p style="font-size: 0.8rem; color: #737373; margin-top: 0.5rem; line-height: 1.4;">{{{portfolio.maria_lua_team}}}</p>
+            <a href="https://youtu.be/F-0FELizya8" target="_blank" rel="noopener" class="portfolio-work-link" style="color: #000; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; text-decoration: underline; margin-top: 0.5rem; display: inline-block;">YouTube &nearrow;</a>
           </article>
           <article>
-            <figure>
-              <img src="{{{base_path}}}images/portfolio/hamilton.png" alt="{{portfolio.hamilton_title}}" class="object-cover tejo-grayscale">
-            </figure>
-            <h5>{{portfolio.hamilton_title}}</h5>
+            <a href="https://play.google.com/store/apps/details?id=com.tejoestudio.hamilton" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
+              <figure style="border: 2px solid #000; box-shadow: 4px 4px 0px #000; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; overflow: hidden;" onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='6px 6px 0px #000';" onmouseout="this.style.transform='none'; this.style.boxShadow='4px 4px 0px #000';">
+                <img src="{{{base_path}}}images/portfolio/hamilton.png" alt="{{portfolio.hamilton_title}}" class="object-cover tejo-grayscale" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+              </figure>
+            </a>
+            <h5 style="margin-top: 1rem; font-weight: 900; text-transform: uppercase;">{{portfolio.hamilton_title}}</h5>
             <p>{{{portfolio.hamilton_desc}}}</p>
+            <p style="font-size: 0.8rem; color: #737373; margin-top: 0.5rem; line-height: 1.4;">{{{portfolio.hamilton_team}}}</p>
+            <a href="https://play.google.com/store/apps/details?id=com.tejoestudio.hamilton" target="_blank" rel="noopener" class="portfolio-work-link" style="color: #000; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; text-decoration: underline; margin-top: 0.5rem; display: inline-block;">Google Play &nearrow;</a>
           </article>
           <article>
-            <figure>
-              <img src="{{{base_path}}}images/portfolio/sina_de_sia.png" alt="{{portfolio.sina_sia_title}}" class="object-cover tejo-grayscale">
-            </figure>
-            <h5>{{portfolio.sina_sia_title}}</h5>
+            <a href="https://kaelfeitosa.itch.io/the-sias-oath" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
+              <figure style="border: 2px solid #000; box-shadow: 4px 4px 0px #000; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; overflow: hidden;" onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='6px 6px 0px #000';" onmouseout="this.style.transform='none'; this.style.boxShadow='4px 4px 0px #000';">
+                <img src="{{{base_path}}}images/portfolio/sina_de_sia.png" alt="{{portfolio.sina_sia_title}}" class="object-cover tejo-grayscale" style="transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+              </figure>
+            </a>
+            <h5 style="margin-top: 1rem; font-weight: 900; text-transform: uppercase;">{{portfolio.sina_sia_title}}</h5>
             <p>{{{portfolio.sina_sia_desc}}}</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Editais e Apoios -->
-    <section class="portfolio-grants portfolio-section">
-      <div class="portfolio-shell">
-        <h3>
-          <span class="portfolio-square-bullet"></span>
-          {{portfolio.grants_title}}
-        </h3>
-        <div class="portfolio-grants-grid">
-          <article class="portfolio-grant-card">
-            <h4>{{portfolio.grant_lpg_title}}</h4>
-            <p>{{portfolio.grant_lpg_desc}}</p>
-          </article>
-          <article class="portfolio-grant-card">
-            <h4>{{portfolio.grant_artes_title}}</h4>
-            <p>{{portfolio.grant_artes_desc}}</p>
+            <p style="font-size: 0.8rem; color: #737373; margin-top: 0.5rem; line-height: 1.4;">{{{portfolio.sina_sia_team}}}</p>
+            <a href="https://kaelfeitosa.itch.io/the-sias-oath" target="_blank" rel="noopener" class="portfolio-work-link" style="color: #000; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; font-weight: 700; text-decoration: underline; margin-top: 0.5rem; display: inline-block;">Itch.io &nearrow;</a>
           </article>
         </div>
       </div>
@@ -340,7 +331,6 @@
             <div class="portfolio-about-text">
               <p>{{{portfolio.about_p1}}}</p>
               <p>{{{portfolio.about_p2}}}</p>
-              <p>{{{portfolio.about_p3}}}</p>
             </div>
           </div>
 
