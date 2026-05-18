@@ -684,3 +684,34 @@ textarea:focus {
   object-fit: contain;
   display: block;
 }
+
+/* Footer Social Icons */
+.tejo-footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.tejo-footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.tejo-footer-social a:hover {
+  transform: translateY(-2px);
+  opacity: 0.5;
+}
+
+.tejo-footer-social img {
+  width: 1.75rem;
+  height: 1.75rem;
+  /* Convert all SVG colors to solid black */
+  filter: grayscale(100%) brightness(0);
+}
