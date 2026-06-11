@@ -24,10 +24,10 @@ function runBuild() {
       dist: path.join(__dirname, 'dist')
     };
 
-    cleanDist(paths.dist);
+    ensureDist(paths.dist);
     const locales = loadLocales(paths.locales);
     const templates = compileTemplates(paths.templates);
-    copyAssets(paths.static, paths.dist);
+    syncAssets(paths.static, paths.dist);
     const generatedPages = generatePages(templates, locales, paths.dist, paths.templates);
     if (CONFIG.SITE_URL.startsWith('http')) {
       generateSitemap(generatedPages, paths.dist);
@@ -44,11 +44,10 @@ function runBuild() {
   }
 }
 
-function cleanDist(distDir) {
-  if (fs.existsSync(distDir)) {
-    fs.rmSync(distDir, { recursive: true, force: true });
+function ensureDist(distDir) {
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
   }
-  fs.mkdirSync(distDir, { recursive: true });
 }
 
 function loadLocales(localesPath) {
@@ -101,16 +100,48 @@ function registerPartial(fullPath, baseDir, content) {
   Handlebars.registerPartial(partialName, content);
 }
 
-function copyAssets(staticPath, distDir) {
-  if (fs.existsSync(staticPath)) {
-    // Copy while excluding sample files
-    fs.cpSync(staticPath, distDir, { 
-      recursive: true,
-      filter: (src) => !src.endsWith('.sample') && !src.includes('.DS_Store')
-    });
-    console.log("Static assets copied to dist/ (excluding samples)");
+function syncAssets(staticPath, distDir) {
+  if (!fs.existsSync(staticPath)) return;
+
+  const KNOWN_EXCLUDED = ['.DS_Store', '.sample'];
+  const isExcluded = name => KNOWN_EXCLUDED.some(ex => name === ex || name.endsWith(ex));
+
+  function syncDir(srcDir, destDir) {
+    fs.mkdirSync(destDir, { recursive: true });
+    const srcEntries = new Map();
+    for (const name of fs.readdirSync(srcDir)) {
+      if (isExcluded(name)) continue;
+      srcEntries.set(name, fs.statSync(path.join(srcDir, name)));
+    }
+
+    // Remove stale dest files/folders
+    for (const name of fs.readdirSync(destDir)) {
+      if (name === '.nojekyll') continue;
+      if (!srcEntries.has(name)) {
+        fs.rmSync(path.join(destDir, name), { recursive: true, force: true });
+      }
+    }
+
+    // Copy new/changed files
+    for (const [name, srcStat] of srcEntries) {
+      const srcPath = path.join(srcDir, name);
+      const destPath = path.join(destDir, name);
+      if (srcStat.isDirectory()) {
+        syncDir(srcPath, destPath);
+      } else {
+        const needCopy = !fs.existsSync(destPath) ||
+          fs.statSync(destPath).mtimeMs < srcStat.mtimeMs ||
+          fs.statSync(destPath).size !== srcStat.size;
+        if (needCopy) {
+          fs.cpSync(srcPath, destPath);
+        }
+      }
+    }
   }
+
+  syncDir(staticPath, distDir);
   fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
+  console.log("Static assets synced to dist/ (incremental)");
 }
 
 function getCanonicalPath(lang, baseOutputPath) {
