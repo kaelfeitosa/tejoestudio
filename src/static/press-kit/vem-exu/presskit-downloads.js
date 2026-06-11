@@ -76,7 +76,7 @@
       }
     },
     store: {
-      selector: '[aria-labelledby="branding"]', // Fallback or new section
+      selector: '[aria-labelledby="store-titulo"]',
       folder: '02_branding/store',
       zipName: 'vem_exu_store_assets.zip',
       extract(scope) {
@@ -86,7 +86,7 @@
       }
     },
     stickers: {
-      selector: '#extras',
+      selector: '[aria-labelledby="stickers-media-titulo"]',
       folder: '03_community/stickers',
       zipName: 'vem_exu_stickers.zip',
       extract(scope) {
