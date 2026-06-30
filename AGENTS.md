@@ -14,3 +14,9 @@ This file contains strict architectural and styling rules that must be followed 
 ## HTML Semantics
 
 * Rely on native HTML elements (`<main>`, `<figure>`, `<footer>`, `<article>`, etc.) instead of generic `<div>` containers whenever possible, as `tejo-base.css` uses a semantic styling approach.
+
+
+## Media and Accessibility Assets
+* When using or referencing any images, videos, or animations, always consult src/static/assets_meta.json.
+* This file acts as a manifest and contains the complete, detailed accessibility descriptions (alt texts) for every media asset in the project.
+* Do not attempt to guess file contents from their names or read binary metadata directly; the ssets_meta.json is the single source of truth for semantic descriptions and lt properties.
