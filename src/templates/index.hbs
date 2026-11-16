@@ -59,6 +59,7 @@
     "@type": "VideoGame",
     "name": "Vem, Exu",
     "url": "{{site_url}}{{canonical_path}}",
+    "sameAs": ["{{{index.url_itch}}}"],
     "description": {{{json index.vem_exu_subtitle}}},
     "genre": {{{json presskit.schema_genres}}},
     "gamePlatform": ["PC", "Android"],
@@ -156,6 +157,12 @@
           href="https://play.google.com/store/apps/details?id=com.tejoestudio.exu" target="_blank" rel="noopener">
           <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/google-play.svg" alt="">
           {{{index.playstore_btn}}}
+        </a>
+
+        <a class="tejo-link-btn tejo-brand-itch"
+          href="{{{index.url_itch}}}" target="_blank" rel="noopener">
+          <img class="icon" aria-hidden="true" src="{{{base_path}}}images/icons/itch.svg" alt="">
+          {{{index.itch_btn}}}
         </a>
       </nav>
 

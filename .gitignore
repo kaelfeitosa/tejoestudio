@@ -11,3 +11,4 @@ node_modules/
 
 # Generated localized HTML files
 dist/
+.opencode/memory/

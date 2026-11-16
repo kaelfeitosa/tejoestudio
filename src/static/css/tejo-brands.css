@@ -54,6 +54,12 @@
   --brand-text: #fff;
 }
 
+/* itch.io */
+.tejo-brand-itch {
+  --brand-bg: #fa5c5c;
+  --brand-text: #000;
+}
+
 /* Instagram */
 .tejo-brand-instagram {
   --brand-bg: linear-gradient(-135deg, #1400c8, #b900b4, #f50000);
