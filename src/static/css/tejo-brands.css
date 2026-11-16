@@ -40,9 +40,10 @@
    Cores das Marcas
    ========================================================================== */
 
-/* Google Play, Amazon & Steam */
+/* Google Play, Amazon, itch.io & Steam */
 .tejo-brand-playstore,
 .tejo-brand-amazon,
+.tejo-brand-itch,
 .tejo-brand-steam {
   --brand-bg: #fff;
   --brand-text: #000;
@@ -52,12 +53,6 @@
 .tejo-brand-steam {
   --brand-bg: #171a21;
   --brand-text: #fff;
-}
-
-/* itch.io */
-.tejo-brand-itch {
-  --brand-bg: #fa5c5c;
-  --brand-text: #000;
 }
 
 /* Instagram */
